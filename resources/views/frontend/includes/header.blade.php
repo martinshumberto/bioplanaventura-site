@@ -1,0 +1,143 @@
+<header class="header">
+  <div class="head-intro">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="head-intro-inner">
+            <div class="head-intro-info">
+              <span>Suporte: <a href="#"> Chat Online</a></span>
+              <span>
+                <a href="mailto:contato@bioplanaventura.com.br">contato@bioplanaventura.com.br</a>
+              </span>
+            </div>
+
+            <div class="head-intro-addons">
+              <div class="head-intro-addon">
+                <ul class="list-social-icons">
+                  <li>
+                    <a class="social-icon" href="#">
+                      <i class="fas fa-rss"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="social-icon" href="#">
+                      <i class="fab fa-facebook"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="social-icon" href="#">
+                      <i class="fab fa-twitter"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="social-icon" href="#">
+                      <i class="fab fa-instagram"></i>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="social-icon" href="#">
+                      <i class="fab fa-youtube"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="head-intro-addon">
+                <div class="head-search">
+                  <form action="/" class="head-search-form">
+                    <label for="head-search-input" class="sr-only">Buscar:</label>
+                    <input type="text" id="head-search-input" class="head-search-input" placeholder="Faça sua busca">
+                  </form>
+                  <a href="#" class="head-search-trigger">
+                    <i class="fas fa-search"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="head-mast head-sticky">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-3 col-md-6 col-8">
+          <h1 class="site-logo">
+            <a href="/">
+              {!!img('logo.svg')!!}
+            </a>
+          </h1>
+          <!-- <p class="site-tagline">Theme tagline</p> -->
+        </div>
+
+        <div class="col-lg-9 col-md-6 col-4">
+          <nav class="nav">
+            <ul class="navigation-main navigation-main-right">
+              <li class="menu-item-home">
+                <a href="{!!route('frontend-abouts')!!}">Sobre Nós</a>
+              </li>
+              <li>
+                <a href="/">Calendário</a>
+              </li>
+              <li class="current-menu-ancestor menu-item-has-children">
+                <a href="/">Eventos</a>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="/">Promoções</a>
+                  </li>
+                  <li>
+                    <a href="/">Próximas Saídas</a>
+                  </li>
+                  <li class="menu-item-has-children">
+                    <!-- hover/active class::current-menu-parent -->
+                    <a href="#">Categorias</a>
+                    <ul class="sub-menu">
+                      <li>
+                        <!-- hover/active class::current-menu-item -->
+                        <a href="#">Mountain Bike</a>
+                      </li>
+                      <li>
+                        <a href="#">Corrida</a>
+                      </li>
+                      <li>
+                        <a href="#">Ciclismo</a>
+                      </li>
+                      <li>
+                        <a href="#">Cicloturismo</a>
+                      </li>
+                      <li>
+                        <a href="#">Cursos</a>
+                      </li>
+                      <li>
+                        <a href="#">Palestras</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <a href="{!!route('frontend-galleries')!!}">Galeria</a>
+              </li>
+              <li>
+                <a href="{!!route('frontend-blogs')!!}">Blog</a>
+              </li>
+
+              <li class="nav-button">
+                <a href="#area-cliente" rel="modal">Área do Cliente</a>
+              </li>
+            </ul>
+          </nav>
+          <a href="#mobilemenu" class="mobile-nav-trigger">
+            <i class="fas fa-bars"></i> Menu</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div id="mobilemenu">
+  <ul></ul>
+</div>
