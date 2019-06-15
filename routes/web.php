@@ -21,7 +21,7 @@ Route::namespace('Backend')->prefix('cms')->group(function(){
     Route::get('/entrar', 'LoginController@index')->name('backend-auth');
     Route::post('/entrar', 'LoginController@authenticate')->name('backend-authenticate');
     Route::middleware('auth:admin')->group(function(){
-        Route::get('/', 'HomeController@index')->name('backend-home');
+    Route::get('/', 'HomeController@index')->name('backend-home');
 
         /* SLIDER */
         Route::get('/slider', 'SliderController@index')->name('backend-slider');
@@ -33,8 +33,7 @@ Route::namespace('Backend')->prefix('cms')->group(function(){
 
         /* ABOUTS */
         Route::get('sobre-nos', 'AboutsController@index')->name('backend-abouts');
-        Route::get('sobre-nos/novo', 'AboutsController@store')->name('backend-abouts-create');
-        Route::get('sobre-nos/{id}', 'AboutsController@update')->name('backend-abouts-update');
+        Route::post('sobre-nos/{id}', 'AboutsController@update')->name('backend-abouts-update');
 
 
     });

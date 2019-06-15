@@ -61,6 +61,7 @@ class AboutsController extends BackendController
 
 		try{
 			Abouts::create(array_filter($request->all()));
+			$request->session()->flash('success', 'Sucesso!');
 			return redirect(route('backend-abouts'));
 		} catch(Exception $e) {
 			$request->session()->flash('alert', array('code'=>'error','text' =>$e));
@@ -95,7 +96,8 @@ class AboutsController extends BackendController
 
 	   	try{
 
-	   		Abouts::find($id)->update($request->except("image"));
+			   Abouts::find($id)->update($request->except("image"));
+			   $request->session()->flash('success', 'Sucesso!');
 	   		$request->session()->flash('alert', array('code'=>'sucess', 'text' =>'Operação realizada com sucesso'));
 
 	   	} catch(Exception $e) {
