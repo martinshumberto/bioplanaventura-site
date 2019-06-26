@@ -38,9 +38,9 @@
     <meta property="og:site_name" content="{{url("/")}}" />
     <!-- End meta tags -->
 
-    <script src="{{asset('public'.elixir('js/backend/backend-app.js'))}}"></script>
+    <script src="{{asset(''.elixir('js/backend/backend-app.js'))}}"></script>
     @if (file_exists("public/js/backend/".Route::currentRouteName()."-libs.js"))
-    <script src="{{asset('public'.elixir('js/backend/'. Route::currentRouteName() .'-libs.js'))}}" async></script>
+    <script src="{{asset(''.elixir('js/backend/'. Route::currentRouteName() .'-libs.js'))}}" async></script>
     @endif
 
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,700&amp;subset=cyrillic,hebrew,latin-ext"
@@ -49,13 +49,18 @@
 
     <!--Start loading style -->
     @if (file_exists("public/css/backend/".Route::currentRouteName().".css"))
-    <link rel="stylesheet" href="{{asset('public'.elixir('css/backend/'.Route::currentRouteName().'.css'))}}">
+    <link rel="stylesheet" href="{{asset(''.elixir('css/backend/'.Route::currentRouteName().'.css'))}}">
     @else
-    <link rel="stylesheet" href="{{asset('public'.elixir('css/backend/default.css'))}}">
+    <link rel="stylesheet" href="{{asset(''.elixir('css/backend/default.css'))}}">
     @endif
-
+    <!-- DATEPICKER / MASKs-->
+    <link rel="stylesheet" href="{{asset(''.elixir('css/datepicker.min.css'))}}">
+    <script src="{{asset(''.elixir('js/datepicker.min.js'))}}"></script>
+    <script src="{{asset(''.elixir('js/i18n/datepicker.pt-BR.js'))}}"></script>
+    <script src="{{asset(''.elixir('js/jquery.mask.min.js'))}}"></script>
+ 
     <!-- Start loading the favicon-->
-    <link rel="shortcut icon" href="{{asset('public')}}/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="{{asset('')}}/favicon.png" type="image/png">
 </head>
 
 <body>

@@ -53,10 +53,10 @@
                     <div class="sub-menu">
                         <ul>
                             <li>
-                                <a href="#"><i class="icon mdi mdi-calendar-text" aria-hidden="true"></i> Eventos</a>
+                                <a href="{!!route('backend-eventoscategorias')!!}"><i class="icon mdi mdi-calendar-text" aria-hidden="true"></i> Categorias</a>
                             </li>
                             <li>
-                                <a href="#"><i class="icon mdi mdi-ticket" aria-hidden="true"></i> Criar Evento</a>
+                                <a href="{!!route('backend-eventos')!!}"><i class="icon mdi mdi-ticket" aria-hidden="true"></i> Criar Evento</a>
                             </li>
                         </ul>
                     </div>

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="{{asset('public'.elixir('css/backend/'.Route::currentRouteName().'.css'))}}">
+        <link rel="stylesheet" href="{{asset(''.elixir('css/backend/'.Route::currentRouteName().'.css'))}}">
         <title>Painel - Bioplan Aventura</title>
     </head>
     <body>
@@ -33,5 +33,5 @@
             </div>
           </div>
     </body>
-    <script src="{{asset('public'.elixir('js/backend/backend-app.js'))}}" async></script>
+    <script src="{{asset(''.elixir('js/backend/backend-app.js'))}}" async></script>
 </html>

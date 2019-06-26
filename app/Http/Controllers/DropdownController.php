@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use DB;
+class DropdownController extends Controller
+{
+    
+        public function getStateList(Request $request)
+        {
+            $states = DB::table("states")
+            ->where("country_id",$request->country_id)
+            ->pluck("name","id");
+            return response()->json($states);
+        }
+
+        public function getCityList(Request $request)
+        {
+            $cities = DB::table("cities")
+            ->where("states_id",$request->state_id)
+            ->pluck("name","cities_id");
+            return response()->json($cities);
+        }
+}

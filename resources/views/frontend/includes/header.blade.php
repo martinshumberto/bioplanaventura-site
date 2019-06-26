@@ -1,3 +1,6 @@
+@php
+use App\Model\Eventoscategorias;
+@endphp
 <header class="header">
   <div class="head-intro">
     <div class="container">
@@ -95,25 +98,13 @@
                     <!-- hover/active class::current-menu-parent -->
                     <a href="#">Categorias</a>
                     <ul class="sub-menu">
+                    @foreach( Eventoscategorias::get() as $eventocategoria )
+                 
                       <li>
                         <!-- hover/active class::current-menu-item -->
-                        <a href="#">Mountain Bike</a>
+                        <a href="{!! url('/eventos', $eventocategoria->slug); !!}">{!! $eventocategoria -> title !!}</a>
                       </li>
-                      <li>
-                        <a href="#">Corrida</a>
-                      </li>
-                      <li>
-                        <a href="#">Ciclismo</a>
-                      </li>
-                      <li>
-                        <a href="#">Cicloturismo</a>
-                      </li>
-                      <li>
-                        <a href="#">Cursos</a>
-                      </li>
-                      <li>
-                        <a href="#">Palestras</a>
-                      </li>
+                    @endforeach
                     </ul>
                   </li>
                 </ul>

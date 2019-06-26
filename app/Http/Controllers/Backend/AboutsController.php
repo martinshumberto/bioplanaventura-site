@@ -60,8 +60,23 @@ class AboutsController extends BackendController
 		}
 
 		try{
+			if($request->hasFile('file-send')) {
+
+                $file = $request->file('file-send');
+                $input['imagename'] = md5(time()).'.'.$file->getClientOriginalExtension();
+                $name_img = md5(time()).'.'.$file->getClientOriginalExtension();
+                $destinationPath = public_path('storage/files/');
+                $file->move($destinationPath, $input['imagename']);
+                $request->merge(array(
+                    'arquivo' =>  $name_img,
+                ));
+			}
+			
+			
 			Abouts::create(array_filter($request->all()));
 			return redirect(route('backend-abouts'));
+			$request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Slide cadastrado com sucesso!'));
+			
 		} catch(Exception $e) {
 			$request->session()->flash('alert', array('code'=>'error','text' =>$e));
 			return redirect(route('backend-abouts'));

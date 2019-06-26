@@ -3,35 +3,37 @@
 @section('content')
 @include('frontend/includes/header')
 
-<div class="page-hero page-hero-lg page-hero-align-center" style="background-image: url(images/slide01.png);">
+@foreach($slides as $item)
+<div class="page-hero page-hero-lg page-hero-align-center" style="background-image: url(storage/files/{!! $item -> file !!});">
+
+@if(!$item->file)
   <div class="ci-theme-video-wrap">
     <div class="ci-theme-video-background" data-video-id="326181338" data-video-type="vimeo">
     </div>
   </div>
+@endif
 
   <div class="container">
     <div class="row">
       <div class="col-12">
         <div class="page-hero-content">
           <div class="hero-badge-meta">
-            <span class="hero-badge-meta-item">
-              1 Dia
-            </span>
-
-            <span class="hero-badge-meta-item">
-              A partir de R$ 150,00
-            </span>
+              @foreach(explode('*', $item -> bagdes) as $info)
+              <span class="hero-badge-meta-item">{{ $info }}</span>
+              @endforeach
           </div>
 
-          <h2 class="page-hero-title">Cachoeiras</h2>
-          <p class="page-hero-subtitle">Conheça as mais belas cachoeiras em nossos eventos</p>
+          <h2 class="page-hero-title">{!! $item -> title !!} </h2>
+          <p class="page-hero-subtitle">{!! $item -> subtitle !!} </p>
 
-          <a href="" class="btn">Saber Mais</a>
+          <a href="{!!route('backend-slider-show', [$item->slider_id])!!}" class="btn">{!! $item -> button !!}</a>
         </div>
       </div>
     </div>
   </div>
 </div>
+@endforeach
+
 
 <main class="main widget-sections">
   <div class="container">

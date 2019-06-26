@@ -60,7 +60,8 @@ class SliderController extends BackendController
             }
 
             $slider = Slider::create($request->all());
-            return redirect(route('backend-slider-show', $slider->slider_id));
+            return redirect(route('backend-slider', $slider->slider_id));
+            $request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Slide cadastrado com sucesso!'));
         } catch (Exception $e) {
             $request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
             return redirect(route('backend-slider'));
@@ -124,7 +125,7 @@ class SliderController extends BackendController
             }
 
             $slider->delete();
-            $request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Operação realizada com sucesso!'));
+            $request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Slide deletado com sucesso !'));
         } catch (Exception $e) {
             $request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
         }

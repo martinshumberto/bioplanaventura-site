@@ -448,6 +448,7 @@ if ( ! function_exists('img_src'))
 
         $path_uris = explode("/", $path);
         $file      = end($path_uris);
+        $size  = array('auto', 'auto');
         unset($path_uris[key($path_uris)]);
         unset($path_uris[0]);
         $path_temp =  implode("/", $path_uris);
