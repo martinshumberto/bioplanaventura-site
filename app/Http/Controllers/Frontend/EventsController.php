@@ -19,13 +19,21 @@ class EventsController extends FrontendController
 
    public function show($id)
    {
-       $categorias = DB::table('eventoscategorias')
+       
+
+       if ($id == "todos"):
+        $categorias = $id;
+        $eventos = DB::table('eventos')
+        ->get();
+       else:
+        $categorias = DB::table('eventoscategorias')
        ->where('slug', '=', $id)
        ->get();
 
-       $eventos = DB::table('eventos')
-       ->where('eventoscategorias_id', '=', $categorias[0]->eventoscategorias_id)
-       ->get();
+        $eventos = DB::table('eventos')
+        ->where('eventoscategorias_id', '=', $categorias[0]->eventoscategorias_id)
+        ->get();
+       endif;
 
        return view("frontend/eventos/todos", array('eventos' => $eventos, 'categorias' => $categorias));
    }

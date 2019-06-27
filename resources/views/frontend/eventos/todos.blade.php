@@ -5,18 +5,28 @@ use App\Model\Fotos;
 @section('content')
 @include('frontend/includes/header')
 
-
-<div class="page-hero" style="background-image: url(public/storage/files/{!! $categorias[0]->file !!});">
-
+@if($categorias=="todos")
+<div class="page-hero" style="background-image: url(public/img/lefkada_lan.jpg);">
 </div>
+@else
+<div class="page-hero" style="background-image: url(public/storage/files/{!! $categorias[0]->file !!});">
+</div>
+@endif
+
 <main class="main main-elevated">
   <div class="content-elevated">
     <div class="container">
       <div class="row">
         <div class="col-lg-9 col-12">
           <div class="page-hero-content">
+            
+            @if($categorias=="todos")
+            <h2 class="page-hero-title">Eventos</h2>
+            <p class="page-hero-subtitle">Todos os eventos </p>
+            @else
             <h2 class="page-hero-title">{!! $categorias[0]->title !!}</h2>
             <p class="page-hero-subtitle">{!! $categorias[0]->subtitle !!} </p>
+            @endif
           </div>
 
           <div class="listing-controls">
@@ -67,8 +77,12 @@ use App\Model\Fotos;
 
                 <div class="item-content">
                   <div class="item-meta">
+                  @php $i=0; @endphp
                   @foreach(explode('*', $evento -> subtitle) as $info)
+                    @php $i++; @endphp
+                    @if ($i <= 2)
                     <span class="item-meta-field">{{ $info }}</span>
+                    @endif
                   @endforeach
                   </div>
 

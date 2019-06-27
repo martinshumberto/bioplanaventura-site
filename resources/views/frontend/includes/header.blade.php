@@ -89,7 +89,7 @@ use App\Model\Eventoscategorias;
                 <a href="/">Calendário</a>
               </li>
               <li class="current-menu-ancestor menu-item-has-children">
-                <a href="/">Eventos</a>
+                <a href="{!!route('frontend-events', 'todos')!!}">Eventos</a>
                 <ul class="sub-menu">
                   <li>
                     <a href="/">Promoções</a>

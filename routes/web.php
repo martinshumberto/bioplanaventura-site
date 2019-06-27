@@ -20,6 +20,7 @@ Route::namespace('Frontend')->group(function(){
     Route::get('/eventos', array('as' => 'frontend-events', 'uses' => 'EventsController@index'));
     Route::get('/eventos/{title}', array('as' => 'frontend-events', 'uses' => 'EventsController@show'));
     Route::get('/galeria', array('as' => 'frontend-galleries', 'uses' => 'GalleriesController@index'));
+    Route::get('/assine-informativo', array('as' => 'frontend-newsletter', 'uses' => 'HomeController@assine'));
 });
 
 
@@ -66,6 +67,11 @@ Route::namespace('Backend')->prefix('cms')->group(function(){
         Route::get('sobre-nos', 'AboutsController@index')->name('backend-abouts');
         Route::post('sobre-nos/{id}', 'AboutsController@update')->name('backend-abouts-update'); 
         Route::post('upfiles', 'GalleriesController@upfiles')->name('backend-upfiles');
+
+        /* ABOUTS */
+        Route::get('configuracoes', 'ConfiguracoesController@index')->name('backend-configuracoes');
+        Route::post('configuracoes/{id}', 'ConfiguracoesController@update')->name('backend-configuracoes-update'); 
+
     });
 
 });

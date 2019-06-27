@@ -1,5 +1,7 @@
 @extends('frontend.layout._header')
-
+@php
+use App\Model\Fotos;
+@endphp
 @section('content')
 @include('frontend/includes/header')
 
@@ -23,132 +25,33 @@
       <div class="col-12">
         <article class="entry">
           <div class="entry-content">
-            <h4>Galeria #1</h4>
+
+          @foreach ($galerias as $galeria)
+            <h4>{!! $galeria->title !!}</h4>
             <div class="gallery gallery-columns-3">
-              <figure class="gallery-item">
+              
+            @php
+                $foto = Fotos::where('chave',$galeria->chave)->pluck('file');                  
+            @endphp
+            
+            @foreach ($foto as $image)
+            <figure class="gallery-item">
                 <div class="gallery-icon landscape">
-                  <a class="ci-theme-lightbox" href="images/blog01_sm.jpg">
-                    <img src="images/blog01_sm.jpg" alt="">
+                  <a class="ci-theme-lightbox" href="public/storage/files/{!! $image !!}">
+                  {!!img('../storage/files/'.$image, array("width"=>"100%", "height"=>"100%"))!!}
                   </a>
                 </div>
                 <figcaption class="wp-caption-text gallery-caption">
-                  This is a nice gallery caption
+                  
                 </figcaption>
               </figure>
-              <figure class="gallery-item">
-                <div class="gallery-icon landscape">
-                  <a class="ci-theme-lightbox" href="images/blog02_sm.jpg">
-                    <img src="images/blog02_sm.jpg" alt="">
-                  </a>
-                </div>
-                <figcaption class="wp-caption-text gallery-caption">
-                  This is a nice gallery caption
-                </figcaption>
-              </figure>
-              <figure class="gallery-item">
-                <div class="gallery-icon landscape">
-                  <a class="ci-theme-lightbox" href="images/blog03_sm.jpg">
-                    <img src="images/blog03_sm.jpg" alt="">
-                  </a>
-                </div>
-                <figcaption class="wp-caption-text gallery-caption">
-                  This is a nice gallery caption
-                </figcaption>
-              </figure>
-              <figure class="gallery-item display-none">
-                <div class="gallery-icon landscape">
-                  <a class="ci-theme-lightbox" href="images/blog04_sm.jpg">
-                    <img src="images/blog04_sm.jpg" alt="">
-                  </a>
-                </div>
-                <figcaption class="wp-caption-text gallery-caption">
-                  This is a nice gallery caption
-                </figcaption>
-              </figure>
-              <figure class="gallery-item display-none">
-                <div class="gallery-icon landscape">
-                  <a class="ci-theme-lightbox" href="images/blog05_sm.jpg">
-                    <img src="images/blog05_sm.jpg" alt="">
-                  </a>
-                </div>
-                <figcaption class="wp-caption-text gallery-caption">
-                  This is a nice gallery caption
-                </figcaption>
-              </figure>
-              <figure class="gallery-item display-none">
-                <div class="gallery-icon landscape">
-                  <a class="ci-theme-lightbox" href="images/blog06_sm.jpg">
-                    <img src="images/blog06_sm.jpg" alt="">
-                  </a>
-                </div>
-                <figcaption class="wp-caption-text gallery-caption">
-                  This is a nice gallery caption
-                </figcaption>
-              </figure>
+             @endforeach 
+
+              
             </div>
-            <h4>Galeria #2</h4>
-            <div class="gallery gallery-columns-3">
-              <figure class="gallery-item">
-                <div class="gallery-icon landscape">
-                  <a class="ci-theme-lightbox" href="images/blog01_sm.jpg">
-                    <img src="images/blog01_sm.jpg" alt="">
-                  </a>
-                </div>
-                <figcaption class="wp-caption-text gallery-caption">
-                  This is a nice gallery caption
-                </figcaption>
-              </figure>
-              <figure class="gallery-item">
-                <div class="gallery-icon landscape">
-                  <a class="ci-theme-lightbox" href="images/blog02_sm.jpg">
-                    <img src="images/blog02_sm.jpg" alt="">
-                  </a>
-                </div>
-                <figcaption class="wp-caption-text gallery-caption">
-                  This is a nice gallery caption
-                </figcaption>
-              </figure>
-              <figure class="gallery-item">
-                <div class="gallery-icon landscape">
-                  <a class="ci-theme-lightbox" href="images/blog03_sm.jpg">
-                    <img src="images/blog03_sm.jpg" alt="">
-                  </a>
-                </div>
-                <figcaption class="wp-caption-text gallery-caption">
-                  This is a nice gallery caption
-                </figcaption>
-              </figure>
-              <figure class="gallery-item display-none">
-                <div class="gallery-icon landscape">
-                  <a class="ci-theme-lightbox" href="images/blog04_sm.jpg">
-                    <img src="images/blog04_sm.jpg" alt="">
-                  </a>
-                </div>
-                <figcaption class="wp-caption-text gallery-caption">
-                  This is a nice gallery caption
-                </figcaption>
-              </figure>
-              <figure class="gallery-item display-none">
-                <div class="gallery-icon landscape">
-                  <a class="ci-theme-lightbox" href="images/blog05_sm.jpg">
-                    <img src="images/blog05_sm.jpg" alt="">
-                  </a>
-                </div>
-                <figcaption class="wp-caption-text gallery-caption">
-                  This is a nice gallery caption
-                </figcaption>
-              </figure>
-              <figure class="gallery-item display-none">
-                <div class="gallery-icon landscape">
-                  <a class="ci-theme-lightbox" href="images/blog06_sm.jpg">
-                    <img src="images/blog06_sm.jpg" alt="">
-                  </a>
-                </div>
-                <figcaption class="wp-caption-text gallery-caption">
-                  This is a nice gallery caption
-                </figcaption>
-              </figure>
-            </div>
+          @endforeach
+
+            
 
           </div>
         </article>

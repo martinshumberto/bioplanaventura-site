@@ -61,6 +61,12 @@
                         </ul>
                     </div>
                 </li>
+                <li>
+                    <a href="{!!route('backend-configuracoes')!!}" class="menu-item">
+                        <div class="icon"><i class="icon mdi mdi-settings" aria-hidden="true"></i></div>
+                        <div class="title">Configurações</div>
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="title">Principal</div>

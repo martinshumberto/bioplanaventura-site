@@ -1,5 +1,7 @@
 @extends('frontend.layout._header')
-
+@php
+use App\Model\Fotos;
+@endphp
 @section('content')
 @include('frontend/includes/header')
  
@@ -142,98 +144,42 @@
           </div>
 
           <div class="row row-items">
+           
+            @foreach ($promocao as $evento)
             <div class="col-lg-3 col-sm-6 col-12">
               <div class="item item-vertical">
                 <div class="item-thumb">
-                  <a href="#">
-                    {!!img('piri-1.png')!!}
+                  <a href="{!! url('/evento', $evento->slug); !!}">
+                  @php
+                  $foto = Fotos::where('chave',$evento->chave)->pluck('file');                  
+                  @endphp
+                  {!!img('../storage/files/'.$foto[0], array("width"=>"100%", "height"=>"100%"))!!}
                   </a>
-                  <span class="item-badge">Promoção</span>
+                  @if($evento -> promocao) 
+                  <span class="item-badge">{!! $evento -> promocao !!}</span>
+                  @endif
                 </div>
 
                 <div class="item-content">
                   <div class="item-meta">
-                    <span class="item-meta-field">9 dias</span>
-                    <span class="item-meta-field">Valor: R$ 1,900</span>
+                  @php $i=0; @endphp
+                  @foreach(explode('*', $evento -> subtitle) as $info)
+                    @php $i++; @endphp
+                    @if ($i <= 2)
+                    <span class="item-meta-field">{{ $info }}</span>
+                    @endif
+                  @endforeach
                   </div>
 
                   <p class="item-title">
-                    <a href="#">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    <a href="{!! url('/evento', $evento->slug); !!}">
+                    {!! $evento -> title !!}
                     </a>
                   </p>
                 </div>
               </div>
             </div>
-            <div class="col-lg-3 col-sm-6 col-12">
-              <div class="item item-vertical">
-                <div class="item-thumb">
-                  <a href="#">
-                    {!!img('piri-1.png')!!}
-                  </a>
-                  <span class="item-badge">Promoção</span>
-                </div>
-
-                <div class="item-content">
-                  <div class="item-meta">
-                    <span class="item-meta-field">9 dias</span>
-                    <span class="item-meta-field">Valor: R$ 1,900</span>
-                  </div>
-
-                  <p class="item-title">
-                    <a href="#">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 col-12">
-              <div class="item item-vertical">
-                <div class="item-thumb">
-                  <a href="#">
-                    {!!img('piri-1.png')!!}
-                  </a>
-                  <span class="item-badge">Promoção</span>
-                </div>
-
-                <div class="item-content">
-                  <div class="item-meta">
-                    <span class="item-meta-field">9 dias</span>
-                    <span class="item-meta-field">Valor: R$ 1,900</span>
-                  </div>
-
-                  <p class="item-title">
-                    <a href="#">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 col-12">
-              <div class="item item-vertical">
-                <div class="item-thumb">
-                  <a href="#">
-                    {!!img('piri-1.png')!!}
-                  </a>
-                  <span class="item-badge">Promoção</span>
-                </div>
-
-                <div class="item-content">
-                  <div class="item-meta">
-                    <span class="item-meta-field">9 dias</span>
-                    <span class="item-meta-field">Valor: R$ 1,900</span>
-                  </div>
-
-                  <p class="item-title">
-                    <a href="#">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
+            @endforeach
           </div>
         </section>
 
@@ -246,7 +192,21 @@
                 <h2 class="widget-hero-title">Assine as novidades</h2>
                 <p class="widget-hero-subtitle">Prometemos não utilizar suas informações de contato para enviar qualquer
                   tipo de SPAM.</p>
-                <a href="#" class="btn btn-lg">Assinar</a>
+                  <div class="row">
+                    <div class="col-lg-10">
+                    {!! Form::open(['method' => 'post',  'route' => ['frontend-newsletter'],
+                    'files' => true]) !!}
+                    {!!Form::text('e-mail', null, ['width'=>'80px']) !!}
+                    </div>
+                    <div class="col-lg-2">
+                    <button type="submit" class="btn btn-lg">Assinar</button>
+                    {!! Form::close() !!}
+                    </div>
+                  </div>
+                  
+                    
+                  
+                  
               </div>
             </div>
           </div>
