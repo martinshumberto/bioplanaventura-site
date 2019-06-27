@@ -2,9 +2,27 @@
 
 @section('content')
 @include('frontend/includes/header')
+ 
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+  @php 
+  $i=0;
+  @endphp
+  @foreach($slides as $item) 
+  @php $i++ @endphp
+    <li data-target="#carouselExampleIndicators" data-slide-to="{!! $i-1 !!}" @if($i==1) class="active" @endif ></li>
+ 
+  @endforeach
 
-@foreach($slides as $item)
-<div class="page-hero page-hero-lg page-hero-align-center" style="background-image: url(storage/files/{!! $item -> file !!});">
+  </ol>
+  <div class="carousel-inner">
+  @php 
+  $i=0;
+  @endphp
+  @foreach($slides as $item) 
+  @php $i++ @endphp
+    <div class="carousel-item @if($i==1) active @endif">
+    <div class="page-hero page-hero-lg page-hero-align-center" style="background-image: url(public/storage/files/{!! $item -> file !!});">
 
 @if(!$item->file)
   <div class="ci-theme-video-wrap">
@@ -32,7 +50,20 @@
     </div>
   </div>
 </div>
-@endforeach
+    </div>
+  @endforeach
+     
+
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 
 
 <main class="main widget-sections">

@@ -21,7 +21,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="menu-item">
+                    <a href="{!!route('backend-galeria')!!}" class="menu-item">
                         <div class="icon"><i class="icon mdi mdi-google-pages" aria-hidden="true"></i></div>
                         <div class="title">Galeria</div>
                     </a>

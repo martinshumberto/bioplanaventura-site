@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;

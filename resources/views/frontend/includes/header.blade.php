@@ -82,6 +82,9 @@ use App\Model\Eventoscategorias;
               <li class="menu-item-home">
                 <a href="{!!route('frontend-abouts')!!}">Sobre Nós</a>
               </li>
+              <li class="menu-item-home">
+                <a href="{!!route('frontend-equipe')!!}">Equipe</a>
+              </li>
               <li>
                 <a href="/">Calendário</a>
               </li>

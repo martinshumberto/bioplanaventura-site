@@ -50,6 +50,8 @@
   <link rel="stylesheet" href="{{asset(''.elixir('css/default.css'))}}">
   @endif
 
+  <link rel="stylesheet" href="{{asset(''.elixir('css/bootstrap.min.css'))}}">
+  <link rel="stylesheet" href="{{asset(''.elixir('css/carousel.css'))}}">
   <!-- Start loading the favicon-->
   <link rel="shortcut icon" href="{{asset('')}}/favicon.png" type="image/png">
 </head>

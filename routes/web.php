@@ -13,11 +13,12 @@ Route::get('get-city-list','DropdownController@getCityList');
 Route::namespace('Frontend')->group(function(){
     Route::get('/evento/{title}', array('as' => 'frontend-home', 'uses' => 'EventsController@evento'));
     Route::get('/', array('as' => 'frontend-home', 'uses' => 'HomeController@index'));
+    Route::get('/equipe', array('as' => 'frontend-equipe', 'uses' => 'EquipeController@index'));    
     Route::get('/sobre-nos', array('as' => 'frontend-abouts', 'uses' => 'AboutsController@index'));
     Route::get('/blog', array('as' => 'frontend-blogs', 'uses' => 'BlogsController@index'));
     Route::get('/blog/{title}', array('as' => 'frontend-blog', 'uses' => 'BlogsController@show'));
-    Route::get('/eventos', array('as' => 'frontend-eventos', 'uses' => 'EventsController@index'));
-    Route::get('/eventos/{title}', array('as' => 'frontend-eventos', 'uses' => 'EventsController@show'));
+    Route::get('/eventos', array('as' => 'frontend-events', 'uses' => 'EventsController@index'));
+    Route::get('/eventos/{title}', array('as' => 'frontend-events', 'uses' => 'EventsController@show'));
     Route::get('/galeria', array('as' => 'frontend-galleries', 'uses' => 'GalleriesController@index'));
 });
 
@@ -51,6 +52,14 @@ Route::namespace('Backend')->prefix('cms')->group(function(){
         Route::get('/eventos/excluir/{id}', 'EventosController@destroy')->name('backend-eventos-destroy');
         Route::put('/eventos/{id}', 'EventosController@update')->name('backend-eventos-update');
         Route::get('/eventos/{id}', 'EventosController@show')->name('backend-eventos-show');
+
+        /* GALERIA */
+        Route::get('/galeria', 'GaleriaController@index')->name('backend-galeria');
+        Route::get('/galeria/novo', 'GaleriaController@create')->name('backend-galeria-create');
+        Route::post('/galeria/novo', 'GaleriaController@store')->name('backend-galeria-create');
+        Route::get('/galeria/excluir/{id}', 'GaleriaController@destroy')->name('backend-galeria-destroy');
+        Route::put('/galeria/{id}', 'GaleriaController@update')->name('backend-galeria-update');
+        Route::get('/galeria/{id}', 'GaleriaController@show')->name('backend-galeria-show');
         
 
         /* ABOUTS */

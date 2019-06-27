@@ -16,7 +16,7 @@ class HomeController extends FrontendController
    {
       $slider = DB::table('slider')
       ->inRandomOrder()
-      ->limit(1)
+      ->limit(5)
       ->get();
    		return view("frontend/home/index", array( "slides" => $slider));
    }
