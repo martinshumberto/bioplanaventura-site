@@ -107,8 +107,31 @@ use Illuminate\Support\Carbon;
                         </div>
                     </div>                    
 
-                    @include('backend/includes/gallery', array("action"=>"eventos", "fotos"=>$fotos), array("chave"=>$chave))
-                     
+                    @include('backend/includes/gallery', array("action"=>"eventos"), array("chave"=>$chave))
+                    <label for="titulo">Galeria de Imagem</label>
+                                <div class="file-list d-flex flex-wrap mt-15">
+
+                                @foreach($fotos as $foto)
+                                    <div class="fiel w-100 w-sm-46 w-md-30 w-xl-23 px-20 py-10 d-flex rounded position-relative">
+                                        <div class="document fw-87 fh-80">
+                                        {!!img('../storage/files/'.$foto->file, array("width"=>"70", "height"=>"70"))!!}
+                                        </div>
+                                        <div class="w-50 d-flex flex-column justify-content-center">
+                                            <div class="file-name font-weight-normal"> </div>
+                                            <div class="position-absolute post-10 posr-12" role="main" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="icon mdi mdi-dots-vertical text-size-18" aria-hidden="true"></i> 
+                                                <div class="dropdown-menu"> 
+                                                    <a class="dropdown-item" href="#">Compartilhar</a> 
+                                                    <a class="dropdown-item" href="#">Download</a> 
+                                                    <a class="dropdown-item" href="#">Renomear</a> 
+                                                    <a class="dropdown-item" href="#">Inativar</a> 
+                                                    <a class="dropdown-item" href="#">Deletar</a> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                @endforeach
+                                </div>
                     <div class="form-group">
                         {!!Form::label('status', 'Status')!!}<code>*</code>
                         {!!Form::select('status', ['1' => 'Ativo', '2' => 'Inativo'], null, [ 'class' => 'custom-select

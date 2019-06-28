@@ -27,6 +27,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{!!route('backend-comentarios')!!}" class="menu-item">
+                        <div class="icon"><i class="icon mdi mdi-message-text" aria-hidden="true"></i></div>
+                        <div class="title">Comentários</div>
+                    </a>
+                </li>
+                <li>
                     <a href="javascript:;" class="menu-item">
                         <div class="icon"><i class="icon mdi mdi-pencil" aria-hidden="true"></i></div>
                         <div class="title">Blog</div>
@@ -34,13 +40,10 @@
                     <div class="sub-menu">
                         <ul>
                             <li>
-                                <a href="#"><i class="icon mdi mdi-shape" aria-hidden="true"></i> Categorias</a>
+                                <a href="{!!route('backend-blogcategorias')!!}"><i class="icon mdi mdi-shape" aria-hidden="true"></i> Categorias</a>
                             </li>
                             <li>
-                                <a href="#"><i class="icon mdi mdi-format-text" aria-hidden="true"></i> Postagens</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="icon mdi mdi-message-text" aria-hidden="true"></i> Comentários</a>
+                                <a href="{!!route('backend-blog')!!}"><i class="icon mdi mdi-format-text" aria-hidden="true"></i> Postagens</a>
                             </li>
                         </ul>
                     </div>

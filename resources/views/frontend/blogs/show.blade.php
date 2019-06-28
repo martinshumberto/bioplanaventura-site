@@ -3,13 +3,13 @@
 @section('content')
 @include('frontend/includes/header')
 
-<div class="page-hero" style="background-image: url(images/greece_lan.jpg);">
+<div class="page-hero" style="background-image: url(public/img/greece_lan.jpg);">
   <div class="container">
     <div class="row">
       <div class="col-12">
         <div class="page-hero-content">
-          <h1 class="page-hero-title">Lorem ipsum dolor sit amet</h1>
-          <p class="page-hero-subtitle">Lorem ipsum dolor sit amet, consectetur.</p>
+          <h1 class="page-hero-title">{!! $postagens[0]->title !!}</h1>
+          <p class="page-hero-subtitle">{!! $postagens[0]->subtitle !!}</p>
         </div>
       </div>
     </div>

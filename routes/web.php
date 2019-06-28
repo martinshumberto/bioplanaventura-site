@@ -61,7 +61,30 @@ Route::namespace('Backend')->prefix('cms')->group(function(){
         Route::get('/galeria/excluir/{id}', 'GaleriaController@destroy')->name('backend-galeria-destroy');
         Route::put('/galeria/{id}', 'GaleriaController@update')->name('backend-galeria-update');
         Route::get('/galeria/{id}', 'GaleriaController@show')->name('backend-galeria-show');
-        
+
+        /* BLOG CATEGORIA */
+        Route::get('/blogcategorias', 'BlogcategoriasController@index')->name('backend-blogcategorias');
+        Route::get('/blogcategorias/novo', 'BlogcategoriasController@create')->name('backend-blogcategorias-create');
+        Route::post('/blogcategorias/novo', 'BlogcategoriasController@store')->name('backend-blogcategorias-create');
+        Route::get('/blogcategorias/excluir/{id}', 'BlogcategoriasController@destroy')->name('backend-blogcategorias-destroy');
+        Route::put('/blogcategorias/{id}', 'BlogcategoriasController@update')->name('backend-blogcategorias-update');
+        Route::get('/blogcategorias/{id}', 'BlogcategoriasController@show')->name('backend-blogcategorias-show');
+
+        /* BLOG */
+        Route::get('/blog', 'BlogController@index')->name('backend-blog');
+        Route::get('/blog/novo', 'BlogController@create')->name('backend-blog-create');
+        Route::post('/blog/novo', 'BlogController@store')->name('backend-blog-create');
+        Route::get('/blog/excluir/{id}', 'BlogController@destroy')->name('backend-blog-destroy');
+        Route::put('/blog/{id}', 'BlogController@update')->name('backend-blog-update');
+        Route::get('/blog/{id}', 'BlogController@show')->name('backend-blog-show');
+
+        /* COMENTÁRIOS */
+        Route::get('/comentarios', 'ComentariosController@index')->name('backend-comentarios');
+        Route::get('/comentarios/novo', 'ComentariosController@create')->name('backend-comentarios-create');
+        Route::post('/comentarios/novo', 'ComentariosController@store')->name('backend-comentarios-create');
+        Route::get('/comentarios/excluir/{id}', 'ComentariosController@destroy')->name('backend-comentarios-destroy');
+        Route::put('/comentarios/{id}', 'ComentariosController@update')->name('backend-comentarios-update');
+        Route::get('/comentarios/{id}', 'ComentariosController@show')->name('backend-comentarios-show');
 
         /* ABOUTS */
         Route::get('sobre-nos', 'AboutsController@index')->name('backend-abouts');

@@ -3,8 +3,11 @@
 @section('content')
 @include('frontend/includes/header')
 
+@php
+use App\Model\Fotos;
+@endphp
 
-<div class="page-hero" style="background-image: url(images/hero.jpg);">
+<div class="page-hero" style="background-image: url(../public/img/hero.jpg);">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -22,243 +25,42 @@
     <div class="row">
       <div class="col-lg-9 col-12">
         <div class="row">
+         
+         
+        @foreach ($postagens as $posts)
           <div class="col-lg-4 col-sm-6 col-12">
             <article class="item item-entry">
               <div class="item-thumb">
-                <a href="#">
-                  <img src="images/blog02_sm.jpg" alt="">
+                <a href="{!! route('frontend-blog', [$posts->blog_id]) !!}">
+                @php
+                $foto = Fotos::where('chave',$posts->chave)->pluck('file');                  
+                @endphp
+                {!!img('../storage/files/'.$foto, array("width"=>"100%", "height"=>"100%"))!!}
+               
                 </a>
               </div>
 
               <div class="item-content">
                 <div class="item-meta">
-                  <time class="entry-time item-meta-field" datetime="2018-08-18">
-                    10 de Abril de 2019
+                  <time class="entry-time item-meta-field" datetime="{!! $posts->created_at !!}">
+                  {!!extractDate($posts->created_at)!!} às {!!extrateHour($posts->created_at)!!}
                   </time>
                 </div>
 
                 <h3 class="item-title">
-                  <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a>
+                  <a href="{!! route('frontend-blog', [$posts->blog_id]) !!}">{!! $posts->title !!}</a>
                 </h3>
 
                 <div class="item-excerpt">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores aspernatur at,
-                    deserunt dolores eos esse eum&hellip;</p>
+                  <p>{!! $posts->subtitle !!} &hellip;</p>
                 </div>
               </div>
             </article>
           </div>
-          <div class="col-lg-4 col-sm-6 col-12">
-
-            <article class="item item-entry">
-              <div class="item-thumb">
-                <a href="#">
-                  <img src="images/blog02_sm.jpg" alt="">
-                </a>
-              </div>
-
-              <div class="item-content">
-                <div class="item-meta">
-                  <time class="entry-time item-meta-field" datetime="2018-08-18">
-                    10 de Abril de 2019
-                  </time>
-                </div>
-
-                <h3 class="item-title">
-                  <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a>
-                </h3>
-
-                <div class="item-excerpt">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores aspernatur at,
-                    deserunt dolores eos esse eum&hellip;</p>
-                </div>
-              </div>
-            </article>
-          </div>
-          <div class="col-lg-4 col-sm-6 col-12">
-            <article class="item item-entry">
-              <div class="item-thumb">
-                <a href="#">
-                  <img src="images/blog02_sm.jpg" alt="">
-                </a>
-              </div>
-
-              <div class="item-content">
-                <div class="item-meta">
-                  <time class="entry-time item-meta-field" datetime="2018-08-18">
-                    10 de Abril de 2019
-                  </time>
-                </div>
-
-                <h3 class="item-title">
-                  <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a>
-                </h3>
-
-                <div class="item-excerpt">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores aspernatur at,
-                    deserunt dolores eos esse eum&hellip;</p>
-                </div>
-              </div>
-            </article>
-          </div>
-          <div class="col-lg-4 col-sm-6 col-12">
-            <article class="item item-entry">
-              <div class="item-thumb">
-                <a href="#">
-                  <img src="images/blog02_sm.jpg" alt="">
-                </a>
-              </div>
-
-              <div class="item-content">
-                <div class="item-meta">
-                  <time class="entry-time item-meta-field" datetime="2018-08-18">
-                    10 de Abril de 2019
-                  </time>
-                </div>
-
-                <h3 class="item-title">
-                  <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a>
-                </h3>
-
-                <div class="item-excerpt">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores aspernatur at,
-                    deserunt dolores eos esse eum&hellip;</p>
-                </div>
-              </div>
-            </article>
-          </div>
-          <div class="col-lg-4 col-sm-6 col-12">
-            <article class="item item-entry">
-              <div class="item-thumb">
-                <a href="#">
-                  <img src="images/blog02_sm.jpg" alt="">
-                </a>
-              </div>
-
-              <div class="item-content">
-                <div class="item-meta">
-                  <time class="entry-time item-meta-field" datetime="2018-08-18">
-                    10 de Abril de 2019
-                  </time>
-                </div>
-
-                <h3 class="item-title">
-                  <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a>
-                </h3>
-
-                <div class="item-excerpt">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores aspernatur at,
-                    deserunt dolores eos esse eum&hellip;</p>
-                </div>
-              </div>
-            </article>
-          </div>
-          <div class="col-lg-4 col-sm-6 col-12">
-            <article class="item item-entry">
-              <div class="item-thumb">
-                <a href="#">
-                  <img src="images/blog02_sm.jpg" alt="">
-                </a>
-              </div>
-
-              <div class="item-content">
-                <div class="item-meta">
-                  <time class="entry-time item-meta-field" datetime="2018-08-18">
-                    10 de Abril de 2019
-                  </time>
-                </div>
-
-                <h3 class="item-title">
-                  <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a>
-                </h3>
-
-                <div class="item-excerpt">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores aspernatur at,
-                    deserunt dolores eos esse eum&hellip;</p>
-                </div>
-              </div>
-            </article>
-          </div>
-          <div class="col-lg-4 col-sm-6 col-12">
-            <article class="item item-entry">
-              <div class="item-thumb">
-                <a href="#">
-                  <img src="images/blog02_sm.jpg" alt="">
-                </a>
-              </div>
-
-              <div class="item-content">
-                <div class="item-meta">
-                  <time class="entry-time item-meta-field" datetime="2018-08-18">
-                    10 de Abril de 2019
-                  </time>
-                </div>
-
-                <h3 class="item-title">
-                  <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a>
-                </h3>
-
-                <div class="item-excerpt">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores aspernatur at,
-                    deserunt dolores eos esse eum&hellip;</p>
-                </div>
-              </div>
-            </article>
-          </div>
-          <div class="col-lg-4 col-sm-6 col-12">
-            <article class="item item-entry">
-              <div class="item-thumb">
-                <a href="#">
-                  <img src="images/blog02_sm.jpg" alt="">
-                </a>
-              </div>
-
-              <div class="item-content">
-                <div class="item-meta">
-                  <time class="entry-time item-meta-field" datetime="2018-08-18">
-                    10 de Abril de 2019
-                  </time>
-                </div>
-
-                <h3 class="item-title">
-                  <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a>
-                </h3>
-
-                <div class="item-excerpt">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores aspernatur at,
-                    deserunt dolores eos esse eum&hellip;</p>
-                </div>
-              </div>
-            </article>
-          </div>
-          <div class="col-lg-4 col-sm-6 col-12">
-            <article class="item item-entry">
-              <div class="item-thumb">
-                <a href="#">
-                  <img src="images/blog02_sm.jpg" alt="">
-                </a>
-              </div>
-
-              <div class="item-content">
-                <div class="item-meta">
-                  <time class="entry-time item-meta-field" datetime="2018-08-18">
-                    10 de Abril de 2019
-                  </time>
-                </div>
-
-                <h3 class="item-title">
-                  <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a>
-                </h3>
-
-                <div class="item-excerpt">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores aspernatur at,
-                    deserunt dolores eos esse eum&hellip;</p>
-                </div>
-              </div>
-            </article>
-          </div>
+        @endforeach
         </div>
 
+        <!--
         <nav class="navigation pagination" role="navigation">
           <h2 class="screen-reader-text">Navegação do Blog</h2>
           <div class="nav-links">
@@ -270,6 +72,7 @@
             <a class="next page-numbers" href="">Próxima</a>
           </div>
         </nav>
+        -->
 
         <!--
           <nav class="navigation posts-navigation" role="navigation">
