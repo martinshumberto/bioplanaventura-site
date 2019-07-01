@@ -81,25 +81,32 @@ use Illuminate\Support\Carbon;
                     <h5>INFORMAÇÕES FINANCEIRAS </h5>
                     <hr size="1">
                     <div class="row">
-                        <div class="col3 px-20">
+                        <div class="col-2 px-20">
                             <div class="form-group">
                                 {!!Form::label('dataevento', 'Data do Evento')!!} <code>*</code>
                                 {!!Form::text('dataevento', null, ['class' => 'form-control datepicker-here', 'data-language'=>'pt-BR']) !!}
                             </div>
                         </div>
-                        <div class="col3 px-20">
+                        <div class="col-2 px-20">
                             <div class="form-group">
                                 {!!Form::label('datavendas', 'Término das vendas')!!} <code>*</code>
                                 {!!Form::text('datavendas', null, ['class' => 'form-control datepicker-here', 'data-language'=>'pt-BR']) !!}
                             </div>
                         </div>
-                        <div class="col3 px-20">
+                        <div class="col-2 px-20">
+                            <div class="form-group">
+                                {!!Form::label('datatermino', 'Término do Evento')!!} 
+                                {!!Form::text('datatermino', null, ['class' => 'form-control datepicker-here', 'data-language'=>'pt-BR']) !!}
+                                <code>Item relevante para filtro PRÓXIMAS SAÍDAS</code>
+                            </div>
+                        </div>
+                        <div class="col-3 px-20">
                             <div class="form-group">
                                 {!!Form::label('ingressomeia', 'Valor ingresso MEIA')!!} <code>*</code>
                                 {!!Form::text('ingressomeia', null, ['class' => 'form-control money']) !!}
                             </div>
                         </div>
-                        <div class="col3 px-20">
+                        <div class="col-3 px-20">
                             <div class="form-group">
                                 {!!Form::label('ingressointeiro', 'Valor ingresso INTEIRA')!!} <code>*</code>
                                 {!!Form::text('ingressointeiro', null, ['class' => 'form-control money']) !!}
@@ -107,31 +114,8 @@ use Illuminate\Support\Carbon;
                         </div>
                     </div>                    
 
-                    @include('backend/includes/gallery', array("action"=>"eventos"), array("chave"=>$chave))
-                    <label for="titulo">Galeria de Imagem</label>
-                                <div class="file-list d-flex flex-wrap mt-15">
-
-                                @foreach($fotos as $foto)
-                                    <div class="fiel w-100 w-sm-46 w-md-30 w-xl-23 px-20 py-10 d-flex rounded position-relative">
-                                        <div class="document fw-87 fh-80">
-                                        {!!img('../storage/files/'.$foto->file, array("width"=>"70", "height"=>"70"))!!}
-                                        </div>
-                                        <div class="w-50 d-flex flex-column justify-content-center">
-                                            <div class="file-name font-weight-normal"> </div>
-                                            <div class="position-absolute post-10 posr-12" role="main" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="icon mdi mdi-dots-vertical text-size-18" aria-hidden="true"></i> 
-                                                <div class="dropdown-menu"> 
-                                                    <a class="dropdown-item" href="#">Compartilhar</a> 
-                                                    <a class="dropdown-item" href="#">Download</a> 
-                                                    <a class="dropdown-item" href="#">Renomear</a> 
-                                                    <a class="dropdown-item" href="#">Inativar</a> 
-                                                    <a class="dropdown-item" href="#">Deletar</a> 
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> 
-                                @endforeach
-                                </div>
+                    @include('backend/includes/gallery', array("action"=>"eventos", "fotos"=>$fotos), array("chave"=>$chave))
+                    
                     <div class="form-group">
                         {!!Form::label('status', 'Status')!!}<code>*</code>
                         {!!Form::select('status', ['1' => 'Ativo', '2' => 'Inativo'], null, [ 'class' => 'custom-select

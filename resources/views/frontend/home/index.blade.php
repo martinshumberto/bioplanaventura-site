@@ -151,9 +151,10 @@ use App\Model\Fotos;
                 <div class="item-thumb">
                   <a href="{!! url('/evento', $evento->slug); !!}">
                   @php
-                  $foto = Fotos::where('chave',$evento->chave)->pluck('file');                  
+                  $foto = Fotos::where('chave',$evento->chave)->pluck('file')->first();                  
                   @endphp
-                  {!!img('../storage/files/'.$foto[0], array("width"=>"100%", "height"=>"100%"))!!}
+                  
+                  {!! img('../../public/storage/files/'.$foto, array("width"=>"100%", "height"=>"100%"))!!}
                   </a>
                   @if($evento -> promocao) 
                   <span class="item-badge">{!! $evento -> promocao !!}</span>
@@ -219,6 +220,8 @@ use App\Model\Fotos;
           </div>
 
           <div class="row row-items">
+          
+          @foreach ($blog as $posts)
             <div class="col-lg-3 col-sm-6 col-12">
               <article class="item item-entry">
                 <div class="item-thumb">
@@ -235,94 +238,16 @@ use App\Model\Fotos;
                   </div>
 
                   <h3 class="item-title">
-                    <a href="#">Lorem ipsum dolor sit amet</a>
+                    <a href="#">{!! $posts->title !!}</a>
                   </h3>
 
                   <div class="item-excerpt">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores aspernatur at,
-                      deserunt dolores eos esse eum&hellip;</p>
+                    <p>{!! $posts->subtitle !!}&hellip;</p>
                   </div>
                 </div>
               </article>
             </div>
-            <div class="col-lg-3 col-sm-6 col-12">
-              <article class="item item-entry">
-                <div class="item-thumb">
-                  <a href="#">
-                    {!!img('blog02_sm.jpg')!!}
-                  </a>
-                </div>
-
-                <div class="item-content">
-                  <div class="item-meta">
-                    <time class="entry-time item-meta-field" datetime="2018-08-18">
-                      20 Jan, 2019
-                    </time>
-                  </div>
-
-                  <h3 class="item-title">
-                    <a href="#">Lorem ipsum dolor sit amet</a>
-                  </h3>
-
-                  <div class="item-excerpt">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores aspernatur at,
-                      deserunt dolores eos esse eum&hellip;</p>
-                  </div>
-                </div>
-              </article>
-            </div>
-            <div class="col-lg-3 col-sm-6 col-12">
-              <article class="item item-entry">
-                <div class="item-thumb">
-                  <a href="#">
-                    {!!img('blog02_sm.jpg')!!}
-                  </a>
-                </div>
-
-                <div class="item-content">
-                  <div class="item-meta">
-                    <time class="entry-time item-meta-field" datetime="2018-08-18">
-                      20 Jan, 2019
-                    </time>
-                  </div>
-
-                  <h3 class="item-title">
-                    <a href="#">Lorem ipsum dolor sit amet</a>
-                  </h3>
-
-                  <div class="item-excerpt">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores aspernatur at,
-                      deserunt dolores eos esse eum&hellip;</p>
-                  </div>
-                </div>
-              </article>
-            </div>
-            <div class="col-lg-3 col-sm-6 col-12">
-              <article class="item item-entry">
-                <div class="item-thumb">
-                  <a href="#">
-                    {!!img('blog02_sm.jpg')!!}
-                  </a>
-                </div>
-
-                <div class="item-content">
-                  <div class="item-meta">
-                    <time class="entry-time item-meta-field" datetime="2018-08-18">
-                      20 Jan, 2019
-                    </time>
-                  </div>
-
-                  <h3 class="item-title">
-                    <a href="#">Lorem ipsum dolor sit amet</a>
-                  </h3>
-
-                  <div class="item-excerpt">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores aspernatur at,
-                      deserunt dolores eos esse eum&hellip;</p>
-                  </div>
-                </div>
-              </article>
-            </div>
+          @endforeach
           </div>
         </section>
 

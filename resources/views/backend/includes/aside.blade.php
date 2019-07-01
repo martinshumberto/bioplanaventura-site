@@ -65,6 +65,12 @@
                     </div>
                 </li>
                 <li>
+                    <a href="{!!route('backend-equipe')!!}" class="menu-item">
+                        <div class="icon"><i class="icon mdi mdi-account-multiple-check" aria-hidden="true"></i></div>
+                        <div class="title">Equipe</div>
+                    </a>
+                </li>
+                <li>
                     <a href="{!!route('backend-configuracoes')!!}" class="menu-item">
                         <div class="icon"><i class="icon mdi mdi-settings" aria-hidden="true"></i></div>
                         <div class="title">Configurações</div>

@@ -1,3 +1,6 @@
+@php
+use App\Model\Configuracoes;
+@endphp
 <div class="footer-widget-sections">
   <div class="container">
     <div class="row">
@@ -82,9 +85,11 @@
             <h3 class="widget-title">Bioplan Aventura</h3>
 
             <p class="ci-schedule-widget-intro">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus commodi consectetur consequatur
-              debitis, dicta distinctio dolorum, ipsam nihil nostrum porro quae quia sunt unde? Autem consequatur
-              deserunt et nihil non?
+              @php
+                $configuracoes = Configuracoes::where('site_id',1)->pluck('intro')->first() 
+              @endphp
+              
+              {!! $configuracoes !!}
             </p>
 
           </aside>

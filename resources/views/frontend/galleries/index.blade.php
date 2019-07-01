@@ -5,7 +5,7 @@ use App\Model\Fotos;
 @section('content')
 @include('frontend/includes/header')
 
-<div class="page-hero" style="background-image: url(images/hero.jpg);">
+<div class="page-hero" style="background-image: url(../public/img/hero.jpg);">
   <div class="container">
     <div class="row">
       <div class="col-12">

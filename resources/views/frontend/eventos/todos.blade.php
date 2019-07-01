@@ -66,9 +66,9 @@ use App\Model\Fotos;
                 <div class="item-thumb">
                   <a href="{!! url('/evento', $evento->slug); !!}">
                   @php
-                  $foto = Fotos::where('chave',$evento->chave)->pluck('file');                  
+                  $foto = Fotos::where('chave',$evento->chave)->pluck('file')->first();                  
                   @endphp
-                  {!!img('../storage/files/'.$foto[0], array("width"=>"100%", "height"=>"100%"))!!}
+                  {!!img('../../public/storage/files/'.$foto, array("width"=>"100%", "height"=>"100%"))!!}
                   </a>
                   @if($evento -> promocao) 
                   <span class="item-badge">{!! $evento -> promocao !!}</span>

@@ -6,12 +6,12 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use App\Model\Eventos;
+use App\Model\Equipe;
 use App\Model\Fotos;
 use File;
 
 
-class eventosController extends Controller
+class EquipeController extends Controller
 {
     /**
       * Display a listing of the resource.
@@ -20,15 +20,15 @@ class eventosController extends Controller
       */
      public function index(Request $request)
      {
-         $eventos = Eventos::orderBy("eventos_id", "DESC");
+         $equipe = Equipe::orderBy("equipe_id", "DESC");
  
          if($request->input('search'))
          {
-            $eventos->where('title', 'like', '%'.$request->input('search').'%');
+            $equipe->where('title', 'like', '%'.$request->input('search').'%');
          }
  
-         return view("backend/eventos/index", array(
-             "eventos" => $eventos->paginate(50)
+         return view("backend/equipe/index", array(
+             "equipe" => $equipe->paginate(50)
          ));
      }
  
@@ -40,7 +40,7 @@ class eventosController extends Controller
      public function create()
      {
         $fotos = DB::table('fotos')->where('chave', str_random(32))->get();
-         return view("backend/eventos/show", array("chave"=>str_random(32)), array("fotos"=>$fotos));
+         return view("backend/equipe/show", array("chave"=>str_random(32)), array("fotos"=>$fotos));
      }
  
      /**
@@ -58,23 +58,17 @@ class eventosController extends Controller
 
      public function store(Request $request)
      {         
-        $data = Input::all();  
-        $data['datavendas']        
-        = Carbon::parse(strtotime($data['datavendas']))->format('Y-m-d');
-        $data['dataevento']      = Carbon::parse(strtotime($data['dataevento']))->format('Y-m-d');
-        $data['datatermino']      = Carbon::parse(strtotime($data['datatermino']))->format('Y-m-d');
-        $data['ingressomeia']    = $this->tofloat($data['ingressomeia']);
-        $data['ingressointeiro'] = $this->tofloat($data['ingressointeiro']); 
+        $data = Input::all(); 
         $data['slug']            = str_slug($data['title'], '-');
         
 
          try { 
-             $eventos = Eventos::create($data);
+             $equipe = Equipe::create($data);
              $request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Operação realizada com sucesso!'));
-             return redirect(route('backend-eventos'));
+             return redirect(route('backend-equipe'));
          } catch (Exception $e) {
              $request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
-             return redirect(route('backend-eventos'));
+             return redirect(route('backend-equipe'));
          }   
      }
  
@@ -86,19 +80,13 @@ class eventosController extends Controller
       */
      public function show($id)
      {
-         $eventos = Eventos::find($id);
-         $eventos->datavendas       = Carbon::parse($eventos->datavendas)->format('d/m/Y');
-         $eventos->dataevento       = Carbon::parse($eventos->dataevento)->format('d/m/Y'); 
-         $eventos->datatermino      = Carbon::parse($eventos->datatermino)->format('d/m/Y');
-         $eventos->ingressomeia     = number_format($eventos->ingressomeia, 2);
-         $eventos->ingressointeiro  = number_format($eventos->ingressointeiro, 2);
-
-         $fotos = DB::table('fotos')->where('chave', $eventos->chave)->get();
+         $equipe = Equipe::find($id);
+         $fotos = DB::table('fotos')->where('chave', $equipe->chave)->get();
 
           
-         return view("backend/eventos/show", array(
-             "eventos" => $eventos, 
-             "chave" => $eventos->chave,
+         return view("backend/equipe/show", array(
+             "equipe" => $equipe, 
+             "chave" => $equipe->chave,
              "fotos" => $fotos
          ));
      }
@@ -113,22 +101,17 @@ class eventosController extends Controller
      public function update(Request $request, $id)
      {  
         $data = Input::all();  
-        $data['datavendas']      = Carbon::parse(strtotime($data['datavendas']))->format('Y-m-d');
-        $data['dataevento']      = Carbon::parse(strtotime($data['dataevento']))->format('Y-m-d');
-        $data['datatermino']     = Carbon::parse(strtotime($data['datatermino']))->format('Y-m-d');
-        $data['ingressomeia']    = $this->tofloat($data['ingressomeia']);
-        $data['ingressointeiro'] = $this->tofloat($data['ingressointeiro']); 
         $data['slug']            = str_slug($data['title'], '-');
  
          try {
             
-             Eventos::find($id)->update($data);
+             Equipe::find($id)->update($data);
              $request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Operação realizada com sucesso!'));
          } catch (Exception $e) {
              $request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
          }
  
-         return redirect(route('backend-eventos'));
+         return redirect(route('backend-equipe'));
      }
  
      /**
@@ -140,19 +123,19 @@ class eventosController extends Controller
      public function destroy(Request $request, $id)
      {
          try {
-             $eventos = Eventos::find($id);
+             $equipe = Equipe::find($id);
  
  
-             if(empty($eventos)) {
+             if(empty($equipe)) {
                  abort(404);
              }
  
-             $eventos->delete();
+             $equipe->delete();
              $request->session()->flash('alert', array('code'=> 'success', 'text'  => '<b>Evento</b> deletado com sucesso !'));
          } catch (Exception $e) {
              $request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
          }
  
-         return redirect(route('backend-eventos'));
+         return redirect(route('backend-equipe'));
      }
  }

@@ -24,7 +24,7 @@ Route::namespace('Frontend')->group(function(){
 });
 
 
-Route::namespace('Backend')->prefix('cms')->group(function(){
+    Route::namespace('Backend')->prefix('cms')->group(function(){
     Route::get('/entrar', 'LoginController@index')->name('backend-auth');
     Route::post('/entrar', 'LoginController@authenticate')->name('backend-authenticate');
     Route::middleware('auth:admin')->group(function(){
@@ -85,6 +85,14 @@ Route::namespace('Backend')->prefix('cms')->group(function(){
         Route::get('/comentarios/excluir/{id}', 'ComentariosController@destroy')->name('backend-comentarios-destroy');
         Route::put('/comentarios/{id}', 'ComentariosController@update')->name('backend-comentarios-update');
         Route::get('/comentarios/{id}', 'ComentariosController@show')->name('backend-comentarios-show');
+
+        /* EQUIPE */
+        Route::get('/equipe', 'EquipeController@index')->name('backend-equipe');
+        Route::get('/equipe/novo', 'EquipeController@create')->name('backend-equipe-create');
+        Route::post('/equipe/novo', 'EquipeController@store')->name('backend-equipe-create');
+        Route::get('/equipe/excluir/{id}', 'EquipeController@destroy')->name('backend-equipe-destroy');
+        Route::put('/equipe/{id}', 'EquipeController@update')->name('backend-equipe-update');
+        Route::get('/equipe/{id}', 'EquipeController@show')->name('backend-equipe-show');
 
         /* ABOUTS */
         Route::get('sobre-nos', 'AboutsController@index')->name('backend-abouts');

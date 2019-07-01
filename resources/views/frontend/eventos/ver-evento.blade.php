@@ -1,13 +1,14 @@
 @php
 use Illuminate\Support\Carbon;
 use App\Model\Fotos;
-$foto = Fotos::where('chave',$evento[0]->chave)->pluck('file');      
+$foto = Fotos::where('chave',$evento[0]->chave)->pluck('file');  
+$fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();       
 @endphp
 @extends('frontend.layout._header')
 @section('content')
 @include('frontend/includes/header')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<div class="page-hero" style="background-image: url(../public/storage/files/{!! $foto[0] !!});">
+<div class="page-hero" style="background-image: url(../public/storage/files/{!! $fotoDestaque !!});">
 
 </div>
 <main class="main main-elevated">
@@ -59,7 +60,7 @@ $foto = Fotos::where('chave',$evento[0]->chave)->pluck('file');
                     <figure class="entry-thumb hidden-md-up">
                         
                         <a href="images/piri-1.png" class="ci-theme-lightbox">
-                            {!! img('../storage/files/'.$foto[0]) !!}
+                            {!! img('../../public/storage/files/'.$fotoDestaque) !!}
                         </a>
                         <!-- badge custom -->
                         @if ($evento[0] -> promocao)
@@ -82,7 +83,7 @@ $foto = Fotos::where('chave',$evento[0]->chave)->pluck('file');
                         <figure class="gallery-item">
                                 <div class="gallery-icon landscape">
                                     <a class="ci-theme-lightbox" href="../public/storage/files/{{!! $imgs !!}">
-                                        {!! img('../storage/files/'.$imgs) !!}
+                                        {!! img('../../public/storage/files/'.$imgs) !!}
                                     </a>
                                 </div>
                                 <figcaption class="wp-caption-text gallery-caption">
@@ -211,9 +212,9 @@ $foto = Fotos::where('chave',$evento[0]->chave)->pluck('file');
                                 <div class="item-thumb">
                                     <a href="{!! url('/evento', $eventosLista->slug); !!}">
                                         @php
-                                        $foto = Fotos::where('chave',$eventosLista->chave)->pluck('file');                  
+                                        $fotox = Fotos::where('chave',$eventosLista->chave)->pluck('file')->first();                  
                                         @endphp
-                                        {!!img('../storage/files/'.$foto[0], array("width"=>"100%", "height"=>"100%"))!!}
+                                        {!!img('../../public/storage/files/'.$fotox, array("width"=>"100%", "height"=>"100%"))!!}
                                     </a>
                                     @if($eventosLista -> promocao) 
                                     <span class="item-badge">{!! $eventosLista -> promocao !!}</span>

@@ -4,13 +4,13 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Eventos extends Model
+class Equipe extends Model
 {
-    protected $table      = "eventos";
-	protected $primaryKey = 'eventos_id';
-	protected $fillable   = ['eventoscategorias_id', 'title', 'subtitle', 'descricao', 'video',  'outrasinfos', 'promocao', 'dataevento', 'datavendas', 'datatermino', 'ingressomeia', 'ingressointeiro', 'chave', 'status', 'created_at', 'updated_at', 'slug', 'estado_id', 'city_id', 'dificuldade'];
+    protected $table       = "equipe";
+    protected $primaryKey  = 'equipe_id';
+    protected $fillable  = ['title', 'subtitle', 'text', 'chave', 'slug', 'status', 'created_at', 'updated_at'];
 
-	public function status() {
+    public function status() {
 
 		switch ($this->status) {
 			case '1':

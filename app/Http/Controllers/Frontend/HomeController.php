@@ -26,7 +26,12 @@ class HomeController extends FrontendController
       ->limit(5)
       ->get();
 
-         return view("frontend/home/index", array( "slides" => $slider, "promocao" => $promocoes));
+      $blog = DB::table('blog')
+      ->inRandomOrder()
+      ->limit(5)
+      ->get();
+
+         return view("frontend/home/index", array("blog"=>$blog, "slides" => $slider, "promocao" => $promocoes));
          
 
    }
