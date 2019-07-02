@@ -195,14 +195,20 @@ use App\Model\Fotos;
                   tipo de SPAM.</p>
                   <div class="row">
                     <div class="col-lg-10">
+                  @if (session('alert'))
+                  {!! session('alert.text') !!}
+                  </div>
+                  @else
                     {!! Form::open(['method' => 'post',  'route' => ['frontend-newsletter'],
                     'files' => true]) !!}
-                    {!!Form::text('e-mail', null, ['width'=>'80px']) !!}
+                    {!!Form::text('email', null, ['width'=>'80px']) !!}
                     </div>
                     <div class="col-lg-2">
                     <button type="submit" class="btn btn-lg">Assinar</button>
                     {!! Form::close() !!}
                     </div>
+                  @endif 
+                   
                   </div>
                   
                     

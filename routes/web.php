@@ -20,7 +20,7 @@ Route::namespace('Frontend')->group(function(){
     Route::get('/eventos', array('as' => 'frontend-events', 'uses' => 'EventsController@index'));
     Route::get('/eventos/{title}', array('as' => 'frontend-events', 'uses' => 'EventsController@show'));
     Route::get('/galeria', array('as' => 'frontend-galleries', 'uses' => 'GalleriesController@index'));
-    Route::get('/assine-informativo', array('as' => 'frontend-newsletter', 'uses' => 'HomeController@assine'));
+    Route::post('/assine-informativo', array('as' => 'frontend-newsletter', 'uses' => 'HomeController@assine'));
 });
 
 
