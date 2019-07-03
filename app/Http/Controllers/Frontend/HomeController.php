@@ -40,4 +40,8 @@ class HomeController extends FrontendController
             return redirect(route('frontend-home'));
             $request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Seu e-mail foi cadastrado com sucesso !'));
    }
+
+   public function pesquisa(Request $request){ 
+      return redirect(route('frontend-home'));
+    }
 }

@@ -17,10 +17,13 @@ Route::namespace('Frontend')->group(function(){
     Route::get('/sobre-nos', array('as' => 'frontend-abouts', 'uses' => 'AboutsController@index'));
     Route::get('/blog', array('as' => 'frontend-blogs', 'uses' => 'BlogsController@index'));
     Route::get('/blog/{title}', array('as' => 'frontend-blog', 'uses' => 'BlogsController@show'));
+    Route::get('/blog/categoria/{title}', array('as' => 'frontend-pesquisablog', 'uses' => 'BlogsController@pesquisa'));
     Route::get('/eventos', array('as' => 'frontend-events', 'uses' => 'EventsController@index'));
     Route::get('/eventos/{title}', array('as' => 'frontend-events', 'uses' => 'EventsController@show'));
     Route::get('/galeria', array('as' => 'frontend-galleries', 'uses' => 'GalleriesController@index'));
     Route::post('/assine-informativo', array('as' => 'frontend-newsletter', 'uses' => 'HomeController@assine'));
+    Route::post('/pesquisa', array('as' => 'frontend-pesquisa', 'uses' => 'HomeController@pesquisa'));
+
 });
 
 
