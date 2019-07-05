@@ -19,7 +19,7 @@ class BlogsController extends FrontendController
    }
 
    public function show($id){
-            $postagens = DB::table('blog')->where('blog_id', $id)->get();
+            $postagens = DB::table('blog')->where('slug', $id)->get();
             $usuario   = DB::table('admins')->where('admins_id', $postagens[0]->users_id)->get();
             return view("frontend/blogs/show", array("postagens"=>$postagens, "usuario"=>$usuario));
    }

@@ -1,5 +1,8 @@
 @php
 use App\Model\Configuracoes;
+use App\Model\Eventos;
+use Illuminate\Support\Carbon;
+$configuracoes = Configuracoes::all() 
 @endphp
 <div class="footer-widget-sections">
   <div class="container">
@@ -85,11 +88,7 @@ use App\Model\Configuracoes;
             <h3 class="widget-title">Bioplan Aventura</h3>
 
             <p class="ci-schedule-widget-intro">
-              @php
-                $configuracoes = Configuracoes::where('site_id',1)->pluck('intro')->first() 
-              @endphp
-              
-              {!! $configuracoes !!}
+              {!! $configuracoes[0] ->intro !!}
             </p>
 
           </aside>
@@ -128,42 +127,28 @@ use App\Model\Configuracoes;
           <aside class="widget">
             <h3 class="widget-title">Próximas Saídas</h3>
 
+            @foreach (Eventos::all() as $eventos)
+ @php 
+      $data1 = new DateTime( $eventos -> dataevento );
+      $data2 = new DateTime( $eventos -> datavendas );
+      $intervalo = $data1->diff( $data2 );
+@endphp
             <div class="item-list-xs">
               <div class="item-meta">
-                <span class="item-meta-field">1 dias</span>
-                <span class="item-meta-field">Valor: R$ 0,00</span>
+                <span class="item-meta-field">{!! $intervalo -> days !!} dias</span>
+                <span class="item-meta-field">Valor: R$ {!! number_format($eventos -> ingressointeiro, 2) !!}</span>
               </div>
 
               <p class="item-title">
-                <a href="#">
-                  Veadeiros Like Tour
+                <a href="{!! url('/evento', $eventos->slug); !!}">
+{!! $eventos->title !!}
                 </a>
               </p>
-            </div>
-            <div class="item-list-xs">
-              <div class="item-meta">
-                <span class="item-meta-field">2 dias</span>
-                <span class="item-meta-field">Valor: R$ 0,00</span>
-              </div>
+            </div>                    
+             @endforeach
 
-              <p class="item-title">
-                <a href="#">
-                  Pedal da Patagônia
-                </a>
-              </p>
-            </div>
-            <div class="item-list-xs">
-              <div class="item-meta">
-                <span class="item-meta-field">3 dias</span>
-                <span class="item-meta-field">Valor: R$ 0,00</span>
-              </div>
-
-              <p class="item-title">
-                <a href="#">
-                  Pire no Pire.Ride
-                </a>
-              </p>
-            </div>
+          
+            
           </aside>
         </div>
         <div class="col-lg-3 col-sm-6 col-12">
@@ -173,13 +158,13 @@ use App\Model\Configuracoes;
             <ul class="ci-contact-widget-items">
               <li class="ci-contact-widget-item">
                 <i class="fas fa-map-marker-alt"></i>
-                R. 66, nº 582 - Setor Central - Goiânia/GO
+                {!! $configuracoes[0]->endereco !!}
               </li>
               <li class="ci-contact-widget-item">
-                <i class="fas fa-envelope-square"></i> <a href="#">contato@bioplanaventura.com.br</a>
+                <i class="fas fa-envelope-square"></i> <a href="mailto:{!! $configuracoes[0]->email !!}">{!! $configuracoes[0]->email !!}</a>
               </li>
               <li class="ci-contact-widget-item">
-                <i class="fab fa-instagram"></i> @bioplanaventura
+                <i class="fab fa-phone"></i> {!! $configuracoes[0]->telefone !!}
               </li>
             </ul>
           </aside>
@@ -203,22 +188,17 @@ use App\Model\Configuracoes;
                 <div class="footer-info-addons text-lg-right text-center">
                   <ul class="list-social-icons">
                     <li>
-                      <a class="social-icon" href="#">
-                        <i class="fas fa-rss"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="social-icon" href="#">
+                      <a class="social-icon" href="{!! $configuracoes[0]-> facebook !!}">
                         <i class="fab fa-facebook"></i>
                       </a>
                     </li>
                     <li>
-                      <a class="social-icon" href="#">
+                      <a class="social-icon" href="{!! $configuracoes[0]-> instagram !!}">
                         <i class="fab fa-instagram"></i>
                       </a>
                     </li>
                     <li>
-                      <a class="social-icon" href="#">
+                      <a class="social-icon" href="{!! $configuracoes[0]-> youtube !!}">
                         <i class="fab fa-youtube"></i>
                       </a>
                     </li>

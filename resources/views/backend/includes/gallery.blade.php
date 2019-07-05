@@ -1,5 +1,5 @@
-<script src="{{asset(''.elixir('js/backend/libs/dropzone.js'))}}"></script>
- <link rel="stylesheet" href="{{asset(''.elixir('css/backend/libs/dropzone.css'))}}">
+<script src="{{asset('public/'.elixir('js/backend/libs/dropzone.js'))}}"></script>
+ <link rel="stylesheet" href="{{asset('public/'.elixir('css/backend/libs/dropzone.css'))}}">
     
 
  {{ Form::hidden('chave', $chave) }}

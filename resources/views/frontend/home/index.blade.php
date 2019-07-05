@@ -231,15 +231,19 @@ use App\Model\Fotos;
             <div class="col-lg-3 col-sm-6 col-12">
               <article class="item item-entry">
                 <div class="item-thumb">
-                  <a href="#">
-                    {!!img('blog02_sm.jpg')!!}
+                <a href="{!! url('/blog', $posts->slug); !!}">
+                  @php
+                  $fotox = Fotos::where('chave',$posts->chave)->pluck('file')->first();                  
+                  @endphp
+                  
+                  {!! img('../../public/storage/files/'.$fotox, array("width"=>"100%", "height"=>"100%"))!!}
                   </a>
                 </div>
 
                 <div class="item-content">
                   <div class="item-meta">
-                    <time class="entry-time item-meta-field" datetime="2018-08-18">
-                      20 Jan, 2019
+                    <time class="entry-time item-meta-field" datetime="{!! $posts->created_at !!}">
+                    {!!extractDate($posts->created_at)!!} às {!!extrateHour($posts->created_at)!!}
                     </time>
                   </div>
 

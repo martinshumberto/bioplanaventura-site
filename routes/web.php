@@ -23,6 +23,7 @@ Route::namespace('Frontend')->group(function(){
     Route::get('/galeria', array('as' => 'frontend-galleries', 'uses' => 'GalleriesController@index'));
     Route::post('/assine-informativo', array('as' => 'frontend-newsletter', 'uses' => 'HomeController@assine'));
     Route::post('/pesquisa', array('as' => 'frontend-pesquisa', 'uses' => 'HomeController@pesquisa'));
+    Route::get('/calendario', array('as' => 'frontend-calendario', 'uses' => 'CalendarioController@index'));
 
 });
 

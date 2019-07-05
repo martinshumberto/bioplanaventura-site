@@ -84,11 +84,6 @@ class BlogController extends Controller
      public function show($id)
      {
          $blog = Blog::find($id);
-         $blog->datavendas       = Carbon::parse($blog->datavendas)->format('d/m/Y');
-         $blog->dataevento       = Carbon::parse($blog->dataevento)->format('d/m/Y'); 
-         $blog->ingressomeia     = number_format($blog->ingressomeia, 2);
-         $blog->ingressointeiro  = number_format($blog->ingressointeiro, 2);
-
          $fotos = DB::table('fotos')->where('chave', $blog->chave)->get();
 
           
@@ -109,10 +104,6 @@ class BlogController extends Controller
      public function update(Request $request, $id)
      {  
         $data = Input::all();  
-        $data['datavendas']      = Carbon::parse(strtotime($data['datavendas']))->format('Y-m-d');
-        $data['dataevento']      = Carbon::parse(strtotime($data['dataevento']))->format('Y-m-d');
-        $data['ingressomeia']    = $this->tofloat($data['ingressomeia']);
-        $data['ingressointeiro'] = $this->tofloat($data['ingressointeiro']); 
         $data['slug']            = str_slug($data['title'], '-');
  
          try {

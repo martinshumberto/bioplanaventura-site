@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use App\Model\Slider;
 use App\Model\Eventos;
+use App\Model\Blog;
 use App\Model\Informativo;
 
 use Illuminate\Http\Request;
@@ -42,6 +43,21 @@ class HomeController extends FrontendController
    }
 
    public function pesquisa(Request $request){ 
-      return redirect(route('frontend-home'));
+
+      $categorias = DB::table('eventoscategorias')->get();
+
+      $eventos = DB::table('eventos')
+      ->where('title', 'like', '%'.$request->termo.'%')
+      ->get();
+
+      $blogs = DB::table('blog')
+      ->where([
+         ['title', 'like', '%'.$request->termo.'%'],
+         ['tags', 'like', '%'.$request->termo.'%']
+         ])
+      ->get();
+
+   		return view("frontend/home/pesquisa", array("eventos"=>$eventos, "categorias"=>$categorias, "blogs"=>$blogs));
+    
     }
 }

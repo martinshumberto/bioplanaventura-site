@@ -3,7 +3,7 @@
 @section('content')
 @include('frontend/includes/header')
 
-<div class="page-hero" style="background-image: url(images/greece_lan.jpg);">
+<div class="page-hero" style="background-image: url(../public/img/greece_lan.jpg);">
   <div class="container">
     <div class="row">
       <div class="col-12">

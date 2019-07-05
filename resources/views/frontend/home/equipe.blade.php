@@ -4,8 +4,8 @@ use App\Model\Fotos;
 @endphp
 @section('content')
 @include('frontend/includes/header')
-
-<div class="page-hero" style="background-image: url(public/images/greece_lan.jpg);">
+<link rel="stylesheet" href="{{asset('public/'.elixir('css/style.css'))}}"> 
+<div class="page-hero" style="background-image: url(../public/img/greece_lan.jpg);">
 				<div class="container">
 					<div class="row">
 						<div class="col-12">

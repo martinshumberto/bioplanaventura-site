@@ -31,10 +31,11 @@ use App\Model\Fotos;
           <div class="col-lg-4 col-sm-6 col-12">
             <article class="item item-entry">
               <div class="item-thumb">
-                <a href="{!! route('frontend-blog', [$posts->blog_id]) !!}">
+                <a href="{!! route('frontend-blog', [$posts->slug]) !!}">
                 @php
-                $foto = Fotos::where('chave',$posts->chave)->pluck('file');                  
+                $foto = Fotos::where('chave',$posts->chave)->pluck('file')->first();                  
                 @endphp
+               
                 {!!img('../storage/files/'.$foto, array("width"=>"100%", "height"=>"100%"))!!}
                
                 </a>
@@ -48,7 +49,7 @@ use App\Model\Fotos;
                 </div>
 
                 <h3 class="item-title">
-                  <a href="{!! route('frontend-blog', [$posts->blog_id]) !!}">{!! $posts->title !!}</a>
+                  <a href="{!! route('frontend-blog', [$posts->slug]) !!}">{!! $posts->title !!}</a>
                 </h3>
 
                 <div class="item-excerpt">
@@ -60,45 +61,6 @@ use App\Model\Fotos;
         @endforeach
         </div>
 
-        <!--
-        <nav class="navigation pagination" role="navigation">
-          <h2 class="screen-reader-text">Navegação do Blog</h2>
-          <div class="nav-links">
-            <a class="prev page-numbers" href="">Anterior</a>
-            <a class="page-numbers" href="">1</a>
-            <span class="page-numbers current">2</span>
-            <a class="page-numbers" href="">3</a>
-            <a class="page-numbers" href="">4</a>
-            <a class="next page-numbers" href="">Próxima</a>
-          </div>
-        </nav>
-        -->
-
-        <!--
-          <nav class="navigation posts-navigation" role="navigation">
-            <h2 class="screen-reader-text">Posts navigation</h2>
-            <div class="nav-links">
-              <div class="nav-previous">
-                <a href="">Previous</a>
-              </div>
-              <div class="nav-next">
-                <a href="">Next</a>
-              </div>
-            </div>
-          </nav>
-
-          <nav class="navigation post-navigation" role="navigation">
-            <h2 class="screen-reader-text">Post navigation</h2>
-            <div class="nav-links">
-              <div class="nav-previous">
-                <a href="">Previous Post</a>
-              </div>
-              <div class="nav-next">
-                <a href="">Next Post</a>
-              </div>
-            </div>
-          </nav>
-          -->
       </div>
 
       <div class="col-lg-3 col-12">

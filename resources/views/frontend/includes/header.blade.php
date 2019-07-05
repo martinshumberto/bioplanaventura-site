@@ -48,9 +48,9 @@ use App\Model\Eventoscategorias;
 
               <div class="head-intro-addon">
                 <div class="head-search">
-                  <form action="/" class="head-search-form">
+                {{ Form::open(array('route' => 'frontend-pesquisa', 'class'=>'head-search-form'))  }}
                     <label for="head-search-input" class="sr-only">Buscar:</label>
-                    <input type="text" id="head-search-input" class="head-search-input" placeholder="Faça sua busca">
+                    <input type="text" name="termo" id="head-search-input" class="head-search-input" placeholder="Faça sua busca">
                   </form>
                   <a href="#" class="head-search-trigger">
                     <i class="fas fa-search"></i>
@@ -86,7 +86,7 @@ use App\Model\Eventoscategorias;
                 <a href="{!!route('frontend-equipe')!!}">Equipe</a>
               </li>
               <li>
-                <a href="/">Calendário</a>
+                <a href="{!!route('frontend-calendario')!!}">Calendário</a>
               </li>
               <li class="current-menu-ancestor menu-item-has-children">
                 <a href="{!!route('frontend-events', 'todos')!!}">Eventos</a>
