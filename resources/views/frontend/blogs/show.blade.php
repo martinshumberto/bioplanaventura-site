@@ -99,8 +99,8 @@ $foto = Fotos::where('chave',$postagens[0]->chave)->pluck('file')->first();
             @foreach (Fotos::where('chave',$postagens[0]->chave)->pluck('file') as $fotox);  
               <figure class="gallery-item">
                 <div class="gallery-icon landscape">
-                  <a class="ci-theme-lightbox" href=" {!! url('../storage/files/'.$fotox) !!}">
-                  {!! img('../storage/files/'.$fotox) !!}
+                  <a class="ci-theme-lightbox" href=" {!! img_src($fotox, array("dynamic"=>true)) !!}">
+                   <img src="{!! img_src($fotox, array("dynamic"=>true)) !!}">
                   </a>
                 </div>
                 <figcaption class="wp-caption-text gallery-caption">

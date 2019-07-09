@@ -8,7 +8,7 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
 @section('content')
 @include('frontend/includes/header')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<div class="page-hero" style="background-image: url(../public/storage/files/{!! $fotoDestaque !!});">
+<div class="page-hero" style="background-image: url({!! img_src($fotoDestaque, array("dynamic"=>true)) !!});">
 
 </div>
 <main class="main main-elevated">
@@ -18,8 +18,8 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
                 <div class="content-elevated content-sticky-parent">
                     <div class="widget-tour-info content-sticky">
                         <figure class="entry-thumb">
-                            <a href="images/piri-1.png" class="ci-theme-lightbox">
-                                <img src="images/piri-1.png" alt="">
+                            <a href="{!! img_src($fotoDestaque, array("dynamic"=>true)) !!}" class="ci-theme-lightbox">
+                                <img src="{!! img_src($fotoDestaque, array("dynamic"=>true)) !!}" alt="">
                             </a>
                             <!-- badge custom -->
                             @if ($evento[0] -> promocao)
@@ -59,8 +59,8 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
 
                     <figure class="entry-thumb hidden-md-up">
                         
-                        <a href="images/piri-1.png" class="ci-theme-lightbox">
-                            {!! img('../../public/storage/files/'.$fotoDestaque) !!}
+                        <a href="{!! img_src($fotoDestaque, array("dynamic"=>true)) !!}" class="ci-theme-lightbox">
+                            <img src="{!! img_src($fotoDestaque, array("dynamic"=>true)) !!}">
                         </a>
                         <!-- badge custom -->
                         @if ($evento[0] -> promocao)
@@ -82,8 +82,8 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
                         @foreach ($foto as $imgs)
                         <figure class="gallery-item">
                                 <div class="gallery-icon landscape">
-                                    <a class="ci-theme-lightbox" href="../public/storage/files/{{!! $imgs !!}">
-                                        {!! img('../../public/storage/files/'.$imgs) !!}
+                                    <a class="ci-theme-lightbox" href="{{!! img_src($imgs, array("dynamic"=>true)) !!}">
+                                        <img src="{!! img_src($imgs, array("dynamic"=>true)) !!}">
                                     </a>
                                 </div>
                                 <figcaption class="wp-caption-text gallery-caption">
@@ -214,7 +214,7 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
                                         @php
                                         $fotox = Fotos::where('chave',$eventosLista->chave)->pluck('file')->first();                  
                                         @endphp
-                                        {!!img('../../public/storage/files/'.$fotox, array("width"=>"100%", "height"=>"100%"))!!}
+                                        <img src="{!!img_src($fotox, array("dynamic"=>true))!!}">
                                     </a>
                                     @if($eventosLista -> promocao) 
                                     <span class="item-badge">{!! $eventosLista -> promocao !!}</span>

@@ -7,7 +7,7 @@
 use App\Model\Fotos;
 @endphp
 
-<div class="page-hero" style="background-image: url(../public/img/hero.jpg);">
+<div class="page-hero" style="background-image: url({!! img_src('hero.jpg') !!});">
   <div class="container">
     <div class="row">
       <div class="col-12">

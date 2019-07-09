@@ -5,7 +5,8 @@ use App\Model\Fotos;
 @section('content')
 @include('frontend/includes/header')
 <link rel="stylesheet" href="{{asset('public/'.elixir('css/style.css'))}}"> 
-<div class="page-hero" style="background-image: url(../public/img/greece_lan.jpg);">
+
+<div class="page-hero" style="background-image: url({!!img_src('greece_lan.jpg') !!});">
 				<div class="container">
 					<div class="row">
 						<div class="col-12">
@@ -29,7 +30,7 @@ use App\Model\Fotos;
 								@php
 									$foto = Fotos::where('chave',$equipe->chave)->pluck('file')->first();                  
 								@endphp
-								{!! img('../../public/storage/files/'.$foto, array("width"=>"100%", "height"=>"100%"))!!}
+								<img src="{!! img_src($foto, array("dynamic"=>true))!!}">
 								</div>
 								<div class="card-box">
 									<h3 class="card-title align-center">

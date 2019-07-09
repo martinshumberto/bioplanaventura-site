@@ -5,7 +5,7 @@ use App\Model\Fotos;
 @section('content')
 @include('frontend/includes/header')
 
-<div class="page-hero" style="background-image: url(../public/img/hero.jpg);">
+<div class="page-hero" style="background-image: url({!! img_src('hero.jpg') !!});">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -38,7 +38,7 @@ use App\Model\Fotos;
             <figure class="gallery-item">
                 <div class="gallery-icon landscape">
                   <a class="ci-theme-lightbox" href="public/storage/files/{!! $image !!}">
-                  {!!img('../storage/files/'.$image, array("width"=>"100%", "height"=>"100%"))!!}
+                  {!!img_src($image, array("dynamic"=>true))!!}
                   </a>
                 </div>
                 <figcaption class="wp-caption-text gallery-caption">

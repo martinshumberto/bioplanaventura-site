@@ -6,10 +6,10 @@ use App\Model\Fotos;
 @include('frontend/includes/header')
 
 @if($categorias=="todos")
-<div class="page-hero" style="background-image: url(public/img/lefkada_lan.jpg);">
+<div class="page-hero" style="background-image: url({!! img_src('lefkada_lan.jpg') !!});">
 </div>
 @else
-<div class="page-hero" style="background-image: url(public/storage/files/{!! $categorias[0]->file !!});">
+<div class="page-hero" style="background-image: url({!! img_src($categorias[0]->file, array("dynamic"=>true)) !!});">
 </div>
 @endif
 
@@ -76,7 +76,7 @@ use App\Model\Fotos;
                   @php
                   $foto = Fotos::where('chave',$evento->chave)->pluck('file')->first();                  
                   @endphp
-                  {!!img('../../public/storage/files/'.$foto, array("width"=>"100%", "height"=>"100%"))!!}
+                  <img src="{!!img_src ($foto, array("dynamic"=>true))!!}">
                   </a>
                   @if($evento -> promocao) 
                   <span class="item-badge">{!! $evento -> promocao !!}</span>

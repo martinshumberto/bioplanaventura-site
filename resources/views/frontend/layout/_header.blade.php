@@ -44,16 +44,16 @@
 
 
   <!--Start loading style -->
-  @if (file_exists("css/frontend/".Route::currentRouteName().".css"))
-  <link rel="stylesheet" href="{{asset(''.elixir('css/frontend/'.Route::currentRouteName().'.css'))}}">
+  @if (file_exists("public/css/frontend/".Route::currentRouteName().".css"))
+  <link rel="stylesheet" href="{{asset('public/'.elixir('css/frontend/'.Route::currentRouteName().'.css'))}}">
   @else
-  <link rel="stylesheet" href="{{asset(''.elixir('css/default.css'))}}">
+  <link rel="stylesheet" href="{{asset('public/'.elixir('css/default.css'))}}">
   @endif
 
-  <link rel="stylesheet" href="{{asset(''.elixir('css/bootstrap.min.css'))}}">
-  <link rel="stylesheet" href="{{asset(''.elixir('css/carousel.css'))}}">
+  <link rel="stylesheet" href="{{asset('public/'.elixir('css/bootstrap.min.css'))}}">
+  <link rel="stylesheet" href="{{asset('public/'.elixir('css/carousel.css'))}}">
   <!-- Start loading the favicon-->
-  <link rel="shortcut icon" href="{{asset('')}}/favicon.png" type="image/png">
+  <link rel="shortcut icon" href="{{asset('public/')}}favicon.png" type="image/png">
 </head>
 
 <body>

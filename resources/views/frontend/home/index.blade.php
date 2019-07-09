@@ -5,14 +5,14 @@ use App\Model\Fotos;
 @section('content')
 @include('frontend/includes/header')
  
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div id="sliderHome" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
   @php 
   $i=0;
   @endphp
   @foreach($slides as $item) 
   @php $i++ @endphp
-    <li data-target="#carouselExampleIndicators" data-slide-to="{!! $i-1 !!}" @if($i==1) class="active" @endif ></li>
+    <li data-target="#sliderHome" data-slide-to="{!! $i-1 !!}" @if($i==1) class="active" @endif ></li>
  
   @endforeach
 
@@ -25,6 +25,7 @@ use App\Model\Fotos;
   @php $i++ @endphp
     <div class="carousel-item @if($i==1) active @endif">
     <div class="page-hero page-hero-lg page-hero-align-center" style="background-image: url(public/storage/files/{!! $item -> file !!});">
+
 
 @if(!$item->file)
   <div class="ci-theme-video-wrap">
@@ -57,13 +58,13 @@ use App\Model\Fotos;
      
 
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+  <a class="carousel-control-prev" href="#sliderHome" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
+    <span class="sr-only">Anterior</span>
   </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+  <a class="carousel-control-next" href="#sliderHome" role="button" data-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
+    <span class="sr-only">Próximo</span>
   </a>
 </div>
 
@@ -154,7 +155,7 @@ use App\Model\Fotos;
                   $foto = Fotos::where('chave',$evento->chave)->pluck('file')->first();                  
                   @endphp
                   
-                  {!! img('../../public/storage/files/'.$foto, array("width"=>"100%", "height"=>"100%"))!!}
+                  <img src="{!! img_src($foto, array("dynamic"=>true))!!}">
                   </a>
                   @if($evento -> promocao) 
                   <span class="item-badge">{!! $evento -> promocao !!}</span>
@@ -236,7 +237,7 @@ use App\Model\Fotos;
                   $fotox = Fotos::where('chave',$posts->chave)->pluck('file')->first();                  
                   @endphp
                   
-                  {!! img('../../public/storage/files/'.$fotox, array("width"=>"100%", "height"=>"100%"))!!}
+                  <img src="{!! img_src($fotox, array("dynamic"=>true)) !!}"> 
                   </a>
                 </div>
 
