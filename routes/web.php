@@ -10,6 +10,7 @@
 //Route::get('/eventos/{title}', array('as' => 'frontend-eventos', 'uses' => 'EventsController@show'));
 Route::get('get-city-list','DropdownController@getCityList');
 
+
 Route::namespace('Frontend')->group(function(){
     Route::get('/evento/{title}', array('as' => 'frontend-home', 'uses' => 'EventsController@evento'));
     Route::get('/', array('as' => 'frontend-home', 'uses' => 'HomeController@index'));
@@ -26,7 +27,7 @@ Route::namespace('Frontend')->group(function(){
     Route::get('/calendario', array('as' => 'frontend-calendario', 'uses' => 'CalendarioController@index'));
     Route::post('/login', array('as' => 'frontend-login', 'uses' => 'AccountController@login'));
     Route::post('/registro', array('as' => 'frontend-registro', 'uses' => 'AccountController@registro'));
-
+    Route::get('/send/email', array('as' => 'frontend-email', 'uses' => 'HomeController@mail')); 
 });
 
 

@@ -2,6 +2,7 @@
 @php
 use App\Model\Fotos;
 @endphp
+@section('title', 'BioPlan - Seja Bem Vindo')
 @section('content')
 @include('frontend/includes/header')
  
