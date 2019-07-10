@@ -24,6 +24,8 @@ Route::namespace('Frontend')->group(function(){
     Route::post('/assine-informativo', array('as' => 'frontend-newsletter', 'uses' => 'HomeController@assine'));
     Route::post('/pesquisa', array('as' => 'frontend-pesquisa', 'uses' => 'HomeController@pesquisa'));
     Route::get('/calendario', array('as' => 'frontend-calendario', 'uses' => 'CalendarioController@index'));
+    Route::post('/login', array('as' => 'frontend-login', 'uses' => 'AccountController@login'));
+    Route::post('/registro', array('as' => 'frontend-registro', 'uses' => 'AccountController@registro'));
 
 });
 

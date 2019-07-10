@@ -64,13 +64,15 @@
 
   </div>
 
-
+@php 
+use App\Model\States;
+@endphp
   <!-- Modal's -->
   <div id="area-cliente" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
       <h1>Faça login</h1><br>
-      <form>
+      {{ Form::open(array('route' => 'frontend-login', 'class'=>'searchform'))  }}
         <input type="text" name="user" placeholder="Usuário / E-mail">
         <input type="password" name="pass" placeholder="Senha">
         <label>
@@ -90,26 +92,26 @@
       <span class="close">&times;</span>
       <h1>Registre-se</h1>
       <h3>Tenha acesso a promoções exclusivas para usuários cadastrados.</h3>
-      <form>
+      {{ Form::open(array('route' => 'frontend-registro', 'class'=>'searchform'))  }}
         <input type="text" name="name" placeholder="Nome">
+        
         <input type="text" name="email" placeholder="E-mail">
-        <input type="text" name="user" placeholder="Data de nascimento">
+        
+        <input type="text" name="birthday" id="datanascimento" placeholder="Data de nascimento">
+        
         <div class="filter-form-group" style="margin-top: 7px;">
-          <select id="filter-inline-sexo" class="chosen-select">
+          <select name="sexes_id" id="filter-inline-sexo" class="chosen-select">
             <option value="" selected disabled>Sexo</option>
-            <option value="6">Masculino</option>
-            <option value="3">Feminino</option>
+            <option value=6>Masculino</option>
+            <option value=3>Feminino</option>
           </select>
         </div>
         <div class="filter-form-group">
-          <select id="filter-inline-state" class="chosen-select" data-enable-search="true">
-            <option value="" selected disabled>Estado</option>
-            <option value="6">Goiás</option>
-            <option value="3">Minas Gerais</option>
-          </select>
+        {!!Form::select('estado_id', States::pluck('name', 'states_id'), null, [ 'class' => 'chosen-select', 'id'=>'estado_id']) !!}
+          
         </div>
         <div class="filter-form-group">
-          <select id="filter-inline-city" class="chosen-select" data-enable-search="true">
+        <select id="filter-inline-city" name="cities_id" class="chosen-select" data-enable-search="true">
             <option value="" selected disabled>Cidade</option>
             <option value="6">Goiânia</option>
             <option value="3">Aparecida de Goiânia</option>

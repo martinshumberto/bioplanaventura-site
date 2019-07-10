@@ -21,7 +21,7 @@ use App\Model\Fotos;
           <div class="page-hero-content">
             
         
-            <h2 class="page-hero-title">Pesuisa</h2>
+            <h2 class="page-hero-title">Pesquisa</h2>
             <p class="page-hero-subtitle">Abaixo os resultados Eventos / Blog </p>
           
           </div>
@@ -44,7 +44,7 @@ use App\Model\Fotos;
                   @php
                   $foto = Fotos::where('chave',$evento->chave)->pluck('file')->first();                  
                   @endphp
-                  {!!img('../storage/files/'.$foto, array("width"=>"100%", "height"=>"100%"))!!}
+                  <img src="{!!img_src($foto, array("dynamic"=>true))!!}">
                   </a>
                   @if($evento -> promocao) 
                   <span class="item-badge">{!! $evento -> promocao !!}</span>
@@ -81,7 +81,7 @@ use App\Model\Fotos;
                 @php
                 $foto = Fotos::where('chave',$posts->chave)->pluck('file')->first();                  
                 @endphp
-                {!!img('../storage/files/'.$foto, array("width"=>"100%", "height"=>"100%"))!!}
+                <img src="{!!img_src($foto, array("dynamic"=>true))!!}">
                
                 </a>
               </div>
