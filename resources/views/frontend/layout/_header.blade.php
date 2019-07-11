@@ -73,8 +73,8 @@ use App\Model\States;
       <span class="close">&times;</span>
       <h1>Faça login</h1><br>
       {{ Form::open(array('route' => 'frontend-login', 'class'=>'searchform'))  }}
-        <input type="text" name="user" placeholder="Usuário / E-mail">
-        <input type="password" name="pass" placeholder="Senha">
+        <input type="text" name="email" placeholder="Usuário / E-mail">
+        <input type="password" name="password" placeholder="Senha">
         <label>
           <input type="checkbox" id="remember" name="remember" checked> Lembrar-me
         </label>
@@ -92,7 +92,7 @@ use App\Model\States;
       <span class="close">&times;</span>
       <h1>Registre-se</h1>
       <h3>Tenha acesso a promoções exclusivas para usuários cadastrados.</h3>
-      {{ Form::open(array('route' => 'frontend-registro', 'class'=>'searchform'))  }}
+      {{ Form::open(array('route' => 'frontend-my-register', 'class'=>'searchform'))  }}
         <input type="text" name="name" placeholder="Nome">
         
         <input type="text" name="email" placeholder="E-mail">
