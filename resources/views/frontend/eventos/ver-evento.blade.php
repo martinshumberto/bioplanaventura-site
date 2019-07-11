@@ -116,7 +116,8 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
                 <div id="entry-ticket" class="sidebar">
                     <div class="widget">
                         <div class="ci-quote-form-widget elevation-candidate">
-                            <form action="/" class="form-boxed">
+                        {{ Form::open(array('route' => 'frontend-checkin', 'class'=>'form-boxed'))  }}
+                        <input type="hidden" name="eventos_id" value="{!! $evento[0] -> eventos_id !!}">
                                 <div class="row">
                                     <div class="col-md-12 text-right">
                                         <i class="fas fa-shopping-cart"></i> R$ <span id="valor-inteira">0,00</span>
@@ -137,7 +138,7 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
                                     
                                         <div class="col-md-6 no-padding text-center ticket-quantity">
                                             <a class="ticket-decrement" onclick="inteira('menos');"><i class="fa fa-minus"></i></a>
-                                            <input type="text" id="quantidade-inteira" name="quantidade-inteira" value="0" maxlength="2" required>
+                                            <input type="text" id="quantidade-inteira" name="quantidade_inteira" value="0" maxlength="2" required>
                                             <a class="ticket-increment" onclick="inteira('mais');"><i class="fa fa-plus"></i></a>
                                         </div>
                                     </li>
@@ -155,7 +156,7 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
                                     
                                         <div class="col-md-6 no-padding text-center ticket-quantity">
                                             <a onclick="meia('menos');" class="ticket-decrement"><i class="fa fa-minus"></i></a>
-                                            <input type="text" id="quantidade-meia" name="quantidade-meia" name="ticket-quantity-half" value="0" maxlength="2" required>
+                                            <input type="text" id="quantidade_meia" name="quantidade-meia" name="ticket-quantity-half" value="0" maxlength="2" required>
                                             <a onclick="meia('mais');" class="ticket-increment"><i class="fa fa-plus"></i></a>
                                         </div>
                                     </li>

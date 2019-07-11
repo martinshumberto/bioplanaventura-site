@@ -9,7 +9,7 @@
 
 //Route::get('/eventos/{title}', array('as' => 'frontend-eventos', 'uses' => 'EventsController@show'));
 Route::get('get-city-list','DropdownController@getCityList');
-
+Route::get('confirma/{token}', array('as' => 'frontend-my-confirm', 'uses' => 'Frontend\AccountController@confirma'));
 
 Route::namespace('Frontend')->group(function(){
     Route::get('/evento/{title}', array('as' => 'frontend-home', 'uses' => 'EventsController@evento'));
@@ -26,8 +26,13 @@ Route::namespace('Frontend')->group(function(){
     Route::post('/pesquisa', array('as' => 'frontend-pesquisa', 'uses' => 'HomeController@pesquisa'));
     Route::get('/calendario', array('as' => 'frontend-calendario', 'uses' => 'CalendarioController@index'));
     Route::post('/login', array('as' => 'frontend-login', 'uses' => 'AccountController@login'));
-    Route::post('/registro', array('as' => 'frontend-registro', 'uses' => 'AccountController@registro'));
+    Route::post('/registro', array('as' => 'frontend-my-register', 'uses' => 'AccountController@registro'));
+    Route::get('/sair', array('as' => 'frontend-areacliente-sair', 'uses' => 'AccountController@logout'));
     Route::get('/send/email', array('as' => 'frontend-email', 'uses' => 'HomeController@mail')); 
+    Route::get('/perfil', array('as' => 'frontend-my-account', 'uses' => 'AccountController@perfil'));
+    Route::get('/faturamento', array('as' => 'frontend-faturamento', 'uses' => 'AccountController@faturamento'));
+    Route::post('/checkin', array('as' => 'frontend-checkin', 'uses' => 'AccountController@checkin'));
+    Route::get('/checkout', array('as' => 'frontend-checkout', 'uses' => 'AccountController@checkout'));
 });
 
 

@@ -119,10 +119,35 @@ use App\Model\Eventoscategorias;
               <li>
                 <a href="{!!route('frontend-blogs')!!}">Blog</a>
               </li>
+              @if (session('usuario'))
+              <li class="logged current-menu-ancestor">
+										<a href="#">
+                      {!! img(session('usuario')->name, array("class"=>"avatar img-circle")) !!}
+											<span class="header-username"><b>{!! session('usuario')->name !!}</b></span>
+											<i class="fa fa-sort-down header-icon"></i>
+										</a>
+										<ul class="sub-menu">
+											<li> <!-- hover/active class::current-menu-item -->
+												<a href="{!!route('frontend-my-account')!!}">Minha Conta</a>
+											</li>
 
+											<li>
+												<a href="{!!route('frontend-faturamento')!!}">Faturamento</a>
+											</li>
+											<li>
+												<a href="#">Histórico</a>
+											</li>
+											<li class="divider"></li>
+											<li>
+												<a href="{!!route('frontend-areacliente-sair')!!}">Sair</a>
+											</li>
+										</ul>
+                  </li>
+              @else    
               <li class="nav-button">
                 <a href="#area-cliente" rel="modal">Área do Cliente</a>
               </li>
+              @endif
             </ul>
           </nav>
           <a href="#mobilemenu" class="mobile-nav-trigger">
@@ -135,3 +160,5 @@ use App\Model\Eventoscategorias;
 <div id="mobilemenu">
   <ul></ul>
 </div>
+
+
