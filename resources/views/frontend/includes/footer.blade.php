@@ -1,6 +1,7 @@
 @php
 use App\Model\Configuracoes;
 use App\Model\Eventos;
+use App\Model\Eventoscategorias;
 use Illuminate\Support\Carbon;
 $configuracoes = Configuracoes::all() 
 @endphp
@@ -8,180 +9,106 @@ $configuracoes = Configuracoes::all()
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="widget-section widget_ci-filter-form">
-          <div class="filter-form-inline-wrap">
-            <form action="/" class="form-boxed filter-form-inline">
-              <div class="filter-form-group">
-                <label for="filter-inline-destination-1">
-                  <i class="fas fa-globe-americas"></i>
-                  Selecione a região
-                </label>
-                <select id="filter-inline-destination-1" class="chosen-select" data-enable-search="true">
-                  <option value="">&nbsp;</option>
-                  <option value="5">Região Norte</option>
-                  <option value="2">Região Nordeste</option>
-                  <option value="3">Região Centro-Oeste</option>
-                  <option value="4">Região Sudeste</option>
-                  <option value="4">Região Sul</option>
-                </select>
-              </div>
+        @include('frontend/includes/filtros')
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
-              <div class="filter-form-group">
-                <label for="filter-inline-category-1">
-                  <i class="fas fa-list-ul"></i>
-                  Selecione a categoria
-                </label>
-                <select id="filter-inline-category-1" class="chosen-select" data-enable-search="true">
-                  <option value="">&nbsp;</option>
-                  <option value="6">Mountain Bike</option>
-                  <option value="3">Corrida</option>
-                  <option value="4">Ciclismo</option>
-                  <option value="5">Cursos</option>
-                  <option value="2">Palestras</option>
-                </select>
-              </div>
+<!-- Add class .footer-fullwidth for max-width 1600px -->
+<footer class="footer"
+style="background-image: url( {!!img_src('footer_bg.jpg')!!}); background-position: bottom center; background-repeat: no-repeat;">
+<div class="footer-widgets">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-sm-6 col-12">
+        <aside class="widget widget_ci-schedule">
+          <h3 class="widget-title">Bioplan Aventura</h3>
 
-              <div class="filter-form-group filter-form-range-inline">
-                <label>
-                  <i class="fas fa-calendar-alt"></i>
-                  Selecione o tempo de viagem
-                </label>
+          <p class="ci-schedule-widget-intro">
+            {!! $configuracoes[0] ->intro !!}
+          </p>
 
-                <div class="range-slider-wrap">
-                  <span class="range-slider" data-range-start="1" data-range-end="20" data-start="1" data-end="20"
-                    data-step="1">
-                    <input type="number" title="Min" hidden class="range-min" />
-                    <input type="number" title="Max" hidden class="range-max" />
-                  </span>
+        </aside>
+      </div>
+      <div class="col-lg-3 col-sm-6 col-12">
+        <aside class="widget">
+          <h3 class="widget-title">Categorias</h3>
 
-                  <span class="range-slider-values">
-                    <span class="range-slider-value">
-                      <span class="value"></span> Dia
-                    </span>
 
-                    <span class="range-slider-value">
-                      <span class="value"></span> Dias
-                    </span>
-                  </span>
-                </div>
-              </div>
-
-              <div class="filter-form-group">
-                <button type="submit" class="btn-block">buscar</button>
-              </div>
-            </form>
+          <div class="widget-list-wrap">
+            <ul>
+              @foreach( Eventoscategorias::get() as $eventocategoria )
+              <li>
+                <a href="{!! url('/eventos', $eventocategoria->slug); !!}">{!! $eventocategoria -> title !!}</a>
+                <div class="ci-count">{!! $eventocategoria -> count(); !!}</div>
+              </li>
+              @endforeach
+            </ul>
           </div>
-        </div>
+
+        </aside>
+      </div>
+      <div class="col-lg-3 col-sm-6 col-12">
+        <aside class="widget">
+          <h3 class="widget-title">Próximas Saídas</h3>
+
+          @foreach (Eventos::all()->take(2) as $eventos)
+          @php 
+          $data1 = new DateTime( $eventos -> dataevento );
+          $data2 = new DateTime( $eventos -> datavendas );
+          $intervalo = $data1->diff( $data2 );
+          @endphp
+          <div class="item-list-xs">
+            <div class="item-meta">
+              <span class="item-meta-field">{!! $intervalo -> days !!} dias</span>
+              <span class="item-meta-field">Valor: R$ {!! number_format($eventos -> ingressointeiro, 2) !!}</span>
+            </div>
+
+            <p class="item-title item-title-blog">
+              <a href="{!! url('/evento', $eventos->slug); !!}">
+                {!! $eventos->title !!}
+              </a>
+            </p>
+          </div>                    
+          @endforeach
+
+          
+
+        </aside>
+      </div>
+      <div class="col-lg-3 col-sm-6 col-12">
+        <aside class="widget widget_ci-contact">
+          <h3 class="widget-title">Vamos conversar</h3>
+
+          <ul class="ci-contact-widget-items">
+            <li class="ci-contact-widget-item">
+              <i class="fas fa-map-marker-alt"></i>
+              {!! $configuracoes[0]->endereco !!}
+            </li>
+            <li class="ci-contact-widget-item">
+              <i class="fas fa-envelope-square"></i> <a href="mailto:{!! $configuracoes[0]->email !!}">{!! $configuracoes[0]->email !!}</a>
+            </li>
+            <li class="ci-contact-widget-item">
+              <i class="fa fa-phone"></i> {!! $configuracoes[0]->telefone !!}
+            </li>
+          </ul>
+        </aside>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Add class .footer-fullwidth for max-width 1600px -->
-<footer class="footer"
-  style="background-image: url( {!!img_src('footer_bg.jpg')!!}); background-position: bottom center; background-repeat: no-repeat;">
-  <div class="footer-widgets">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-sm-6 col-12">
-          <aside class="widget widget_ci-schedule">
-            <h3 class="widget-title">Bioplan Aventura</h3>
-
-            <p class="ci-schedule-widget-intro">
-              {!! $configuracoes[0] ->intro !!}
-            </p>
-
-          </aside>
-        </div>
-        <div class="col-lg-3 col-sm-6 col-12">
-          <aside class="widget">
-            <h3 class="widget-title">Destinos</h3>
-
-            <div class="widget-list-wrap">
-              <ul>
-                <li>
-                  <a href="#">Goiânia - GO</a>
-                  <div class="ci-count">5</div>
-                </li>
-                <li>
-                  <a href="#">Alto Paraíso de Goiás - GO</a>
-                  <div class="ci-count">1</div>
-                </li>
-                <li>
-                  <a href="#">Pirenópolis - GO</a>
-                  <div class="ci-count">4</div>
-                </li>
-                <li>
-                  <a href="#">Ouro Preto - MG</a>
-                  <div class="ci-count">7</div>
-                </li>
-                <li>
-                  <a href="#">Goiás Velho - GO</a>
-                  <div class="ci-count">2</div>
-                </li>
-              </ul>
-            </div>
-          </aside>
-        </div>
-        <div class="col-lg-3 col-sm-6 col-12">
-          <aside class="widget">
-            <h3 class="widget-title">Próximas Saídas</h3>
-
-            @foreach (Eventos::all() as $eventos)
- @php 
-      $data1 = new DateTime( $eventos -> dataevento );
-      $data2 = new DateTime( $eventos -> datavendas );
-      $intervalo = $data1->diff( $data2 );
-@endphp
-            <div class="item-list-xs">
-              <div class="item-meta">
-                <span class="item-meta-field">{!! $intervalo -> days !!} dias</span>
-                <span class="item-meta-field">Valor: R$ {!! number_format($eventos -> ingressointeiro, 2) !!}</span>
-              </div>
-
-              <p class="item-title">
-                <a href="{!! url('/evento', $eventos->slug); !!}">
-{!! $eventos->title !!}
-                </a>
-              </p>
-            </div>                    
-             @endforeach
-
-          
-            
-          </aside>
-        </div>
-        <div class="col-lg-3 col-sm-6 col-12">
-          <aside class="widget widget_ci-contact">
-            <h3 class="widget-title">Vamos conversar</h3>
-
-            <ul class="ci-contact-widget-items">
-              <li class="ci-contact-widget-item">
-                <i class="fas fa-map-marker-alt"></i>
-                {!! $configuracoes[0]->endereco !!}
-              </li>
-              <li class="ci-contact-widget-item">
-                <i class="fas fa-envelope-square"></i> <a href="mailto:{!! $configuracoes[0]->email !!}">{!! $configuracoes[0]->email !!}</a>
-              </li>
-              <li class="ci-contact-widget-item">
-                <i class="fab fa-phone"></i> {!! $configuracoes[0]->telefone !!}
-              </li>
-            </ul>
-          </aside>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer-info">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="footer-info-inner on-background">
-            <div class="row align-items-center">
-              <div class="col-lg-6 col-12">
-                <p class="footer-copy text-lg-left text-center">Bioplan Aventura &ndash; um produto <a
-                    href="http://bioplan.eco.br" target="_new">Bioplan Consultoria</a></p>
+<div class="footer-info">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="footer-info-inner on-background">
+          <div class="row align-items-center">
+            <div class="col-lg-6 col-12">
+              <p class="footer-copy text-lg-left text-center">Bioplan Aventura &ndash; um produto <a
+                href="http://bioplan.eco.br" target="_new">Bioplan Consultoria</a></p>
               </div>
 
               <div class="col-lg-6 col-12">

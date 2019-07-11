@@ -1,5 +1,8 @@
 @php
+use App\Model\Configuracoes;
+use App\Model\Eventos;
 use App\Model\Eventoscategorias;
+$configuracoes = Configuracoes::all() 
 @endphp
 <header class="header">
   <div class="head-intro">
@@ -8,9 +11,9 @@ use App\Model\Eventoscategorias;
         <div class="col-12">
           <div class="head-intro-inner">
             <div class="head-intro-info">
-              <span>Suporte: <a href="#"> Chat Via WhatsApp</a></span>
+              <span><b><i class="fab fa-whatsapp"></i> <a href="https://api.whatsapp.com/send?1=pt_BR&phone=5562981418804">Chat Via WhatsApp</a></span></b>
               <span>
-                <a href="mailto:contato@bioplanaventura.com.br">contato@bioplanaventura.com.br</a>
+                <a href="mailto:{!! $configuracoes[0]->email !!}">{!! $configuracoes[0]->email !!}</a>
               </span>
             </div>
 
@@ -18,28 +21,23 @@ use App\Model\Eventoscategorias;
               <div class="head-intro-addon">
                 <ul class="list-social-icons">
                   <li>
-                    <a class="social-icon" href="#">
-                      <i class="fas fa-rss"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="social-icon" href="#">
+                    <a class="social-icon" href="{!! $configuracoes[0]-> facebook !!}">
                       <i class="fab fa-facebook"></i>
                     </a>
                   </li>
                   <li>
-                    <a class="social-icon" href="#">
+                    <a class="social-icon" href="{!! $configuracoes[0]-> twitter !!}">
                       <i class="fab fa-twitter"></i>
                     </a>
                   </li>
                   <li>
-                    <a class="social-icon" href="#">
+                    <a class="social-icon" href="{!! $configuracoes[0]-> instagram !!}">
                       <i class="fab fa-instagram"></i>
                     </a>
                   </li>
 
                   <li>
-                    <a class="social-icon" href="#">
+                    <a class="social-icon" href="{!! $configuracoes[0]-> youtube !!}">
                       <i class="fab fa-youtube"></i>
                     </a>
                   </li>
@@ -102,7 +100,6 @@ use App\Model\Eventoscategorias;
                     <a href="#">Categorias</a>
                     <ul class="sub-menu">
                     @foreach( Eventoscategorias::get() as $eventocategoria )
-                 
                       <li>
                         <!-- hover/active class::current-menu-item -->
                         <a href="{!! url('/eventos', $eventocategoria->slug); !!}">{!! $eventocategoria -> title !!}</a>

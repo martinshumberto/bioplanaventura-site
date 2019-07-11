@@ -9860,7 +9860,7 @@ a {
 }
 
 a:hover {
-  color: #faab00;
+  color: #fac600;
   text-decoration: none;
 }
 
@@ -11445,6 +11445,12 @@ button.mfp-arrow:hover {
 .item-thumb img {
   border-radius: 5px;
   transition: border-radius 0.18s ease;
+  width: 100%;
+}
+
+.item-thumb.item-thumb-blog img {
+  height: 150px;
+  width: 100%;
 }
 
 .item-vertical .item-thumb {
@@ -11519,6 +11525,11 @@ button.mfp-arrow:hover {
   margin-bottom: 15px;
   font-weight: 500;
   max-width: 100%;
+  padding: 15px 15px 0 15px;
+}
+
+.item-title.item-title-blog {
+  padding: 0px;
 }
 
 .item-title a {

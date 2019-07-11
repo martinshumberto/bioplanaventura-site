@@ -2,7 +2,7 @@
 
 
 @if (file_exists("/js/backend/".Route::currentRouteName().".js"))
-<script src="{{asset(''.elixir('js/backend/'. Route::currentRouteName() .'.js'))}}" async></script>
+<script src="{{.elixir('js/backend/'. Route::currentRouteName() .'.js')}}" async></script>
 @endif
 
 </body>

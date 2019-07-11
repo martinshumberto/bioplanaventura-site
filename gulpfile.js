@@ -23,6 +23,10 @@ elixir(mix => {
         "public/css/frontend/frontend-blog.css"
     );
     mix.sass(
+        "resources/assets/sass/frontend/pages/equipe.scss",
+        "public/css/frontend/frontend-equipe.css"
+    );
+    mix.sass(
         "resources/assets/sass/frontend/pages/events.scss",
         "public/css/frontend/frontend-events.css"
     );
@@ -103,6 +107,21 @@ elixir(mix => {
             "resources/assets/js/libs/nouislider.js"
         ],
         "public/js/frontend/frontend-blog-libs.js"
+    );
+    mix.scripts(
+        [
+            "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/jquery.mmenu.min.all.js",
+            "resources/assets/js/libs/jquery.fitvids.js",
+            "resources/assets/js/libs/jquery.magnific-popup.js",
+            "resources/assets/js/libs/slick.js",
+            "resources/assets/js/libs/jquery.sticky-kit.min.js",
+            "resources/assets/js/libs/imagesloaded.pkgd.min.js",
+            "resources/assets/js/libs/anim-on-scroll.js",
+            "resources/assets/js/libs/chosen.jquery.js",
+            "resources/assets/js/libs/nouislider.js"
+        ],
+        "public/js/frontend/frontend-equipe-libs.js"
     );
     mix.scripts(
         [
@@ -200,6 +219,10 @@ elixir(mix => {
     mix.scripts(
         ["resources/assets/js/components/main.js"],
         "public/js/frontend/frontend-events.js"
+    );
+    mix.scripts(
+        ["resources/assets/js/components/main.js"],
+        "public/js/frontend/frontend-equipe.js"
     );
     mix.scripts(
         ["resources/assets/js/components/main.js"],
