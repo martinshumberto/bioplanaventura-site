@@ -423,7 +423,7 @@ if ( ! function_exists('img_src'))
             return $url;
         }
 
-        $path = ($options['dynamic'] ? '/public/storage/' : '/public/img/');
+        $path = ($options['dynamic'] ? '/storage/files/' : '/img/');
 
 
         if ($options['thumbnail'])

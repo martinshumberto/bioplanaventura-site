@@ -8,7 +8,7 @@ use App\Model\Eventoscategorias;
         <div class="col-12">
           <div class="head-intro-inner">
             <div class="head-intro-info">
-              <span>Suporte: <a href="#"> Chat Online</a></span>
+              <span>Suporte: <a href="#"> Chat Via WhatsApp</a></span>
               <span>
                 <a href="mailto:contato@bioplanaventura.com.br">contato@bioplanaventura.com.br</a>
               </span>

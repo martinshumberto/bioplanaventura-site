@@ -25,7 +25,7 @@ use App\Model\Fotos;
   @foreach($slides as $item) 
   @php $i++ @endphp
     <div class="carousel-item @if($i==1) active @endif">
-    <div class="page-hero page-hero-lg page-hero-align-center" style="background-image: url(public/storage/files/{!! $item -> file !!});">
+    <div class="page-hero page-hero-lg page-hero-align-center" style="background-image: url({!! img_src($item -> file, true) !!});">
 
 
 @if(!$item->file)
@@ -175,7 +175,7 @@ use App\Model\Fotos;
                   $fotox = Fotos::where('chave',$posts->chave)->pluck('file')->first();                  
                   @endphp
                   
-                  <img src="{!! img_src($fotox, array("dynamic"=>true)) !!}"> 
+                  <img src="{!! img_src($fotox, true) !!}"> 
                   </a>
                 </div>
 

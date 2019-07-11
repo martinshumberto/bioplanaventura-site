@@ -14606,4 +14606,14 @@ table td:not(:last-child) {
   background: rgba(0, 0, 0, 0.25);
 }
 
+/* Carousel 
+  =================================== */
+#sliderHome {
+  min-height: 800px;
+}
+
+#sliderHome .carousel-inner {
+  min-height: 800px;
+}
+
 /*# sourceMappingURL=frontend-home.css.map */
