@@ -723,6 +723,14 @@ button.mfp-arrow:hover {
   display: inline-block;
 }
 
+.navigation-main li a.active {
+  font-weight: bold;
+}
+
+.navigation-main li a:hover {
+  font-weight: bold;
+}
+
 .navigation-main a {
   display: block;
   white-space: nowrap;
@@ -1928,6 +1936,7 @@ button.mfp-arrow:hover {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+  padding: 0px 20px 0px 20px;
 }
 
 .item-meta {
@@ -3407,6 +3416,7 @@ button.mfp-arrow:hover {
   width: 100%;
   max-width: 100%;
   border-radius: 5px;
+  height: 198px;
 }
 
 .gallery-item:hover .gallery-caption {

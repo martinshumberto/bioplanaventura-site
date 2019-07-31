@@ -84,9 +84,11 @@ $foto = Fotos::where('chave',$postagens[0]->chave)->pluck('file')->first();
                 @endphp
                 <a href="">{!! $usuario !!}</a>
               </span>
+              <!--
               <span class="entry-meta-item entry-comments-link">
                 <a href="#comments">Deixe um comentário</a>
               </span>
+              -->
             </div>
 
             <h1 class="entry-title">{!! $postagens[0]->title !!}</h1>
@@ -96,17 +98,14 @@ $foto = Fotos::where('chave',$postagens[0]->chave)->pluck('file')->first();
       
            
 
-            <div class="gallery gallery-columns-3">
-            @foreach (Fotos::where('chave',$postagens[0]->chave)->pluck('file') as $fotox);  
+            <div class="gallery gallery-columns-1">
+            @foreach (Fotos::where('chave',$postagens[0]->chave)->pluck('file') as $fotox)  
               <figure class="gallery-item">
                 <div class="gallery-icon landscape">
                   <a class="ci-theme-lightbox" href=" {!! img_src($fotox, array("dynamic"=>true)) !!}">
-                   <img src="{!! img_src($fotox, array("dynamic"=>true)) !!}">
+                   <img style="height: 350px;" src="{!! img_src($fotox, array("dynamic"=>true)) !!}">
                   </a>
                 </div>
-                <figcaption class="wp-caption-text gallery-caption">
-                  
-                </figcaption>
               </figure>
             @endforeach
               
@@ -128,6 +127,7 @@ $foto = Fotos::where('chave',$postagens[0]->chave)->pluck('file')->first();
           </div>
         </article>
 
+        <!-- 
         <div class="entry-author-box">
           <figure class="entry-author-thumbnail">
             <img src="images/avatar03.jpg" alt="">
@@ -163,6 +163,7 @@ $foto = Fotos::where('chave',$postagens[0]->chave)->pluck('file')->first();
             </div>
           </div>
         </div>
+        -->
 
         <!-- COMENTÁRIOS -->
 
@@ -171,7 +172,7 @@ $foto = Fotos::where('chave',$postagens[0]->chave)->pluck('file')->first();
       <div class="col-lg-3 col-12">
          @include('frontend.includes.filtro-blog')
       </div>
-
+      <!--
       <div class="col-12">
         <div class="section-related">
           <div class="section-heading">
@@ -288,6 +289,7 @@ $foto = Fotos::where('chave',$postagens[0]->chave)->pluck('file')->first();
           </div>
         </div>
       </div>
+      -->
     </div>
   </div>
 </main>

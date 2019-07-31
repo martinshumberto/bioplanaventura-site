@@ -99,7 +99,10 @@ use App\Model\Fotos;
                   <img src="{!! img_src($foto, array("dynamic"=>true))!!}">
                 </a>
                 @if($evento -> promocao) 
-                <span class="item-badge">{!! $evento -> promocao !!}</span>
+                <span class="item-badge">Promoção</span>
+                @endif
+                @if($evento -> esgotado) 
+                <span class="item-badge" style="background-color:#ff0000;">Esgotado</span>
                 @endif
               </div>
 

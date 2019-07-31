@@ -26,30 +26,30 @@ use App\Model\Fotos;
         <article class="entry">
           <div class="entry-content">
 
-          @foreach ($galerias as $galeria)
+            @foreach ($galerias as $galeria)
             <h4>{!! $galeria->title !!}</h4>
-            <div class="gallery gallery-columns-3">
-              
-            @php
-                $foto = Fotos::where('chave',$galeria->chave)->pluck('file');                  
-            @endphp
-            
-            @foreach ($foto as $image)
-            <figure class="gallery-item">
+            <div class="gallery gallery-columns-6">
+
+              @php
+              $foto = Fotos::where('chave',$galeria->chave)->pluck('file');                  
+              @endphp
+
+              @foreach ($foto as $image)
+              <figure class="gallery-item">
                 <div class="gallery-icon landscape">
                   <a class="ci-theme-lightbox" href="{!!img_src($image, true)!!}">
-                  <img src="{!!img_src($image, true)!!}"/>
+                    <img src="{!!img_src($image, true)!!}"/>
                   </a>
                 </div>
                 <figcaption class="wp-caption-text gallery-caption">
-                  
+                  {!! $galeria->title !!}
                 </figcaption>
               </figure>
-             @endforeach 
+              @endforeach 
 
               
             </div>
-          @endforeach
+            @endforeach
 
             
 

@@ -67,7 +67,7 @@ $configuracoes = Configuracoes::all()
       <div class="row align-items-center">
         <div class="col-lg-3 col-md-6 col-8">
           <h1 class="site-logo">
-            <a href="/">
+            <a href="{!!route('frontend-home')!!}">
               {!!img('logo.svg')!!}
             </a>
           </h1>
@@ -77,16 +77,19 @@ $configuracoes = Configuracoes::all()
         <div class="col-lg-9 col-md-6 col-4">
           <nav class="nav">
             <ul class="navigation-main navigation-main-right">
-              <li class="menu-item-home">
+              <li class="menu-item-home {{ Route::currentRouteNamed( 'frontend-home' ) ?  'active' : '' }}">
+                <a href="{!!route('frontend-home')!!}">Home</a>
+              </li>
+              <li class="{{ (strpos(Route::currentRouteName(), 'frontend-abouts') == 0) ? 'active' : '' }}">
                 <a href="{!!route('frontend-abouts')!!}">Sobre Nós</a>
               </li>
-              <li class="menu-item-home">
+              <li class="{{ (strpos(Route::currentRouteName(), 'frontend-equipe') == 0) ? 'active' : '' }}">
                 <a href="{!!route('frontend-equipe')!!}">Equipe</a>
               </li>
-              <li>
+              <li class="{{ (strpos(Route::currentRouteName(), 'frontend-calendario') == 0) ? 'active' : '' }}">
                 <a href="{!!route('frontend-calendario')!!}">Calendário</a>
               </li>
-              <li class="current-menu-ancestor menu-item-has-children">
+              <li class="current-menu-ancestor menu-item-has-children {{ (strpos(Route::currentRouteName(), 'frontend-events') == 0) ? 'active' : '' }}">
                 <a href="{!!route('frontend-events', 'todos')!!}">Eventos</a>
                 <ul class="sub-menu">
                   <li>
@@ -109,11 +112,10 @@ $configuracoes = Configuracoes::all()
                   </li>
                 </ul>
               </li>
-
-              <li>
+              <li class="{{ (strpos(Route::currentRouteName(), 'frontend-galleries') == 0) ? 'active' : '' }}">
                 <a href="{!!route('frontend-galleries')!!}">Galeria</a>
               </li>
-              <li>
+              <li class="{{ (strpos(Route::currentRouteName(), 'frontend-blogs') == 0) ? 'active' : '' }}">
                 <a href="{!!route('frontend-blogs')!!}">Blog</a>
               </li>
               @if (session('usuario'))
