@@ -8,6 +8,8 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
 @section('content')
 @include('frontend/includes/header')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<div class="overlay">
+</div>
 <div class="page-hero" style="background-image: url({!! img_src($fotoDestaque, array("dynamic"=>true)) !!});">
 
 </div>

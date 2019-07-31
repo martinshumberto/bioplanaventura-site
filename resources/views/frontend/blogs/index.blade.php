@@ -6,8 +6,9 @@
 @php
 use App\Model\Fotos;
 @endphp
-
-<div class="page-hero" style="background-image: url(../public/img/hero.jpg);">
+<div class="overlay">
+</div>
+<div class="page-hero" style="background-image: url({!! img_src('pages/blog.png') !!});">
   <div class="container">
     <div class="row">
       <div class="col-12">

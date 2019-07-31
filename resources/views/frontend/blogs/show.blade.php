@@ -7,7 +7,8 @@ $foto = Fotos::where('chave',$postagens[0]->chave)->pluck('file')->first();
 @endphp
 @section('content')
 @include('frontend/includes/header')
-
+<div class="overlay">
+</div>
 <div class="page-hero" style="background-image: url({!! url('public/storage/files/'.$foto) !!});">
   <div class="container">
     <div class="row">

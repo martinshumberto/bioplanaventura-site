@@ -12165,7 +12165,7 @@ button.mfp-arrow:hover {
 }
 
 .main .widget_ci-filter-form:first-child {
-  margin-top: -146px;
+  margin-top: -150px;
 }
 
 .footer-widget-sections .widget_ci-filter-form:last-child {
@@ -14446,6 +14446,7 @@ input[type="password"] {
 .close {
   color: #aaa;
   float: right;
+  text-align: right;
   font-size: 28px;
   font-weight: bold;
 }
@@ -14604,6 +14605,25 @@ table td:not(:last-child) {
 
 .page-hero::before {
   background: rgba(0, 0, 0, 0.25);
+}
+
+.carousel-indicators {
+  display: none;
+}
+
+.carousel {
+  margin-bottom: 0;
+}
+
+.overlay {
+  background: black;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
+  top: 0;
+  height: 300px;
+  z-index: 2;
+  width: 100%;
+  position: absolute;
 }
 
 /*# sourceMappingURL=frontend-my-orders.css.map */

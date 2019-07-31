@@ -6,9 +6,10 @@ use App\Model\Eventoscategorias;
 @section('content')
 @include('frontend/includes/header')
 
-
+<div class="overlay">
+</div>
 @if($categorias=="todos")
-<div class="page-hero" style="background-image: url({!! img_src('lefkada_lan.jpg') !!});">
+<div class="page-hero" style="background-image: url({!! img_src('pages/event.png') !!});">
 </div>
 @else
 <div class="page-hero" style="background-image: url({!! img_src($categorias[0]->file, array("dynamic"=>true)) !!});">

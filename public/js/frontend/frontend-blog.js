@@ -15,10 +15,10 @@ jQuery(function($) {
   $mainNav.each(function() {
     var $this = $(this);
     $this
-      .clone()
-      .removeAttr("id")
-      .removeClass()
-      .appendTo($mobileNav.find("ul"));
+    .clone()
+    .removeAttr("id")
+    .removeClass()
+    .appendTo($mobileNav.find("ul"));
   });
   $mobileNav.find("li").removeAttr("id");
 
@@ -29,10 +29,10 @@ jQuery(function($) {
     },
     autoHeight: true,
     navbars: [
-      {
-        position: "top",
-        content: ["prev", "title", "close"]
-      }
+    {
+      position: "top",
+      content: ["prev", "title", "close"]
+    }
     ]
   });
 
@@ -99,9 +99,9 @@ jQuery(function($) {
     }
 
     $headSearchForm
-      .addClass("head-search-expanded")
-      .find("input")
-      .focus();
+    .addClass("head-search-expanded")
+    .find("input")
+    .focus();
   }
 
   function isHeadSearchVisible() {
@@ -119,15 +119,15 @@ jQuery(function($) {
   });
 
   $body
-    .on("click", function(e) {
-      if (isHeadSearchVisible()) {
-        dismissHeadSearch();
-      }
-    })
-    .find(".head-search-form, .head-search-trigger")
-    .on("click", function(e) {
-      e.stopPropagation();
-    });
+  .on("click", function(e) {
+    if (isHeadSearchVisible()) {
+      dismissHeadSearch();
+    }
+  })
+  .find(".head-search-form, .head-search-trigger")
+  .on("click", function(e) {
+    e.stopPropagation();
+  });
 
   /* -----------------------------------------
 	 Responsive Videos with fitVids
@@ -239,9 +239,9 @@ jQuery(function($) {
       }
       var $link = $linkTemplate.clone();
       $link
-        .attr("href", "#" + id)
-        .find(".entry-title-navigation-link-label")
-        .text($this.text());
+      .attr("href", "#" + id)
+      .find(".entry-title-navigation-link-label")
+      .text($this.text());
       $titleNav.append($link);
     });
 
@@ -254,30 +254,30 @@ jQuery(function($) {
       var offset = ($headSticky.outerHeight() || 0) + 25;
 
       $("html, body").animate(
-        {
-          scrollTop: $target.offset().top - offset
-        },
-        250
+      {
+        scrollTop: $target.offset().top - offset
+      },
+      250
       );
     });
   })();
 
   var navIds = $titleNav
-    .find(".entry-title-navigation-link")
-    .map(function() {
-      return $(this).attr("href");
-    })
-    .get();
+  .find(".entry-title-navigation-link")
+  .map(function() {
+    return $(this).attr("href");
+  })
+  .get();
   var $contentSections = $(navIds.join(","));
 
   var scrollTimer;
 
   $window
-    .on("scroll", function() {
-      clearTimeout(scrollTimer);
+  .on("scroll", function() {
+    clearTimeout(scrollTimer);
 
-      scrollTimer = setTimeout(function() {
-        var scrollDistance = $window.scrollTop();
+    scrollTimer = setTimeout(function() {
+      var scrollDistance = $window.scrollTop();
 
         // Assign active class to nav links while scolling
         $contentSections.each(function(i) {
@@ -285,14 +285,14 @@ jQuery(function($) {
           if ($this.position().top + 150 <= scrollDistance) {
             $titleNav.find(".active").removeClass("active");
             $titleNav
-              .find(".entry-title-navigation-link")
-              .eq(i)
-              .addClass("active");
+            .find(".entry-title-navigation-link")
+            .eq(i)
+            .addClass("active");
           }
         });
       }, 100);
-    })
-    .scroll();
+  })
+  .scroll();
 
   /* -----------------------------------------
 	 jQuery Chosen
@@ -336,9 +336,9 @@ jQuery(function($) {
 
     slider.noUiSlider.on("update", function(values, handle) {
       $values
-        .find(".value")
-        .eq(handle)
-        .text(parseFloat(values[handle]).toLocaleString());
+      .find(".value")
+      .eq(handle)
+      .text(parseFloat(values[handle]).toLocaleString());
       $inputMin.val(values[0]);
       $inputMax.val(values[1]);
     });
@@ -351,7 +351,7 @@ jQuery(function($) {
   var $footerWigetSections = $(".footer-widget-sections");
   var $footerFilterForm = $footerWigetSections.find(
     ".widget_ci-filter-form:last-child"
-  );
+    );
 
   if ($footerFilterForm.length) {
     $footerWidgets.addClass("footer-widgets-padded");
@@ -468,9 +468,9 @@ jQuery(function($) {
         autoplaySpeed: speed,
         autoplay: auto === true,
         prevArrow:
-          '<button type="button" class="slick-prev"><i class="fas fa-angle-left"></i></button>',
+        '<button type="button" class="slick-prev"><i class="fas fa-angle-left"></i></button>',
         nextArrow:
-          '<button type="button" class="slick-next"><i class="fas fa-angle-right"></i></button>'
+        '<button type="button" class="slick-next"><i class="fas fa-angle-right"></i></button>'
       });
     }
 
@@ -517,29 +517,29 @@ jQuery(function($) {
 
   $("table tr").each(function() {
     $(this)
-      .find("th")
-      .first()
-      .addClass("first");
+    .find("th")
+    .first()
+    .addClass("first");
     $(this)
-      .find("th")
-      .last()
-      .addClass("last");
+    .find("th")
+    .last()
+    .addClass("last");
     $(this)
-      .find("td")
-      .first()
-      .addClass("first");
+    .find("td")
+    .first()
+    .addClass("first");
     $(this)
-      .find("td")
-      .last()
-      .addClass("last");
+    .find("td")
+    .last()
+    .addClass("last");
   });
 
   $("table tr")
-    .first()
-    .addClass("row-first");
+  .first()
+  .addClass("row-first");
   $("table tr")
-    .last()
-    .addClass("row-last");
+  .last()
+  .addClass("row-last");
 });
 
 //# sourceMappingURL=frontend-blog.js.map

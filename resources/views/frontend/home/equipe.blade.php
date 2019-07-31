@@ -4,14 +4,15 @@ use App\Model\Fotos;
 @endphp
 @section('content')
 @include('frontend/includes/header')
-
-<div class="page-hero" style="background-image: url({!!img_src('greece_lan.jpg') !!});">
+<div class="overlay">
+</div>
+<div class="page-hero" style="background-image: url({!!img_src('pages/team.png') !!});">
 				<div class="container">
 					<div class="row">
 						<div class="col-12">
 							<div class="page-hero-content">
 								<h1 class="page-hero-title">Equipe</h1>
-								<p class="page-hero-subtitle">Esse time é o grande responsável pelo nosso sucesso.</p>
+								<p class="page-hero-subtitle">Nosso time está pronto para te levar aos melhores eventos ecoturísticos com muita segurança e profissionalismo!</p>
 							</div>
 						</div>
 					</div>

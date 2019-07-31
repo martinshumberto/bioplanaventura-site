@@ -9860,7 +9860,7 @@ a {
 }
 
 a:hover {
-  color: #fac600;
+  color: #faab00;
   text-decoration: none;
 }
 
@@ -11445,12 +11445,6 @@ button.mfp-arrow:hover {
 .item-thumb img {
   border-radius: 5px;
   transition: border-radius 0.18s ease;
-  width: 100%;
-}
-
-.item-thumb.item-thumb-blog img {
-  height: 150px;
-  width: 100%;
 }
 
 .item-vertical .item-thumb {
@@ -11525,11 +11519,6 @@ button.mfp-arrow:hover {
   margin-bottom: 15px;
   font-weight: 500;
   max-width: 100%;
-  padding: 15px 15px 0 15px;
-}
-
-.item-title.item-title-blog {
-  padding: 0px;
 }
 
 .item-title a {
@@ -12176,7 +12165,7 @@ button.mfp-arrow:hover {
 }
 
 .main .widget_ci-filter-form:first-child {
-  margin-top: -146px;
+  margin-top: -150px;
 }
 
 .footer-widget-sections .widget_ci-filter-form:last-child {
@@ -14457,6 +14446,7 @@ input[type="password"] {
 .close {
   color: #aaa;
   float: right;
+  text-align: right;
   font-size: 28px;
   font-weight: bold;
 }
@@ -14617,14 +14607,46 @@ table td:not(:last-child) {
   background: rgba(0, 0, 0, 0.25);
 }
 
+.carousel-indicators {
+  display: none;
+}
+
+.carousel {
+  margin-bottom: 0;
+}
+
+.overlay {
+  background: black;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
+  top: 0;
+  height: 300px;
+  z-index: 2;
+  width: 100%;
+  position: absolute;
+}
+
 /* Carousel 
-  =================================== */
-#sliderHome {
+=================================== */
+#sliderHome .carousel-inner {
   min-height: 800px;
 }
 
-#sliderHome .carousel-inner {
-  min-height: 800px;
+@media (max-width: 600px) {
+  #sliderHome .carousel-inner {
+    min-height: 300px;
+  }
+}
+
+#sliderHome .carousel-inner .carousel-item .overlay {
+  background: black;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
+  top: 0;
+  height: 300px;
+  z-index: 999999;
+  width: 100%;
+  position: absolute;
 }
 
 /*# sourceMappingURL=frontend-home.css.map */

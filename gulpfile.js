@@ -6,6 +6,12 @@ elixir(mix => {
     /*------------------------------------------------------------------------*/
 
     /* SCSS FRONTEND */
+
+    mix.sass(
+        "resources/assets/sass/frontend/core/core.scss",
+        "public/css/core.css"
+    );
+
     mix.sass(
         "resources/assets/sass/frontend/pages/home.scss",
         "public/css/frontend/frontend-home.css"
@@ -45,6 +51,10 @@ elixir(mix => {
     mix.sass(
         "resources/assets/sass/frontend/pages/my-orders.scss",
         "public/css/frontend/frontend-my-orders.css"
+    );
+    mix.sass(
+        "resources/assets/sass/frontend/pages/calendario.scss",
+        "public/css/frontend/frontend-calendario.css"
     );
 
     /* JS Libs FRONTEND */

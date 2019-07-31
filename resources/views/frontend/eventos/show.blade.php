@@ -3,8 +3,9 @@
 @section('content')
 @include('frontend/includes/header')
 
-
-<div class="page-hero" style="background-image: url(images/pico-pirineus.png);"></div>
+<div class="overlay">
+</div>
+<div class="page-hero" style="background-image: url({!! img_src('pages/event.png') !!});"></div>
 <main class="main main-elevated">
   <div class="container">
     <div class="row">

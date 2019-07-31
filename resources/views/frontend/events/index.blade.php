@@ -4,7 +4,7 @@
 @include('frontend/includes/header')
 
 
-<div class="page-hero" style="background-image: url(images/hero.jpg);">
+<div class="page-hero" style="background-image: url({!! img_src('pages/event.png') !!});">
 
 </div>
 <main class="main main-elevated">
@@ -14,8 +14,7 @@
         <div class="col-lg-9 col-12">
           <div class="page-hero-content">
             <h2 class="page-hero-title">Eventos</h2>
-            <p class="page-hero-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tincidunt ut
-              quam vitae faucibus. </p>
+            <p class="page-hero-subtitle">Confira todos os nossos eventos! Você pode utilizar o filtro para uma busca mais refinada.</p>
           </div>
 
           <div class="listing-controls">

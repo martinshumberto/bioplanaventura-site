@@ -61,7 +61,7 @@ document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";}
 </script>
 <!------ Include the above in your HEAD tag ---------->
-<div class="page-hero" style="background-image: url({!! img_src('hero.jpg') !!});"></div>
+<div class="page-hero" style="background-image: url({!! img_src('pages/user.png') !!});"></div>
 			<main class="main main-elevated">
 
 

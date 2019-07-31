@@ -2,8 +2,9 @@
 
 @section('content')
 @include('frontend/includes/header')
-
-<div class="page-hero" style="background-image: url({!! img_src('greece_lan.jpg') !!});">
+<div class="overlay">
+</div>
+<div class="page-hero" style="background-image: url({!! img_src('pages/about.png') !!});">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -28,16 +29,15 @@
         <div class="sidebar">
 
           <aside class="widget widget_search group">
+
             <h3 class="widget-title">Buscar</h3>
-            <form action="/" method="get" class="searchform">
-              <div>
+                {{ Form::open(array('route' => 'frontend-pesquisa', 'class'=>'searchform'))  }}
                 <label for="s" class="screen-reader-text">Buscar por:</label>
                 <input type="search" id="s" name="s" value="" placeholder="Buscar">
                 <button class="searchsubmit" type="submit">
                   <i class="fas fa-search"></i>
                 </button>
-              </div>
-            </form>
+                </form>
           </aside>
 
           <aside class="widget widget_ci-contact">
@@ -46,15 +46,16 @@
             <ul class="ci-contact-widget-items">
 
               <li class="ci-contact-widget-item">
-                <i class="fas fa-envelope-square"></i> contato@bioplanaventura.com.br
+                <a href="mailto:contato@bioplanaventura.com.br" target="_new"><i class="fas fa-envelope-square"></i> contato@bioplanaventura.com.br</a>
               </li>
               <li class="ci-contact-widget-item">
-                <i class="fab fa-instagram"></i> @bioplanaventura
+                <a href="https://www.instagram.com/bioplanaventura/" target="_new"><i class="fab fa-instagram"></i> @bioplanaventura</a>
               </li>
             </ul>
           </aside>
 
           <!-- For a list of all supported social icons please see: http://fontawesome.io/icons/#brand -->
+          <!--
           <aside class="widget widget_ci_social_widget ci-socials group">
             <h3 class="widget-title">Nós siga</h3>
 
@@ -137,6 +138,7 @@
               </a>
             </p>
           </aside>
+          -->
         </div>
       </div>
     </div>

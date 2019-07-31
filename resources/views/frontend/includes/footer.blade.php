@@ -18,7 +18,7 @@ $configuracoes = Configuracoes::all()
 
 <!-- Add class .footer-fullwidth for max-width 1600px -->
 <footer class="footer"
-style="background-image: url( {!!img_src('footer_bg.jpg')!!}); background-position: bottom center; background-repeat: no-repeat;">
+style="background-image: url( {!!img_src('footer_bg.jpg')!!}); background-position: bottom center; background-repeat: no-repeat;background-size: cover;">
 <div class="footer-widgets">
   <div class="container">
     <div class="row">

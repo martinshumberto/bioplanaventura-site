@@ -82,7 +82,7 @@ use App\Model\States;
       </form>
 
       <div class="login-help">
-        <a href="#registrar" rel="modal">Registrar</a> - <a href="#">Esqueceu a senha?</a>
+        <a href="#registrar" rel="modal">Registrar</a> - <a href="#recuperar-senha">Esqueceu a senha?</a>
       </div>
     </div>
   </div>
@@ -111,7 +111,7 @@ use App\Model\States;
           
         </div>
         <div class="filter-form-group">
-        {!!Form::select('city_id', [], null, [ 'class' => 'form-control mb-10', 'id'=>'filter-city']) !!}
+        {!!Form::select('filter-city', [], null, [ 'class' => 'form-control mb-10', 'id'=>'filter-city']) !!}
         </div>
         <input type="password" name="password" placeholder="Senha" style="margin-top: 0px;">
         <input type="password" name="repassword" placeholder="Confirmar senha">

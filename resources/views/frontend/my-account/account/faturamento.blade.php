@@ -7,8 +7,8 @@ use App\Model\Eventos;
 use Illuminate\Support\Carbon;
 @endphp
 
-<div class="page-hero" style="background-image: url({!! img_src('greece_lan.jpg') !!});">
-  
+<div class="page-hero" style="background-image: url({!! img_src('pages/user.png') !!});">
+
 </div>
 <main class="main main-elevated">
         <div class="container">

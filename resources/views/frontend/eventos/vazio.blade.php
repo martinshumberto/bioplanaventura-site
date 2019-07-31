@@ -6,8 +6,9 @@ use App\Model\Eventoscategorias;
 @section('content')
 @include('frontend/includes/header')
 
-
-<div class="page-hero" style="background-image: url({!! img_src('lefkada_lan.jpg') !!});">
+<div class="overlay">
+</div>
+<div class="page-hero" style="background-image: url({!! img_src('pages/event.png') !!});">
 </div>
 
 

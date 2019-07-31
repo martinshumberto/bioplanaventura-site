@@ -6,15 +6,15 @@
 @php
 use App\Model\Fotos;
 @endphp
-
-<div class="page-hero" style="background-image: url({!! img_src('hero.jpg') !!});">
+<div class="overlay">
+</div>
+<div class="page-hero" style="background-image: url({!! img_src('pages/calendar.png') !!});">
   <div class="container">
     <div class="row">
       <div class="col-12">
         <div class="page-hero-content">
           <h2 class="page-hero-title">Calendario</h2>
-          <p class="page-hero-subtitle">Acompanhe as novidades, notícias e tudo que está acontecendo no mundo do
-            ecoturismo em nosso blog.</p>
+          <p class="page-hero-subtitle">Veja o nosso calendário e escolha aquele que melhor se adeque a sua agenda!</p>
         </div>
       </div>
     </div>
@@ -31,7 +31,7 @@ use App\Model\Fotos;
           <div class="col-lg-12 col-sm-6 col-12">
 
           
-          <link rel="stylesheet" href="{{asset('public/'.elixir('css/fullcalendar.min.css'))}}">
+          <link rel="stylesheet" href="{{elixir('css/fullcalendar.min.css')}}">
 
 <div id='calendar'></div>
 
@@ -52,11 +52,11 @@ use App\Model\Fotos;
 </main>
 
 @include('frontend/includes/footer')
-<script src="{{asset('public/'.elixir('js/jquery-1.11.3.min.js'))}}"></script>
-<script src="{{asset('public/'.elixir('js/moment.min.js'))}}"></script>
-<script src="{{asset('public/'.elixir('js/fullcalendar.min.js'))}}"></script>
-<script src="{{asset('public/'.elixir('js/main.min.js'))}}"></script>
-<script src="{{asset('public/'.elixir('js/locales-all.js'))}}"></script>
+<script src="{{elixir('js/jquery-1.11.3.min.js')}}"></script>
+<script src="{{elixir('js/moment.min.js')}}"></script>
+<script src="{{elixir('js/fullcalendar.min.js')}}"></script>
+<script src="{{elixir('js/main.min.js')}}"></script>
+<script src="{{elixir('js/locales-all.js')}}"></script>
 
 
 <script>
