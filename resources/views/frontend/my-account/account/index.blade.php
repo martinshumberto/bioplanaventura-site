@@ -8,19 +8,28 @@ use App\Model\Fotos;
 <div class="page-hero" style="background-image: url({!! img_src('hero.jpg') !!});"></div>
 			<main class="main main-elevated">
 				<div class="container">
+				@if (Session::has('alert'))
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="alert alert-{!!session('alert.code')!!}">
+      {!! session('alert.text') !!}
+    </div>
+  </div>
+</div>
+@endif
+
+				{!! Form::open(['method' => 'post', 'autocomplete' => 'off', 'route' => ['frontend-perfil-editar'],
+                    'files' => true]) !!}
 					<div class="row">
 						<div class="col-lg-9 col-12">
+
 							<div class="content-elevated section-margin">
 								<div class="row">
 									<div class="col-lg-4 col-md-3 col-12 text-center">
 										<div class="entry-thumb">
-                                            @php
-                                                $foto = Fotos::where('chave',$dadosuser->remember_token)->pluck('file')->first();                  
-                                            @endphp
-												{!! img($foto) !!}
-											<a class="text-center" href="#">
-												Alterar foto
-											</a>
+
+												<img src="{!! img_src($dadosuser->team, true) !!}">
+												{!! Form::file('file-send', ['class' => 'customFile', 'id' => 'customFile']) !!}
 										</div>
 									</div>
 
@@ -35,7 +44,7 @@ use App\Model\Fotos;
                                                 @endif
                                             </p>
 										</div>
-
+										<input type="hidden" name="users_id" value="{!! $dadosuser->users_id !!}">
 										<div class="entry-content entry-content-collapsible">
 											<div class="row">
 												<div class="col-lg-6 col-12">
@@ -181,9 +190,9 @@ use App\Model\Fotos;
 											<span class="btn-text">Expandir</span>
 											<i class="fas fa-angle-down"></i>
 										</a>
-										<a href="#" class="btn btn-sm">
-											<span class="btn-text">Salvar</span>
-										</a>
+										<button type="submit" class="btn btn-sm"><span class="btn-text">Salvar</span></button>
+										
+										{!! Form::close() !!}
 									</div>
 								</div>
 							</div>
@@ -195,16 +204,23 @@ use App\Model\Fotos;
 									<h3 class="widget-title">Navegação</h3>
 
 									<ul class="ci-contact-widget-items">
+
 										<li class="ci-contact-widget-item">
-											<a href="">
+											<a href="{!!route('frontend-historico')!!}">
 												<i class="fa fa-user"></i>
-												Meus Dados
+												Histórico
 											</a>
 										</li>
 										<li class="ci-contact-widget-item">
-											<a href="">
-												<i class="fa fa-history"></i> 
+											<a href="{!!route('frontend-faturamento')!!}">
+												<i class="fa fa-user"></i>
 												Meus Pedidos
+											</a>
+										</li>
+										<li class="ci-contact-widget-item">
+											<a href="{!!route('frontend-my-account')!!}">
+												<i class="fa fa-history"></i> 
+												Meus Dados
 											</a>
 										</li>
 									</ul>

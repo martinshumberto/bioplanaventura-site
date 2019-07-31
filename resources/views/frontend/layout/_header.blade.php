@@ -111,11 +111,7 @@ use App\Model\States;
           
         </div>
         <div class="filter-form-group">
-        <select id="filter-inline-city" name="cities_id" class="chosen-select" data-enable-search="true">
-            <option value="" selected disabled>Cidade</option>
-            <option value="6">Goiânia</option>
-            <option value="3">Aparecida de Goiânia</option>
-          </select>
+        {!!Form::select('city_id', [], null, [ 'class' => 'form-control mb-10', 'id'=>'filter-city']) !!}
         </div>
         <input type="password" name="password" placeholder="Senha" style="margin-top: 0px;">
         <input type="password" name="repassword" placeholder="Confirmar senha">

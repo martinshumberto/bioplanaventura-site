@@ -25,18 +25,18 @@ if(stateID){
        url:"{{url('get-city-list')}}?state_id="+stateID,
        success:function(res){               
         if(res){
-            $("#filter-inline-city").empty();
+            $("#filter-city").empty();
             $.each(res,function(key,value){
-                $("#filter-inline-city").append('<option value="'+key+'">'+value+'</option>');
+                $("#filter-city").append('<option value="'+key+'">'+value+'</option>');
             });
        
         }else{
-           $("#filter-inline-city").empty();
+           $("#filter-city").empty();
         }
        }
     });
 }else{
-    $("#filter-inline-city").empty();
+    $("#filter-city").empty();
 }
     
 });

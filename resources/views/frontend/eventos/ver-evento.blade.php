@@ -128,7 +128,7 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
                                     <li class="row">
                                         <div class="col-md-12">
                                         <label class="ticket-label" for="ticket-quantity-full">
-                                                Ingresso Inteira
+                                                Ingresso 
                                             </label>
                                         </div>
                                         <div class="col-md-6">                                            
@@ -143,25 +143,6 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
                                         </div>
                                     </li>
 
-                                    <li class="row">
-                                    <div class="col-md-12">
-                                        <label class="ticket-label" for="ticket-quantity-full">
-                                                Ingresso Meia
-                                            </label>
-                                        </div>
-                                        <div class="col-md-6">                                            
-                                            <span class="ticket-price">R$ {!! number_format($evento[0] -> ingressomeia, 2) !!} </span>
-                                            <small class="ticket-period-sale"> Vendas até <b>{!! Carbon::parse($evento[0] -> datavendas)->format('d/m/Y') !!}</b> </small>
-                                        </div>
-                                    
-                                        <div class="col-md-6 no-padding text-center ticket-quantity">
-                                            <a onclick="meia('menos');" class="ticket-decrement"><i class="fa fa-minus"></i></a>
-                                            <input type="text" id="quantidade_meia" name="quantidade-meia" name="ticket-quantity-half" value="0" maxlength="2" required>
-                                            <a onclick="meia('mais');" class="ticket-increment"><i class="fa fa-plus"></i></a>
-                                        </div>
-                                    </li>
-                                    
-                                    <li>
                                         <aside class="widget widget_search group discount-coupon">
                                             <div>
                                                 <label for="coupondiscount" class="screen-reader-text">Cupom de desconto:</label>
@@ -173,12 +154,16 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
                                         </aside>
                                     </li>
                                 </ul>
-
+    
                                 <p class="ticket-info text-sm">
                                     
                                 </p>
-
+                                @if (session('usuario'))
                                 <button type="submit" class="btn-block">comprar ingressos</button>
+                                
+                                @else
+                                <a href="#area-cliente" rel="modal" class="btn-block">Registre-se para comprar</a>
+                                @endif
                             </form>
                         </div>
                     </div>

@@ -12,6 +12,11 @@ class EventosController extends Controller
     {
         $eventos = Eventos::find($id);
 
-        
     }
+
+    public function pesquisa(Request $request){
+        $data = Input::all();  
+
+        dd($data);
+     }
 }

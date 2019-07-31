@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\FrontendController;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use App\Model\Eventos;
 use App\Model\Eventoscategorias;
@@ -54,4 +55,30 @@ class EventsController extends FrontendController
 
        return view("frontend/eventos/ver-evento", array('evento' => $eventos, 'eventosTodos'=>$eventosTodos, 'categorias' => $categorias));
    }
+
+   public function pesquisa(Request $request){
+    $data = Input::all();  
+
+    $eventosTodos = DB::table('eventos')
+    ->limit(5)
+    ->get();
+
+   $eventos = DB::table('eventos')
+   ->where('dificuldade', '=', $data['dificuldade'])
+   ->get();
+
+
+ 
+   if(!$eventos->count() > 0):
+    return view("frontend/eventos/vazio", array());
+   else:
+   $categorias = DB::table('eventoscategorias')
+   ->where('eventoscategorias_id', '=', $eventos[0]->eventoscategorias_id)
+   ->get();
+   return view("frontend/eventos/todos", array('eventos' => $eventos, 'categorias' => $categorias));
+   endif;
+
+   
+
+ }
 }

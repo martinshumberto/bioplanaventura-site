@@ -21,6 +21,7 @@ Route::namespace('Frontend')->group(function(){
     Route::get('/blog/categoria/{title}', array('as' => 'frontend-pesquisablog', 'uses' => 'BlogsController@pesquisa'));
     Route::get('/eventos', array('as' => 'frontend-events', 'uses' => 'EventsController@index'));
     Route::get('/eventos/{title}', array('as' => 'frontend-events', 'uses' => 'EventsController@show'));
+    
     Route::get('/galeria', array('as' => 'frontend-galleries', 'uses' => 'GalleriesController@index'));
     Route::post('/assine-informativo', array('as' => 'frontend-newsletter', 'uses' => 'HomeController@assine'));
     Route::post('/pesquisa', array('as' => 'frontend-pesquisa', 'uses' => 'HomeController@pesquisa'));
@@ -32,7 +33,15 @@ Route::namespace('Frontend')->group(function(){
     Route::get('/perfil', array('as' => 'frontend-my-account', 'uses' => 'AccountController@perfil'));
     Route::get('/faturamento', array('as' => 'frontend-faturamento', 'uses' => 'AccountController@faturamento'));
     Route::post('/checkin', array('as' => 'frontend-checkin', 'uses' => 'AccountController@checkin'));
+    Route::post('/edita-perfil', array('as' => 'frontend-perfil-editar', 'uses' => 'AccountController@editarperfil'));
     Route::get('/checkout', array('as' => 'frontend-checkout', 'uses' => 'AccountController@checkout'));
+    Route::get('/checkout/{id}', array('as' => 'frontend-my-account-billing', 'uses' => 'AccountController@impressao'));
+    Route::get('/historico', array('as' => 'frontend-historico', 'uses' => 'AccountController@historico'));
+    Route::post('/confirma-compra', array('as' => 'frontend-confirma-compra', 'uses' => 'AccountController@confirmapagamento'));
+
+    Route::post('/pesquisa-eventos', array('as' => 'backend-eventos-pesquisa', 'uses' => 'EventsController@pesquisa'));
+
+    
 });
 
 

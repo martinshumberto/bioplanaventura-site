@@ -7,13 +7,9 @@ use App\Model\Eventoscategorias;
 @include('frontend/includes/header')
 
 
-@if($categorias=="todos")
 <div class="page-hero" style="background-image: url({!! img_src('lefkada_lan.jpg') !!});">
 </div>
-@else
-<div class="page-hero" style="background-image: url({!! img_src($categorias[0]->file, array("dynamic"=>true)) !!});">
-</div>
-@endif
+
 
 <main class="main main-elevated">
   <div class="content-elevated">
@@ -22,13 +18,9 @@ use App\Model\Eventoscategorias;
         <div class="col-lg-9 col-12">
           <div class="page-hero-content">
             
-            @if($categorias=="todos")
             <h2 class="page-hero-title">Eventos</h2>
-            <p class="page-hero-subtitle">Todos os eventos </p>
-            @else
-            <h2 class="page-hero-title">{!! $categorias[0]->title !!}</h2>
-            <p class="page-hero-subtitle">{!! $categorias[0]->subtitle !!} </p>
-            @endif
+            <p class="page-hero-subtitle">Pesquisa </p>
+           
           </div>
 <!--
           <div class="listing-controls">
@@ -62,54 +54,15 @@ use App\Model\Eventoscategorias;
 -->
 
 <div class="row">
-@if(empty($eventos))
+
 <div class="col-lg-4 col-sm-6 col-12">
-  <h3> AINDA NÃO TEMOS EVENTOS NESTA CATEGORIA </h3>
+  <h3> NÃO ENCONTRAMOS NENHUM EVENTO NESSAS PESQUISAS </h3>
 </div>
-@endif
+
 </div>
-          <div class="row row-items">
-        @if(!$eventos)
-        @else
-        @foreach ($eventos as $evento)
-            <div class="col-lg-4 col-sm-6 col-12">
-              <div class="item item-vertical">
-                <div class="item-thumb">
-                  <a href="{!! url('/evento', $evento->slug); !!}">
-                  @php
-                  $foto = Fotos::where('chave',$evento->chave)->pluck('file')->first();                  
-                  @endphp
-                  <img src="{!!img_src ($foto, array("dynamic"=>true))!!}">
-                  </a>
-                  @if($evento -> promocao) 
-                  <span class="item-badge">{!! $evento -> promocao !!}</span>
-                  @endif
-                </div>
-
-                <div class="item-content">
-                  <div class="item-meta">
-                  @php $i=0; @endphp
-                  @foreach(explode('*', $evento -> subtitle) as $info)
-                    @php $i++; @endphp
-                    @if ($i <= 2)
-                    <span class="item-meta-field">{{ $info }}</span>
-                    @endif
-                  @endforeach
-                  </div>
-
-                  <p class="item-title">
-                    <a href="{!! url('/evento', $evento->slug); !!}">
-                    {!! $evento -> title !!}
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-        @endforeach
-        @endif
-
+       
            
-          </div>
+       
 
           <!--
           <nav class="navigation pagination" role="navigation">

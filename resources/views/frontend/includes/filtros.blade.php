@@ -8,17 +8,22 @@ $configuracoes = Configuracoes::all()
 @endphp
 <div class="widget-section widget_ci-filter-form">
   <div class="filter-form-inline-wrap">
-    <form action="/" class="form-boxed filter-form-inline">
+  {!! Form::model(null, ['route' => ['backend-eventos-pesquisa'], 'method' =>
+                    'post', 'class'=>'form-boxed filter-form-inline']) !!}
       <div class="filter-form-group">
         <label for="filter-inline-destination-1">
           <i class="fas fa-globe-americas"></i>
-          Selecione a região
+          Selecione a dificuldade
         </label>
-        <select id="filter-inline-destination-1" class="chosen-select" data-enable-search="true">
+        <select id="filter-inline-destination-1" name="dificuldade" class="chosen-select" data-enable-search="true">
           <option value="">&nbsp;</option>
-          @foreach( States::get() as $estados )
-          <option value="{!! $estados -> states_id !!}">{!! $estados -> title !!}</option>
-          @endforeach
+         
+          <option value="0">Muito Fácil</option>
+          <option value="1">Fácil</option>
+          <option value="2">Moderado</option>
+          <option value="3">Difícil</option>
+          <option value="4">Experts</option>
+
         </select>
       </div>
 
@@ -27,7 +32,7 @@ $configuracoes = Configuracoes::all()
           <i class="fas fa-list-ul"></i>
           Selecione a categoria
         </label>
-        <select id="filter-inline-category-1" class="chosen-select" data-enable-search="true">
+        <select id="filter-inline-category-1" name="categoria" class="chosen-select" data-enable-search="true">
           <option value="">&nbsp;</option>
           @foreach( Eventoscategorias::get() as $eventocategoria )
           <option value="{!! $eventocategoria -> eventoscategorias_id !!}">{!! $eventocategoria -> title !!}</option>
@@ -42,7 +47,7 @@ $configuracoes = Configuracoes::all()
         </label>
 
         <div class="range-slider-wrap">
-          <span class="range-slider" data-range-start="1" data-range-end="20" data-start="1" data-end="20"
+          <span class="range-slider" name="tempo-viagem" data-range-start="1" data-range-end="20" data-start="1" data-end="20"
           data-step="1">
           <input type="number" title="Min" hidden class="range-min" />
           <input type="number" title="Max" hidden class="range-max" />

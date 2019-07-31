@@ -7,8 +7,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\RedirectResponse;
+use App\Mail\SendMailable;
 use App\Model\Eventos;
 use App\Model\Users;
+use App\Model\Carrinho;
+use Gerencianet\Exception\GerencianetException;
+use Gerencianet\Gerencianet;
+
 
 class AccountController extends FrontendController
 {
@@ -46,10 +53,18 @@ class AccountController extends FrontendController
         $data['username']       = $data['email'];
         $data['image']          = 'noimage';
         $data['status']         = 3;
-        $data['remember_token'] = '8LhHNF9yLlgrWVAZeO0EvKVSSHt3kcKP';
+        $data['remember_token'] = str_random(32);
         $eventos                = Users::create($data);
         $request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Operação realizada com sucesso!'));
+        
+        Mail::to($data['email'])
+        ->cc('toni@garagee.com.br')
+        ->send(new SendMailable($data['name'], $data['remember_token'])
+        );
         return view("frontend/home/confirma", array('nome' => $data['name'], 'email'=>$data['email']));
+   
+    
+    
     }
 
     public function confirma(Request $request, $token){
@@ -66,6 +81,8 @@ class AccountController extends FrontendController
         return view("frontend/home/perfil", array('dadosuser' => $dados[0]));
     }
 
+
+
     public function logout(Request $request){
         $request->session()->flush();
         return redirect(route('frontend-home'));
@@ -76,7 +93,7 @@ class AccountController extends FrontendController
     }
 
     public function faturamento(Request $request){  
-        return view("frontend/home/faturamento", array());
+        return view("frontend/my-account/account/faturamento", array());
     }
 
     public function checkin(Request $request){ 
@@ -104,5 +121,218 @@ class AccountController extends FrontendController
          );
          $request->session()->put('carrinho', $dadosCarrinho);
         return view("frontend/home/checkin", array('dados_carrinho'=>$dadosCarrinho, 'dados_evento'=>$dados[0]));
+    }
+
+    public function editarperfil(Request $request){ 
+            $data = Input::all();     
+
+
+			if($request->hasFile('file-send')) {
+
+                $file = $request->file('file-send');
+                $input['imagename'] = md5(time()).'.'.$file->getClientOriginalExtension();
+                $name_img = md5(time()).'.'.$file->getClientOriginalExtension();
+                $destinationPath = public_path('storage/files/');
+                $file->move($destinationPath, $input['imagename']);
+                $data['team'] = $name_img;
+			}
+
+            try {
+                Users::find($data['users_id'])->update($data);
+                $request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Operação realizada com sucesso!'));
+            } catch (Exception $e) {
+                $request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
+            }
+
+            $dados = DB::table('users')
+            ->where([
+                ['users_id', '=', $data['users_id']]
+            ])
+            ->get();  
+
+            $request->session()->forget('usuario');
+            $request->session()->put('usuario', $dados[0]);
+
+            return redirect(route('frontend-my-account'));
+            
+    }
+
+    public function impressao($id){
+        $options = array(            
+            "client_id" => "Client_Id_b9fdd1c7646a2fbc54b1dd14d04f62073a236ae2",
+            "client_secret" => "Client_Secret_cd9bae6f08dc8dcf82cb7c19f54e187b2b7a4eb8",
+            "sandbox" => true,
+            "debug" => false
+    );
+
+        $params = ['id' => $id];
+
+            $body = [
+            'billet_discount' => 1,
+            'card_discount' => 1,
+            'message' => '',
+            'expire_at' => '2019-12-12',
+            'request_delivery_address' => false,
+            'payment_method' => 'all'
+            ];
+
+            try {
+            $api = new Gerencianet($options);
+            $response = $api->chargeLink($params, $body);
+
+            //print_r($response);
+
+            return new RedirectResponse($response['data']['payment_url']);
+            } catch (GerencianetException $e) {
+            print_r($e->code);
+            print_r($e->error);
+            print_r($e->errorDescription);
+            } catch (Exception $e) {
+            print_r($e->getMessage());
+            }
+    }
+
+    public function checkout(){ 
+        $dadosEvento = DB::table('eventos')
+        ->where('eventos_id', '=', session('carrinho')['eventos_id'])
+        ->get();
+        
+        $options = array(            
+                "client_id" => "Client_Id_b9fdd1c7646a2fbc54b1dd14d04f62073a236ae2",
+                "client_secret" => "Client_Secret_cd9bae6f08dc8dcf82cb7c19f54e187b2b7a4eb8",
+                "sandbox" => true,
+                "debug" => false
+              
+        );
+         
+        $items = [
+            [
+              'name' => $dadosEvento[0] -> title,
+              'amount' => (int)session('carrinho')['quantidade_inteira'],
+              'value' => (int)str_replace('.', '', session('carrinho')['valor'])
+            ] 
+          ];
+          /*
+        $customer = [
+            'name' => session('usuario') -> name,
+            'cpf' => session('usuario') -> cpf,
+            'phone_number' => session('usuario') -> cellphone
+        ];
+        */
+        $body = [
+          'items' => $items
+        ];        
+      
+        return view("frontend/my-account/account/checkout", array('dadosuser' => session('usuario'), 'dados_evento' =>  $dadosEvento[0]));
+
+        /*
+        try {
+            $api = new Gerencianet($options);
+            $charge = $api->createCharge([], $body);
+            //print_r($charge);echo '<br>';
+            
+            //return redirect(route('frontend-my-account-billing',$charge['data']['charge_id']));
+            
+       
+        } catch (GerencianetException $e) {
+            echo('<Br>ERROS ------------<Br><Br>');
+            print_r($e->code); echo '<br>';
+            print_r($e->error);echo '<br>';
+            print_r($e->errorDescription);echo '<br>';
+        } catch (Exception $e) {
+            echo('<Br>MENSAGEM ------------<Br><Br>');
+            print_r($e->getMessage());echo '<br>';
+        }
+*/
+    }
+
+    public function confirmapagamento(Request $request){
+        //DADOS CADASTRO BD CARRINHO 
+        $data = Input::all();  
+        $data['eventos_id']         = session('carrinho')['eventos_id'];
+        $data['quantidade_inteira'] = session('carrinho')['quantidade_inteira'];
+        $data['quantidade_meia']    = 0;
+        $data['users_id']           = session('usuario')->users_id;
+        $data['valor']              = session('carrinho')['valor'];
+        $data['token']              = str_random(20);
+        $data['status']             = 0; 
+
+        // DADOS DO EVENTO
+        $dadosEvento = DB::table('eventos')
+        ->where('eventos_id', '=', session('carrinho')['eventos_id'])
+        ->get();  
+         
+        // CONVERSÕES PARA O GETWHAI
+        $valor_conversao_1 = str_replace('.', '', session('carrinho')['valor']);
+        $valor_conversao_2 = str_pad($valor_conversao_1, 6, '0');
+        $itens = [
+            [
+              'name' => $dadosEvento[0] -> title,
+              'amount' => (int)session('carrinho')['quantidade_inteira'],
+              'value' => (int)$valor_conversao_2
+            ] 
+          ];
+          $body = [
+            'items' => $itens
+          ]; 
+
+          $options = array(            
+            "client_id" => "Client_Id_b9fdd1c7646a2fbc54b1dd14d04f62073a236ae2",
+            "client_secret" => "Client_Secret_cd9bae6f08dc8dcf82cb7c19f54e187b2b7a4eb8",
+            "sandbox" => true,
+            "debug" => false
+          );  
+
+          try {
+                $api = new Gerencianet($options);
+                $charge = $api->createCharge([], $body);
+                 
+            } catch (GerencianetException $e) {
+                echo('<Br>ERROS ------------<Br><Br>');
+                print_r($e->code); echo '<br>';
+                print_r($e->error);echo '<br>';
+                print_r($e->errorDescription);echo '<br>';
+            } catch (Exception $e) {
+                echo('<Br>MENSAGEM ------------<Br><Br>');
+                print_r($e->getMessage());echo '<br>';
+            }
+
+       if (!$data['name-on-card']):
+
+            $params = ['id' => $charge['data']['charge_id']];
+
+            $customer = [
+                'name' => session('usuario')->name,
+                'cpf' => session('usuario')->cpf,
+                'phone_number' => session('usuario')->cellphone
+            ];
+
+            $body = [
+            'payment' => [
+                'banking_billet' => [
+                'expire_at' => '2019-12-12',
+                'customer' => $customer
+                ]
+            ]
+            ];
+            Carrinho::create($data);
+            $request->session()->forget('carrinho');
+
+            $semCartao = $api->payCharge($params, $body);
+            print_r($semCartao);
+
+       else:
+        echo "com cartão ";
+       endif;
+
+
+      
+    }
+
+    public function historico(){
+        $carrinho = DB::table('carrinho')  
+        ->get(); 
+        
+        return view("frontend/my-account/account/historico", array('carrinho'=>$carrinho));    
     }
 }

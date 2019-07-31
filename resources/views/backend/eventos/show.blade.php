@@ -75,7 +75,7 @@ use Illuminate\Support\Carbon;
                     <div class="form-group">
                         <label for="subtitulo">Flags <code>*</code></label><br>
                         {!! Form::checkbox('promocao', 'promocao', false); !!}  PROMOÇÃO    &nbsp &nbsp
-                        {!! Form::checkbox('saidas', 'saidas', false); !!}  PRÓXIMA SAÍDA              
+                        {!! Form::checkbox('saidas', 'saidas', false); !!}  INGRESSO ESGOTADO            
                     </div>
                     <hr size="1">
                     <h5>INFORMAÇÕES FINANCEIRAS </h5>
