@@ -3,7 +3,7 @@ use App\Model\Comentarios;
 @endphp
 
 <div id="comments" class="comments-area">
-                    <h3 class="comments-title">27 Comentários</h3>
+                    <h3 class="comments-title">{{ $comentarios->sum() }} Comentários</h3>
 
                     <div class="ratings-board">
                     
@@ -12,7 +12,7 @@ use App\Model\Comentarios;
                                 <span class="star-rating star-rating-5">
                                     <span class="star-rating-inner"></span>
                                 </span>
-                                <span class="star-count">(12)</span>
+                                <span class="star-count">(0)</span>
                                 <div class="ratings-bar">
                                     <div class="ratings-bar-inner" style="width: 44.44%;"></div>
                                 </div>
@@ -22,7 +22,7 @@ use App\Model\Comentarios;
                                 <span class="star-rating star-rating-4">
                                     <span class="star-rating-inner"></span>
                                 </span>
-                                <span class="star-count">(9)</span>
+                                <span class="star-count">(0)</span>
                                 <div class="ratings-bar">
                                     <div class="ratings-bar-inner" style="width: 33.33%;"></div>
                                 </div>
@@ -32,7 +32,7 @@ use App\Model\Comentarios;
                                 <span class="star-rating star-rating-3">
                                     <span class="star-rating-inner"></span>
                                 </span>
-                                <span class="star-count">(6)</span>
+                                <span class="star-count">(0)</span>
                                 <div class="ratings-bar">
                                     <div class="ratings-bar-inner" style="width: 22.22%;"></div>
                                 </div>
@@ -63,19 +63,19 @@ use App\Model\Comentarios;
                             <span class="star-rating">
                                 <span class="star-rating-inner" style="width: 86%;"></span>
                             </span>
-                            <span class="ratings-score">4.3</span>
+                            <span class="ratings-score">0</span>
                             <span class="ratings-score-label">Excelente</span>
                         </div>
                     </div>
 
                     <ol class="comment-list">
-            @foreach (Comentarios::pluck('author', 'comment', 'created_at') as $comentarios)
+            @foreach ($comentarios as $comentario)
                         <li class="comment even thread-even depth-1 parent bypostauthor">
                             <article class="comment-body">
                                 <footer class="comment-meta">
                                     <div class="comment-author vcard">
                                         <img alt="" src="images/avatar03.jpg" class="avatar avatar-64 photo" height="64" width="64">
-                                        <b class="fn">Nome autor</b>
+                                        <b class="fn">{{ $comentario->author }} </b>
                                         <span class="says">diz:</span>
                                     </div>
 
@@ -85,7 +85,7 @@ use App\Model\Comentarios;
                                         </span>
                                         <a href="#">
                                             <time datetime="2007-09-04T10:49:03+00:00">
-                                                10 de Abril de 2019 às 10h30
+                                                 
                                             </time>
                                         </a>
                                         <span class="edit-link">
@@ -95,7 +95,7 @@ use App\Model\Comentarios;
                                 </footer>
 
                                 <div class="comment-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, iure quam. Adipisci asperiores aspernatur consectetur consequuntur culpa cumque dignissimos eos impedit, ipsam magnam magni necessitatibus odit placeat, repellat repellendus tempore!</p>
+                                    <p>{{ $comentario->comment }}</p>
                                 </div>
                             </article>
                         </li>
@@ -117,23 +117,23 @@ use App\Model\Comentarios;
                             <p class="comment-form-star-rating">
                                 <span class="label">Avalie esse evento clicando nas estrelas abaixo *</span>
                                 <span class="star-rating-input">
-                                    <input type="radio" class="star-rating-input" value="5" name="star-rating" id="star-rating-5">
+                                    <input type="radio" class="star-rating-input" value="5" name="star_rating" id="star-rating-5">
                                     <label for="star-rating-5">
                                         <span>5 estrelas</span>
                                     </label>
-                                    <input type="radio" class="star-rating-input" value="4" name="star-rating" id="star-rating-4">
+                                    <input type="radio" class="star-rating-input" value="4" name="star_rating" id="star-rating-4">
                                     <label for="star-rating-4">
                                         <span>4 estrelas</span>
                                     </label>
-                                    <input type="radio" class="star-rating-input" value="3" name="star-rating" id="star-rating-3">
+                                    <input type="radio" class="star-rating-input" value="3" name="star_rating" id="star-rating-3">
                                     <label for="star-rating-3">
                                         <span>3 estrelas</span>
                                     </label>
-                                    <input type="radio" class="star-rating-input" value="2" name="star-rating" id="star-rating-2">
+                                    <input type="radio" class="star-rating-input" value="2" name="star_rating" id="star-rating-2">
                                     <label for="star-rating-2">
                                         <span>2 estrelas</span>
                                     </label>
-                                    <input type="radio" class="star-rating-input" value="1" name="star-rating" id="star-rating-1">
+                                    <input type="radio" class="star-rating-input" value="1" name="star_ratingg" id="star-rating-1">
                                     <label for="star-rating-1">
                                         <span>1 estrelas</span>
                                     </label>

@@ -54,7 +54,14 @@ class EventsController extends FrontendController
        ->where('eventoscategorias_id', '=', $eventos[0]->eventoscategorias_id)
        ->get();
 
-       return view("frontend/eventos/ver-evento", array('evento' => $eventos, 'eventosTodos'=>$eventosTodos, 'categorias' => $categorias));
+       $comentarios = DB::table('eventos')
+       ->where([
+           ['status', '=', 1], 
+           ['eventos_id', '=', $eventos[0]->eventos_id]
+       ])
+       ->get();
+
+       return view("frontend/eventos/ver-evento", array('evento' => $eventos, 'eventosTodos'=>$eventosTodos, 'categorias' => $categorias, 'comentarios'=>$comentarios));
    }
 
    public function pesquisa(Request $request){
@@ -89,9 +96,8 @@ class EventsController extends FrontendController
       $data['evento_id'] = (int)$eventos[0] -> eventos_id;     
       $cad_comentarios = Comentarios::create($data); 
 
-      dd($cad_comentarios);
-
-   // $request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Seu comentário foi enviado para o nosso mediador.'));
-    //return redirect(route('frontend-evento-selecionado', $id));
+     
+    $request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Seu comentário foi enviado para o nosso mediador.'));
+    return redirect(route('frontend-evento-selecionado', $id));
  }
 }
