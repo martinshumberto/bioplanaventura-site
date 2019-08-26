@@ -89,7 +89,13 @@ class AccountController extends FrontendController
     }
 
     public function perfil(Request $request){  
-        return view("frontend/my-account/account/index", array('dadosuser' => session('usuario')));
+
+        $dados = DB::table('users')
+            ->where([
+                ['users_id', '=', session('usuario')->users_id]
+            ])
+            ->get(); 
+        return view("frontend/my-account/account/index", array('dadosuser' => $dados));
     }
 
     public function faturamento(Request $request){  
@@ -137,6 +143,7 @@ class AccountController extends FrontendController
                 $data['team'] = $name_img;
 			}
 
+         
             try {
                 Users::find($data['users_id'])->update($data);
                 $request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Operação realizada com sucesso!'));
@@ -159,8 +166,8 @@ class AccountController extends FrontendController
 
     public function impressao($id){
         $options = array(            
-            "client_id" => "Client_Id_b9fdd1c7646a2fbc54b1dd14d04f62073a236ae2",
-            "client_secret" => "Client_Secret_cd9bae6f08dc8dcf82cb7c19f54e187b2b7a4eb8",
+            "client_id" => "Client_Id_5347bf76687615d65fd5ed66396609e6b8fd30a2",
+            "client_secret" => "Client_Secret_b3d7470dc810873ed3139e301c1476e98a3e76eb",
             "sandbox" => true,
             "debug" => false
     );
@@ -198,12 +205,11 @@ class AccountController extends FrontendController
         ->get();
         
         $options = array(            
-                "client_id" => "Client_Id_b9fdd1c7646a2fbc54b1dd14d04f62073a236ae2",
-                "client_secret" => "Client_Secret_cd9bae6f08dc8dcf82cb7c19f54e187b2b7a4eb8",
-                "sandbox" => true,
-                "debug" => false
-              
-        );
+            "client_id" => "Client_Id_5347bf76687615d65fd5ed66396609e6b8fd30a2",
+            "client_secret" => "Client_Secret_b3d7470dc810873ed3139e301c1476e98a3e76eb",
+            "sandbox" => true,
+            "debug" => false
+    );
          
         $items = [
             [
@@ -253,8 +259,7 @@ class AccountController extends FrontendController
         $data['quantidade_inteira'] = session('carrinho')['quantidade_inteira'];
         $data['quantidade_meia']    = 0;
         $data['users_id']           = session('usuario')->users_id;
-        $data['valor']              = session('carrinho')['valor'];
-        $data['token']              = str_random(20);
+        $data['valor']              = session('carrinho')['valor'];        
         $data['status']             = 0; 
 
         // DADOS DO EVENTO
@@ -277,11 +282,12 @@ class AccountController extends FrontendController
           ]; 
 
           $options = array(            
-            "client_id" => "Client_Id_b9fdd1c7646a2fbc54b1dd14d04f62073a236ae2",
-            "client_secret" => "Client_Secret_cd9bae6f08dc8dcf82cb7c19f54e187b2b7a4eb8",
+            "client_id" => "Client_Id_5347bf76687615d65fd5ed66396609e6b8fd30a2",
+            "client_secret" => "Client_Secret_b3d7470dc810873ed3139e301c1476e98a3e76eb",
             "sandbox" => true,
             "debug" => false
-          );  
+    );
+
 
           try {
                 $api = new Gerencianet($options);
@@ -304,7 +310,7 @@ class AccountController extends FrontendController
             $customer = [
                 'name' => session('usuario')->name,
                 'cpf' => session('usuario')->cpf,
-                'phone_number' => session('usuario')->cellphone
+                'phone_number' => preg_replace('/[^0-9]/', '', session('usuario')->cellphone)
             ];
 
             $body = [
@@ -315,18 +321,80 @@ class AccountController extends FrontendController
                 ]
             ]
             ];
+            $data['token']              = $charge['data']['charge_id'];
             Carrinho::create($data);
             $request->session()->forget('carrinho');
 
             $semCartao = $api->payCharge($params, $body);
-            print_r($semCartao);
 
+            return redirect(route('frontend-my-account-confirmado'));
+            //print_r($semCartao);
+            //return view("frontend/my-account/orders/confirmado", array('dadospagamento'=>$semCartao));    
+   
        else:
-        echo "com cartão ";
+ 
+            $paymentToken = 'payment_token';
+            $params = ['id' => $charge['data']['charge_id']];
+            $customer = [
+                'name' => session('usuario')->name,
+                'cpf' => session('usuario')->cpf,
+                'phone_number' => preg_replace('/[^0-9]/', '', session('usuario')->cellphone)
+            ];
+
+            dd(session('usuario'));
+            $billingAddress = [
+            'street' => 'Av JK',
+            'number' => 909,
+            'neighborhood' => 'Bauxita',
+            'zipcode' => '35400000',
+            'city' => 'Ouro Preto',
+            'state' => 'MG',
+            ];
+
+            $body = [
+            'payment' => [
+                'credit_card' => [
+                'installments' => 1,
+                'billing_address' => $billingAddress,
+                'payment_token' => $paymentToken,
+                'customer' => $customer
+                ]
+            ]
+            ];
        endif;
 
 
       
+    }
+
+    public function confirmado(){
+        $carrinho = DB::table('carrinho')  
+        ->where('users_id', '=', session('usuario')->users_id)
+        ->join('eventos', 'carrinho.eventos_id', '=', 'eventos.eventos_id')
+        ->get(); 
+
+        $options = array(            
+            "client_id" => "Client_Id_5347bf76687615d65fd5ed66396609e6b8fd30a2",
+            "client_secret" => "Client_Secret_b3d7470dc810873ed3139e301c1476e98a3e76eb",
+            "sandbox" => true,
+            "debug" => false
+        );   
+    
+                $params = ['id' => $carrinho[0]->token];
+
+            try {
+                $api = new Gerencianet($options);
+                $charge = $api->detailCharge($params, []);
+
+               
+            } catch (GerencianetException $e) {
+                print_r($e->code);
+                print_r($e->error);
+                print_r($e->errorDescription);
+            } catch (Exception $e) {
+                print_r($e->getMessage());
+            }
+            return view("frontend/my-account/orders/confirmado", array('dados'=>$charge, 'carrinho'=>$carrinho));    
     }
 
     public function historico(){

@@ -13,25 +13,30 @@ use File;
 
 class eventosController extends Controller
 {
-    
+    /**
+      * Display a listing of the resource.
+      *
+      * @return \Illuminate\Http\Response
+      */
      public function index(Request $request)
      {
-         $eventos = Eventos::orderBy("eventos_id", "DESC"); 
-         if($request->input('search'))         {
+         $eventos = Eventos::orderBy("eventos_id", "DESC");
+ 
+         if($request->input('search'))
+         {
             $eventos->where('title', 'like', '%'.$request->input('search').'%');
          }
-          return view("backend/eventos/index", array(
+ 
+         return view("backend/eventos/index", array(
              "eventos" => $eventos->paginate(50)
          ));
      }
  
-    
-     public function pesquisa(Request $request){
-        $data = Input::all();  
-
-        dd($data);
-     }
-
+     /**
+      * Show the form for creating a new resource.
+      *
+      * @return \Illuminate\Http\Response
+      */
      public function create()
      {
         $fotos = DB::table('fotos')->where('chave', str_random(32))->get();

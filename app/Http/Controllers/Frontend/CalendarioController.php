@@ -17,7 +17,10 @@ class CalendarioController extends FrontendController
 {
    public function index()
    {
-  return view("frontend/calendario/index", array());
+
+
+      $eventos = DB::table('eventos')->where('status', 1)->get();
+  return view("frontend/calendario/index", array("eventos" => $eventos));
    }
 
 }

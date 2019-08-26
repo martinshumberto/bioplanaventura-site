@@ -1,7 +1,12 @@
+@php
+use App\Model\Comentarios;
+@endphp
+
 <div id="comments" class="comments-area">
                     <h3 class="comments-title">27 Comentários</h3>
 
                     <div class="ratings-board">
+                    
                         <div class="ratings-board-rows">
                             <div class="ratings-board-row">
                                 <span class="star-rating star-rating-5">
@@ -64,6 +69,7 @@
                     </div>
 
                     <ol class="comment-list">
+            @foreach (Comentarios::pluck('author', 'comment', 'created_at') as $comentarios)
                         <li class="comment even thread-even depth-1 parent bypostauthor">
                             <article class="comment-body">
                                 <footer class="comment-meta">
@@ -93,43 +99,15 @@
                                 </div>
                             </article>
                         </li>
-                        <li class="comment even thread-even depth-1">
-                            <article class="comment-body">
-                                <footer class="comment-meta">
-                                    <div class="comment-author vcard">
-                                        <img alt="" src="images/avatar03.jpg" class="avatar avatar-64 photo" height="64" width="64">
-                                        <b class="fn">Nome autor</b>
-                                        <span class="says">diz:</span>
-                                    </div>
-
-                                    <div class="comment-metadata">
-                                        <span class="star-rating star-rating-4">
-                                            <span class="star-rating-inner"></span>
-                                        </span>
-                                        <a href="#">
-                                            <time datetime="2007-09-04T10:49:03+00:00">
-                                                10 de Abril de 2019 às 10h30
-                                            </time>
-                                        </a>
-                                        <span class="edit-link">
-                                            <a class="comment-edit-link" href="#">Editar</a>
-                                        </span>
-                                    </div>
-                                </footer>
-
-                                <div class="comment-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, iure quam. Adipisci asperiores aspernatur consectetur consequuntur culpa cumque dignissimos eos impedit, ipsam magnam magni necessitatibus odit placeat, repellat repellendus tempore!</p>
-                                </div>
-                            </article>
-                        </li>
+            @endforeach
                     </ol>
 
                     <div id="respond" class="comment-respond">
                         <h3 id="reply-title" class="comment-reply-title">
                             Seu comentário
                         </h3>
-
-                        <form action="/" method="post" id="commentform" class="comment-form">
+                        {!! Form::model(null, ['route' => ['frontend-envia-comentario', $evento[0] -> slug], 'method' =>
+                        'post', 'files' => true, 'class'=>'comment-form', 'id'=>'commentform']) !!} 
                             <p class="comment-notes">
                                 <span id="email-notes">Seu endereço de e-mail não será publicado.</span>
                                 Campos obrigatórios são marcados
@@ -161,6 +139,8 @@
                                     </label>
                                 </span>
                             </p>
+
+
 
                             <p class="comment-form-comment">
                                 <label for="comment">Conte-nos sobre sua experiência</label>

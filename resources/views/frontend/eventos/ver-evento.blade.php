@@ -113,7 +113,7 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
                 </div>
             </article>
 
-            <!-- AQUI VAI COMENTÁRIOS -->
+            @include('frontend.includes.comentarios')
 
         </div>
 
@@ -122,7 +122,7 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
                 <div class="widget">
                     <div class="ci-quote-form-widget elevation-candidate">
                         {{ Form::open(array('route' => 'frontend-checkin', 'class'=>'form-boxed'))  }}
-                        <input type="hidden" name="eventos_id" value="{!! $evento[0] -> eventos_id !!}">
+                        <input type="hidden" name="eventos_id" value="{!! $evento[0] -> slug !!}">
                         <div class="row">
                             <div class="col-md-12 text-right">
                                 <i class="fas fa-shopping-cart"></i> R$ <span id="valor-inteira">0,00</span>

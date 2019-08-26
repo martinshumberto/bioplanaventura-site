@@ -5,14 +5,14 @@
 | FRONTEND
 |--------------------------------------------------------------------------
 */
- 
+URL::forceScheme('https');
 
 //Route::get('/eventos/{title}', array('as' => 'frontend-eventos', 'uses' => 'EventsController@show'));
 Route::get('get-city-list','DropdownController@getCityList');
 Route::get('confirma/{token}', array('as' => 'frontend-my-confirm', 'uses' => 'Frontend\AccountController@confirma'));
 
 Route::namespace('Frontend')->group(function(){
-    Route::get('/evento/{title}', array('as' => 'frontend-home', 'uses' => 'EventsController@evento'));
+    Route::get('/evento/{title}', array('as' => 'frontend-evento-selecionado', 'uses' => 'EventsController@evento'));
     Route::get('/', array('as' => 'frontend-home', 'uses' => 'HomeController@index'));
     Route::get('/equipe', array('as' => 'frontend-equipe', 'uses' => 'EquipeController@index'));    
     Route::get('/sobre-nos', array('as' => 'frontend-abouts', 'uses' => 'AboutsController@index'));
@@ -21,7 +21,9 @@ Route::namespace('Frontend')->group(function(){
     Route::get('/blog/categoria/{title}', array('as' => 'frontend-pesquisablog', 'uses' => 'BlogsController@pesquisa'));
     Route::get('/eventos', array('as' => 'frontend-events', 'uses' => 'EventsController@index'));
     Route::get('/eventos/{title}', array('as' => 'frontend-events', 'uses' => 'EventsController@show'));
+    Route::post('/comentario/{title}', array('as' => 'frontend-envia-comentario', 'uses' => 'EventsController@comentarios'));
     
+
     Route::get('/galeria', array('as' => 'frontend-galleries', 'uses' => 'GalleriesController@index'));
     Route::post('/assine-informativo', array('as' => 'frontend-newsletter', 'uses' => 'HomeController@assine'));
     Route::post('/pesquisa', array('as' => 'frontend-pesquisa', 'uses' => 'HomeController@pesquisa'));
@@ -40,6 +42,7 @@ Route::namespace('Frontend')->group(function(){
     Route::post('/confirma-compra', array('as' => 'frontend-confirma-compra', 'uses' => 'AccountController@confirmapagamento'));
 
     Route::post('/pesquisa-eventos', array('as' => 'backend-eventos-pesquisa', 'uses' => 'EventsController@pesquisa'));
+    Route::post('/promocoes', array('as' => 'frontend-events-promocoes', 'uses' => 'EventsController@promocoees'));
 
     
 });

@@ -125,7 +125,7 @@ class SliderController extends BackendController
             }
 
             $slider->delete();
-            $request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Slide deletado com sucesso !'));
+            $request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Operação realizada com sucesso!'));
         } catch (Exception $e) {
             $request->session()->flash('alert', array('code'=> 'error', 'text'  => $e));
         }

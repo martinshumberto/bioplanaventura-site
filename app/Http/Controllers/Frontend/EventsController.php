@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use App\Model\Eventos;
 use App\Model\Eventoscategorias;
+use App\Model\Comentarios;
 use Illuminate\Support\Carbon;
 
 class EventsController extends FrontendController
@@ -63,22 +64,34 @@ class EventsController extends FrontendController
     ->limit(5)
     ->get();
 
-   $eventos = DB::table('eventos')
-   ->where('dificuldade', '=', $data['dificuldade'])
-   ->get();
+    $eventos = DB::table('eventos')
+    ->where('dificuldade', '=', $data['dificuldade'])
+    ->get();
 
+    if(!$eventos->count() > 0):
+        return view("frontend/eventos/vazio", array());
+    else:
+    $categorias = DB::table('eventoscategorias')
+    ->where('eventoscategorias_id', '=', $eventos[0]->eventoscategorias_id)
+    ->get();
+    return view("frontend/eventos/todos", array('eventos' => $eventos, 'categorias' => $categorias));
+    endif; 
+ }
 
+ public function comentarios(Request $request, $id)
+ {
+    $eventos = DB::table('eventos')
+    ->where('slug', '=', $id)
+    ->get();
  
-   if(!$eventos->count() > 0):
-    return view("frontend/eventos/vazio", array());
-   else:
-   $categorias = DB::table('eventoscategorias')
-   ->where('eventoscategorias_id', '=', $eventos[0]->eventoscategorias_id)
-   ->get();
-   return view("frontend/eventos/todos", array('eventos' => $eventos, 'categorias' => $categorias));
-   endif;
+      $data = Input::all();   
+      $data['status'] = 0;
+      $data['evento_id'] = (int)$eventos[0] -> eventos_id;     
+      $cad_comentarios = Comentarios::create($data); 
 
-   
+      dd($cad_comentarios);
 
+   // $request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Seu comentário foi enviado para o nosso mediador.'));
+    //return redirect(route('frontend-evento-selecionado', $id));
  }
 }

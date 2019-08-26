@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMailable;
 use App\Model\Slider;
 use App\Model\Eventos;
 use App\Model\Blog;
@@ -40,7 +42,8 @@ class HomeController extends FrontendController
             $informativo = Informativo::create($request->all());
             return redirect(route('frontend-home'));
             $request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Seu e-mail foi cadastrado com sucesso !'));
-   }
+           
+     }
 
    public function pesquisa(Request $request){ 
 
@@ -60,4 +63,12 @@ class HomeController extends FrontendController
    		return view("frontend/home/pesquisa", array("eventos"=>$eventos, "categorias"=>$categorias, "blogs"=>$blogs));
     
     }
+
+public function mail()
+{
+   $name = 'Toni';
+   Mail::to('toniagne@gmail.com')->send(new SendMailable($name));
+   
+   return 'Email was sent';
+}
 }

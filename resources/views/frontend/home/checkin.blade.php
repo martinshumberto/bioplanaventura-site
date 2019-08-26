@@ -15,7 +15,7 @@
                                             <div class="col-lg-12 col-md-12 col-12">
                                                 <div class="page-hero-content">
                                                     <h2 class="page-hero-title"><b>Meus Pedidos</b></h2>
-                                                    <p class="page-hero-subtitle">Humberto Martins</p>
+                                                    <p class="page-hero-subtitle">{!! session('usuario')->name !!}</p>
                                                 </div>
 
                                                 <div class="entry-content">

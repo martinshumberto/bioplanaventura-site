@@ -111,7 +111,7 @@ use App\Model\States;
           
         </div>
         <div class="filter-form-group">
-        {!!Form::select('filter-city', [], null, [ 'class' => 'form-control mb-10', 'id'=>'filter-city']) !!}
+        {!!Form::select('cities_id', [], null, [ 'class' => 'form-control mb-10', 'id'=>'filter-city']) !!}
         </div>
         <input type="password" name="password" placeholder="Senha" style="margin-top: 0px;">
         <input type="password" name="repassword" placeholder="Confirmar senha">

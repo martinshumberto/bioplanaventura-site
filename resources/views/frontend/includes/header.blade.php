@@ -93,10 +93,7 @@ $configuracoes = Configuracoes::all()
                 <a href="{!!route('frontend-events', 'todos')!!}">Eventos</a>
                 <ul class="sub-menu">
                   <li>
-                    <a href="/">Promoções</a>
-                  </li>
-                  <li>
-                    <a href="/">Próximas Saídas</a>
+                    <a href="{!!route('frontend-events-promocoes')!!}">Promoções</a>
                   </li>
                   <li class="menu-item-has-children">
                     <!-- hover/active class::current-menu-parent -->
