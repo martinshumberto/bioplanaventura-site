@@ -54,10 +54,10 @@ class EventsController extends FrontendController
        ->where('eventoscategorias_id', '=', $eventos[0]->eventoscategorias_id)
        ->get();
 
-       $comentarios = DB::table('eventos')
+       $comentarios = DB::table('comentarios')
        ->where([
            ['status', '=', 1], 
-           ['eventos_id', '=', $eventos[0]->eventos_id]
+           ['evento_id', '=', $eventos[0]->eventos_id]
        ])
        ->get();
 
