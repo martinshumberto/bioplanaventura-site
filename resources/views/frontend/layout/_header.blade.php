@@ -97,7 +97,7 @@ use App\Model\States;
         
         <input type="text" name="email" placeholder="E-mail">
         
-        <input type="text" name="birthday" id="datanascimento" placeholder="Data de nascimento">
+        <input type="text" name="birthday" class="birthday" id="datanascimento" placeholder="Data de nascimento">
         
         <div class="filter-form-group" style="margin-top: 7px;">
           <select name="sexes_id" id="filter-inline-sexo" class="chosen-select">
@@ -108,15 +108,14 @@ use App\Model\States;
         </div>
         <div class="filter-form-group">
         {!!Form::select('estado_id', States::pluck('name', 'states_id'), null, [ 'class' => 'chosen-select', 'id'=>'estado_id']) !!}
-          
         </div>
         <div class="filter-form-group">
-        {!!Form::select('cities_id', [], null, [ 'class' => 'form-control mb-10', 'id'=>'filter-city']) !!}
+        {!!Form::select('cities_id', [], null, [ 'class' => 'form-control mb-10 filter-city', 'id'=>'filter-city']) !!}
         </div>
         <input type="password" name="password" placeholder="Senha" style="margin-top: 0px;">
         <input type="password" name="repassword" placeholder="Confirmar senha">
         <label>
-          <input type="checkbox" id="remember" name="remember" checked> Eu declaro que li e concordo com todos os termos
+          <input type="checkbox" id="terms" name="terms" checked> Eu declaro que li e concordo com todos os termos
           do <a href="">contrato</a>.
         </label>
         <input type="submit" name="login" value="Cadastrar">

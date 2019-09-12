@@ -14636,27 +14636,4 @@ table td:not(:last-child) {
   position: absolute;
 }
 
-/* Carousel 
-=================================== */
-#sliderHome .carousel-inner {
-  min-height: 800px;
-}
-
-@media (max-width: 600px) {
-  #sliderHome .carousel-inner {
-    min-height: 300px;
-  }
-}
-
-#sliderHome .carousel-inner .carousel-item .overlay {
-  background: black;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
-  top: 0;
-  height: 300px;
-  z-index: 999999;
-  width: 100%;
-  position: absolute;
-}
-
-/*# sourceMappingURL=frontend-home.css.map */
+/*# sourceMappingURL=frontend-evento.css.map */

@@ -11,7 +11,6 @@ elixir(mix => {
         "resources/assets/sass/frontend/core/core.scss",
         "public/css/core.css"
     );
-
     mix.sass(
         "resources/assets/sass/frontend/pages/home.scss",
         "public/css/frontend/frontend-home.css"
@@ -56,6 +55,18 @@ elixir(mix => {
         "resources/assets/sass/frontend/pages/calendario.scss",
         "public/css/frontend/frontend-calendario.css"
     );
+    mix.sass(
+        "resources/assets/sass/frontend/pages/checkout.scss",
+        "public/css/frontend/frontend-checkout.css"
+    );
+    mix.sass(
+        "resources/assets/sass/frontend/pages/checkin.scss",
+        "public/css/frontend/frontend-checkin.css"
+    );
+    mix.sass(
+        "resources/assets/sass/frontend/pages/evento-selecionado.scss",
+        "public/css/frontend/frontend-evento-selecionado.css"
+    );
 
     /* JS Libs FRONTEND */
     mix.scripts(
@@ -69,7 +80,9 @@ elixir(mix => {
             "resources/assets/js/libs/imagesloaded.pkgd.min.js",
             "resources/assets/js/libs/anim-on-scroll.js",
             "resources/assets/js/libs/chosen.jquery.js",
-            "resources/assets/js/libs/nouislider.js"
+            "resources/assets/js/libs/nouislider.js",
+            "resources/assets/js/libs/jquery.mask.min.js"
+
         ],
         "public/js/frontend/frontend-home-libs.js"
     );
@@ -84,7 +97,8 @@ elixir(mix => {
             "resources/assets/js/libs/imagesloaded.pkgd.min.js",
             "resources/assets/js/libs/anim-on-scroll.js",
             "resources/assets/js/libs/chosen.jquery.js",
-            "resources/assets/js/libs/nouislider.js"
+            "resources/assets/js/libs/nouislider.js",
+            "resources/assets/js/libs/jquery.mask.min.js"
         ],
         "public/js/frontend/frontend-abouts-libs.js"
     );
@@ -99,7 +113,8 @@ elixir(mix => {
             "resources/assets/js/libs/imagesloaded.pkgd.min.js",
             "resources/assets/js/libs/anim-on-scroll.js",
             "resources/assets/js/libs/chosen.jquery.js",
-            "resources/assets/js/libs/nouislider.js"
+            "resources/assets/js/libs/nouislider.js",
+            "resources/assets/js/libs/jquery.mask.min.js"
         ],
         "public/js/frontend/frontend-blogs-libs.js"
     );
@@ -114,7 +129,8 @@ elixir(mix => {
             "resources/assets/js/libs/imagesloaded.pkgd.min.js",
             "resources/assets/js/libs/anim-on-scroll.js",
             "resources/assets/js/libs/chosen.jquery.js",
-            "resources/assets/js/libs/nouislider.js"
+            "resources/assets/js/libs/nouislider.js",
+            "resources/assets/js/libs/jquery.mask.min.js"
         ],
         "public/js/frontend/frontend-blog-libs.js"
     );
@@ -129,7 +145,8 @@ elixir(mix => {
             "resources/assets/js/libs/imagesloaded.pkgd.min.js",
             "resources/assets/js/libs/anim-on-scroll.js",
             "resources/assets/js/libs/chosen.jquery.js",
-            "resources/assets/js/libs/nouislider.js"
+            "resources/assets/js/libs/nouislider.js",
+            "resources/assets/js/libs/jquery.mask.min.js"
         ],
         "public/js/frontend/frontend-equipe-libs.js"
     );
@@ -144,7 +161,8 @@ elixir(mix => {
             "resources/assets/js/libs/imagesloaded.pkgd.min.js",
             "resources/assets/js/libs/anim-on-scroll.js",
             "resources/assets/js/libs/chosen.jquery.js",
-            "resources/assets/js/libs/nouislider.js"
+            "resources/assets/js/libs/nouislider.js",
+            "resources/assets/js/libs/jquery.mask.min.js"
         ],
         "public/js/frontend/frontend-events-libs.js"
     );
@@ -159,7 +177,8 @@ elixir(mix => {
             "resources/assets/js/libs/imagesloaded.pkgd.min.js",
             "resources/assets/js/libs/anim-on-scroll.js",
             "resources/assets/js/libs/chosen.jquery.js",
-            "resources/assets/js/libs/nouislider.js"
+            "resources/assets/js/libs/nouislider.js",
+            "resources/assets/js/libs/jquery.mask.min.js"
         ],
         "public/js/frontend/frontend-event-libs.js"
     );
@@ -174,7 +193,8 @@ elixir(mix => {
             "resources/assets/js/libs/imagesloaded.pkgd.min.js",
             "resources/assets/js/libs/anim-on-scroll.js",
             "resources/assets/js/libs/chosen.jquery.js",
-            "resources/assets/js/libs/nouislider.js"
+            "resources/assets/js/libs/nouislider.js",
+            "resources/assets/js/libs/jquery.mask.min.js"
         ],
         "public/js/frontend/frontend-galleries-libs.js"
     );
@@ -189,7 +209,8 @@ elixir(mix => {
             "resources/assets/js/libs/imagesloaded.pkgd.min.js",
             "resources/assets/js/libs/anim-on-scroll.js",
             "resources/assets/js/libs/chosen.jquery.js",
-            "resources/assets/js/libs/nouislider.js"
+            "resources/assets/js/libs/nouislider.js",
+            "resources/assets/js/libs/jquery.mask.min.js"
         ],
         "public/js/frontend/frontend-my-account-libs.js"
     );
@@ -204,9 +225,60 @@ elixir(mix => {
             "resources/assets/js/libs/imagesloaded.pkgd.min.js",
             "resources/assets/js/libs/anim-on-scroll.js",
             "resources/assets/js/libs/chosen.jquery.js",
-            "resources/assets/js/libs/nouislider.js"
+            "resources/assets/js/libs/nouislider.js",
+            "resources/assets/js/libs/jquery.mask.min.js"
         ],
         "public/js/frontend/frontend-my-orders-libs.js"
+    );
+    mix.scripts(
+        [
+            "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/jquery.mmenu.min.all.js",
+            "resources/assets/js/libs/jquery.fitvids.js",
+            "resources/assets/js/libs/jquery.magnific-popup.js",
+            "resources/assets/js/libs/slick.js",
+            "resources/assets/js/libs/jquery.sticky-kit.min.js",
+            "resources/assets/js/libs/imagesloaded.pkgd.min.js",
+            "resources/assets/js/libs/anim-on-scroll.js",
+            "resources/assets/js/libs/chosen.jquery.js",
+            "resources/assets/js/libs/nouislider.js",
+            "resources/assets/js/libs/jquery.mask.min.js",
+            "resources/assets/js/libs/jquery.blockUI.js"
+        ],
+        "public/js/frontend/frontend-checkout-libs.js"
+    );
+    mix.scripts(
+        [
+            "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/jquery.mmenu.min.all.js",
+            "resources/assets/js/libs/jquery.fitvids.js",
+            "resources/assets/js/libs/jquery.magnific-popup.js",
+            "resources/assets/js/libs/slick.js",
+            "resources/assets/js/libs/jquery.sticky-kit.min.js",
+            "resources/assets/js/libs/imagesloaded.pkgd.min.js",
+            "resources/assets/js/libs/anim-on-scroll.js",
+            "resources/assets/js/libs/chosen.jquery.js",
+            "resources/assets/js/libs/nouislider.js",
+            "resources/assets/js/libs/jquery.mask.min.js"
+        ],
+        "public/js/frontend/frontend-checkin-libs.js"
+    );
+
+    mix.scripts(
+        [
+            "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/jquery.mmenu.min.all.js",
+            "resources/assets/js/libs/jquery.fitvids.js",
+            "resources/assets/js/libs/jquery.magnific-popup.js",
+            "resources/assets/js/libs/slick.js",
+            "resources/assets/js/libs/jquery.sticky-kit.min.js",
+            "resources/assets/js/libs/imagesloaded.pkgd.min.js",
+            "resources/assets/js/libs/anim-on-scroll.js",
+            "resources/assets/js/libs/chosen.jquery.js",
+            "resources/assets/js/libs/nouislider.js",
+            "resources/assets/js/libs/jquery.mask.min.js"
+        ],
+        "public/js/frontend/frontend-evento-selecionado-libs.js"
     );
 
     /* JS frontend */
@@ -250,6 +322,19 @@ elixir(mix => {
         ["resources/assets/js/components/main.js"],
         "public/js/frontend/frontend-my-orders.js"
     );
+    mix.scripts(
+        ["resources/assets/js/components/main.js",
+        "resources/assets/js/pages/checkout.js"],
+        "public/js/frontend/frontend-checkout.js"
+    );
+    mix.scripts(
+        ["resources/assets/js/components/main.js"],
+        "public/js/frontend/frontend-checkin.js"
+    );
+    mix.scripts(
+        ["resources/assets/js/components/main.js"],
+        "public/js/frontend/frontend-evento-selecionado.js"
+    );
 
     /*------------------------------------------------------------------------*/
     /* backend - BACKEND */
@@ -287,9 +372,7 @@ elixir(mix => {
 
     /* JS BACKEND LIBS */
     mix.scripts(
-        [
-            "resources/assets/js/libs/dropzone.js"
-        ],
+        ["resources/assets/js/libs/dropzone.js"],
         "public/js/backend/backend-abouts-libs.js"
     );
 
@@ -299,7 +382,8 @@ elixir(mix => {
         "public/js/backend/backend-home.js"
     );
     mix.scripts(
-        ["resources/assets/js/components/editor.js", "resources/assets/js/components/dropzone.js"],
+        ["resources/assets/js/components/editor.js", 
+        "resources/assets/js/components/dropzone.js"],
         "public/js/backend/backend-abouts.js"
     );
 

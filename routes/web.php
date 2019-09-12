@@ -39,7 +39,7 @@ Route::namespace('Frontend')->group(function(){
     Route::get('/checkout', array('as' => 'frontend-checkout', 'uses' => 'AccountController@checkout'));
     Route::get('/checkout/{id}', array('as' => 'frontend-my-account-billing', 'uses' => 'AccountController@impressao'));
     Route::get('/historico', array('as' => 'frontend-historico', 'uses' => 'AccountController@historico'));
-    Route::post('/confirma-compra', array('as' => 'frontend-confirma-compra', 'uses' => 'AccountController@confirmapagamento'));
+    Route::post('/confirmacao-de-compra', array('as' => 'frontend-confirma-compra', 'uses' => 'AccountController@confirmapagamento'));
 
     Route::post('/pesquisa-eventos', array('as' => 'backend-eventos-pesquisa', 'uses' => 'EventsController@pesquisa'));
     Route::post('/promocoes', array('as' => 'frontend-events-promocoes', 'uses' => 'EventsController@promocoees'));
@@ -48,11 +48,11 @@ Route::namespace('Frontend')->group(function(){
 });
 
 
-    Route::namespace('Backend')->prefix('cms')->group(function(){
+Route::namespace('Backend')->prefix('cms')->group(function(){
     Route::get('/entrar', 'LoginController@index')->name('backend-auth');
     Route::post('/entrar', 'LoginController@authenticate')->name('backend-authenticate');
     Route::middleware('auth:admin')->group(function(){
-    Route::get('/', 'HomeController@index')->name('backend-home');
+        Route::get('/', 'HomeController@index')->name('backend-home');
 
         /* SLIDER */
         Route::get('/slider', 'SliderController@index')->name('backend-slider');

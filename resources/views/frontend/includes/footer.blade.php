@@ -24,10 +24,10 @@ style="background-image: url( {!!img_src('footer_bg.jpg')!!}); background-positi
     <div class="row">
       <div class="col-lg-3 col-sm-6 col-12">
         <aside class="widget widget_ci-schedule">
-          <h3 class="widget-title">Bioplan Aventura</h3>
+          <h3 class="widget-title">Estamos no Cadastur</h3>
 
           <p class="ci-schedule-widget-intro">
-            {!! $configuracoes[0] ->intro !!}
+            {!!img('cadastur.png')!!}
           </p>
 
         </aside>
