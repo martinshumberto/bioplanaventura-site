@@ -12,7 +12,7 @@ use App\Model\Eventoscategorias;
 <div class="page-hero" style="background-image: url({!! img_src('pages/event.png') !!});">
 </div>
 @else
-<div class="page-hero" style="background-image: url({!! img_src($categorias[0]->file, array("dynamic"=>true)) !!});">
+<div class="page-hero" style="background-image: url({!! img_src('pages/event.png') !!});">
 </div>
 @endif
 

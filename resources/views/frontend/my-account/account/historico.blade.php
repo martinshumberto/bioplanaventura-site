@@ -33,7 +33,7 @@ use Illuminate\Support\Carbon;
                                             <th>Valor Ingresso</th>
                                             <th>Total</th>
                                             <th>Data do pedido</th> 
-                                            <th>ESTATUS</th> 
+                                            <th>Status</th> 
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -45,7 +45,7 @@ use Illuminate\Support\Carbon;
                                             <td>{{ number_format($carrinhos->valor, 2) }}</td>
                                             <td>{!!extractDate($carrinhos->created_at)!!} às {!!extrateHour($carrinhos->created_at)!!}</td> 
                                             <td>
-                                                @if ($carrinhos->status == 0) PENDENTE @endif
+                                                @if ($carrinhos->status == 0) Aguardando @endif
                                             </td> 
                                         </tr>
                                         @endforeach

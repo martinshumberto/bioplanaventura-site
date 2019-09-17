@@ -93,11 +93,11 @@ $configuracoes = Configuracoes::all()
                 <a href="{!!route('frontend-events', 'todos')!!}">Eventos</a>
                 <ul class="sub-menu">
                   <li>
-                    <a href="{!!route('frontend-events-promocoes')!!}">Promoções</a>
+                    <a href="{!!route('frontend-promocoes')!!}">Promoções</a>
                   </li>
                   <li class="menu-item-has-children">
                     <!-- hover/active class::current-menu-parent -->
-                    <a href="#">Categorias</a>
+                    <a href="javascript:void(0)">Categorias</a>
                     <ul class="sub-menu">
                     @foreach( Eventoscategorias::get() as $eventocategoria )
                       <li>
@@ -129,7 +129,7 @@ $configuracoes = Configuracoes::all()
 										</a>
 										<ul class="sub-menu">
                         <li><a href="{!!route('frontend-historico')!!}">Histórico</a></li>  
-                        <li><a href="{!!route('frontend-faturamento')!!}">Meus Pedidos</a></li>
+                        <li><a href="{!!route('frontend-cart')!!}">Carrinho</a></li>
                         <li><a href="{!!route('frontend-my-account')!!}">Meus Dados</a></li>	
                         <li class="divider"></li>
                         <li>

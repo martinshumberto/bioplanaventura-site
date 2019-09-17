@@ -71,6 +71,14 @@ elixir(mix => {
         "resources/assets/sass/frontend/pages/confirmacao-de-compra.scss",
         "public/css/frontend/frontend-confirmacao-de-compra.css"
     );
+    mix.sass(
+        "resources/assets/sass/frontend/pages/promocoes.scss",
+        "public/css/frontend/frontend-promocoes.css"
+    );
+    mix.sass(
+        "resources/assets/sass/frontend/pages/cart.scss",
+        "public/css/frontend/frontend-cart.css"
+    );
 
     /* JS Libs FRONTEND */
     mix.scripts(
@@ -340,6 +348,42 @@ elixir(mix => {
         "public/js/frontend/frontend-confirmacao-de-compra-libs.js"
     );
 
+    mix.scripts(
+        [
+            "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/bootstrap.min.js",
+            "resources/assets/js/libs/jquery.mmenu.min.all.js",
+            "resources/assets/js/libs/jquery.fitvids.js",
+            "resources/assets/js/libs/jquery.magnific-popup.js",
+            "resources/assets/js/libs/slick.js",
+            "resources/assets/js/libs/jquery.sticky-kit.min.js",
+            "resources/assets/js/libs/imagesloaded.pkgd.min.js",
+            "resources/assets/js/libs/anim-on-scroll.js",
+            "resources/assets/js/libs/chosen.jquery.js",
+            "resources/assets/js/libs/nouislider.js",
+            "resources/assets/js/libs/jquery.mask.min.js"
+        ],
+        "public/js/frontend/frontend-promocoes-libs.js"
+    );
+
+    mix.scripts(
+        [
+            "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/bootstrap.min.js",
+            "resources/assets/js/libs/jquery.mmenu.min.all.js",
+            "resources/assets/js/libs/jquery.fitvids.js",
+            "resources/assets/js/libs/jquery.magnific-popup.js",
+            "resources/assets/js/libs/slick.js",
+            "resources/assets/js/libs/jquery.sticky-kit.min.js",
+            "resources/assets/js/libs/imagesloaded.pkgd.min.js",
+            "resources/assets/js/libs/anim-on-scroll.js",
+            "resources/assets/js/libs/chosen.jquery.js",
+            "resources/assets/js/libs/nouislider.js",
+            "resources/assets/js/libs/jquery.mask.min.js"
+        ],
+        "public/js/frontend/frontend-cart-libs.js"
+    );
+
     /* JS frontend */
     mix.scripts(
         ["resources/assets/js/components/main.js"],
@@ -401,6 +445,14 @@ elixir(mix => {
     mix.scripts(
         ["resources/assets/js/components/main.js"],
         "public/js/frontend/frontend-confirmacao-de-compra.js"
+    );
+    mix.scripts(
+        ["resources/assets/js/components/main.js"],
+        "public/js/frontend/frontend-promocoes.js"
+    );
+    mix.scripts(
+        ["resources/assets/js/components/main.js"],
+        "public/js/frontend/frontend-cart.js"
     );
 
     /*------------------------------------------------------------------------*/

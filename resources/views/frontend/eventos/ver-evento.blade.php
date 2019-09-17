@@ -121,17 +121,21 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
             <div id="entry-ticket" class="sidebar">
                 <div class="widget">
                     <div class="ci-quote-form-widget elevation-candidate">
+
                         {{ Form::open(array('route' => 'frontend-checkin', 'class'=>'form-boxed'))  }}
+                        @if($evento[0] -> esgotado) 
+                        <p class="text-center" style="padding-top: 20px;">Que pena! O evento já se esgostou. <br> Acompanhe nossas próximas saídas.</p>
+                        @else
                         <input type="hidden" name="eventos_id" value="{!! $evento[0] -> eventos_id !!}">
                         <div class="row">
                             <div class="col-md-12 text-right">
                                 <i class="fas fa-shopping-cart"></i> R$ <span id="valor-inteira">{!! number_format($evento[0] -> ingressointeiro, 2) !!}</span>
                             </div>
                         </div>
+
+                        
                         <ul class="rows-ticket">	
-                            @if($evento[0] -> esgotado) 
-                            <p class="text-center" style="padding-top: 20px;">Que pena! O evento já se esgostou. <br> Acompanhe nossas próximas saídas.</p>
-                            @else
+                            
                             <li class="row">
                                 <div class="col-md-12">
                                     <label class="ticket-label" for="ticket-quantity-full">
@@ -165,9 +169,6 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
 
                             -->
 
-                            @endif
-
-                            
                         </li>
                     </ul>
 
@@ -176,11 +177,12 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
                     </p>
                     @if (session('usuario'))
                     <button type="submit" class="btn-block">comprar ingressos</button>
-
                     @else
                     <a href="#area-cliente" rel="modal" class="btn-block">Registre-se para comprar</a>
                     @endif
-                </form>
+
+                @endif
+                {{ Form::close() }}
             </div>
         </div>
         <aside class="widget widget_ci-contact">
@@ -208,7 +210,7 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
 
         <div class="row row-items">
 
-            @foreach ($eventosTodos as $eventosLista)
+            @foreach ($eventosTodos->slice(0, 4) as $eventosLista)
             <div class="col-lg-3 col-sm-6 col-12">
                 <div class="item item-vertical">
                     <div class="item-thumb">

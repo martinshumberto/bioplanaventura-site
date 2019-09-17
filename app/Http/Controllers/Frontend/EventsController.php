@@ -14,90 +14,99 @@ use Illuminate\Support\Carbon;
 
 class EventsController extends FrontendController
 {
-   public function index()
-   {
-   		return view("frontend/events/index");
-   }
+	public function index()
+	{
+		return view("frontend/events/index");
+	}
 
-   public function show($id)
-   {
-       
+	public function show($id)
+	{
 
-       if ($id == "todos"):
-        $categorias = $id;
-        $eventos = DB::table('eventos')
-        ->get();
-       else:
-        $categorias = DB::table('eventoscategorias')
-       ->where('slug', '=', $id)
-       ->get();
+		if ($id == "todos"):
+			$categorias = $id;
+			$eventos = DB::table('eventos')
+			->get();
+		else:
+			$categorias = DB::table('eventoscategorias')
+			->where('slug', '=', $id)
+			->get();
 
-        $eventos = DB::table('eventos')
-        ->where('eventoscategorias_id', '=', $categorias[0]->eventoscategorias_id)
-        ->get();
-       endif;
+			$eventos = DB::table('eventos')
+			->where('eventoscategorias_id', '=', $categorias[0]->eventoscategorias_id)
+			->get();
+		endif;
 
-       return view("frontend/eventos/todos", array('eventos' => $eventos, 'categorias' => $categorias));
-   }
+		return view("frontend/eventos/todos", array('eventos' => $eventos, 'categorias' => $categorias));
+	}
 
-   public function evento($id)
-   {
-        $eventosTodos = DB::table('eventos')
-        ->limit(5)
-        ->get();
+	public function promocoes()
+	{
 
-       $eventos = DB::table('eventos')
-       ->where('slug', '=', $id)
-       ->get();
+		$eventos = DB::table('eventos')
+		->where('promocao', '=', 'promocao')
+		->get();
 
-       $categorias = DB::table('eventoscategorias')
-       ->where('eventoscategorias_id', '=', $eventos[0]->eventoscategorias_id)
-       ->get();
+		return view("frontend/eventos/promocoes", array('eventos' => $eventos));
+	}
 
-       $comentarios = DB::table('comentarios')
-       ->where([
-           ['status', '=', 1], 
-           ['evento_id', '=', $eventos[0]->eventos_id]
-       ])
-       ->get();
+	public function evento($id)
+	{
+		$eventosTodos = DB::table('eventos')
+		->limit(5)
+		->get();
 
-       return view("frontend/eventos/ver-evento", array('evento' => $eventos, 'eventosTodos'=>$eventosTodos, 'categorias' => $categorias, 'comentarios'=>$comentarios));
-   }
+		$eventos = DB::table('eventos')
+		->where('slug', '=', $id)
+		->get();
 
-   public function pesquisa(Request $request){
-    $data = Input::all();  
+		$categorias = DB::table('eventoscategorias')
+		->where('eventoscategorias_id', '=', $eventos[0]->eventoscategorias_id)
+		->get();
 
-    $eventosTodos = DB::table('eventos')
-    ->limit(5)
-    ->get();
+		$comentarios = DB::table('comentarios')
+		->where([
+			['status', '=', 1], 
+			['evento_id', '=', $eventos[0]->eventos_id]
+		])
+		->get();
 
-    $eventos = DB::table('eventos')
-    ->where('dificuldade', '=', $data['dificuldade'])
-    ->get();
+		return view("frontend/eventos/ver-evento", array('evento' => $eventos, 'eventosTodos'=>$eventosTodos, 'categorias' => $categorias, 'comentarios'=>$comentarios));
+	}
 
-    if(!$eventos->count() > 0):
-        return view("frontend/eventos/vazio", array());
-    else:
-    $categorias = DB::table('eventoscategorias')
-    ->where('eventoscategorias_id', '=', $eventos[0]->eventoscategorias_id)
-    ->get();
-    return view("frontend/eventos/todos", array('eventos' => $eventos, 'categorias' => $categorias));
-    endif; 
- }
+	public function pesquisa(Request $request){
+		$data = Input::all();  
 
- public function comentarios(Request $request, $id)
- {
-    $eventos = DB::table('eventos')
-    ->where('slug', '=', $id)
-    ->get();
- 
-      $data = Input::all();   
-      $data['status'] = 0;
-      $data['evento_id'] = (int)$eventos[0] -> eventos_id;     
-      $cad_comentarios = Comentarios::create($data); 
+		$eventosTodos = DB::table('eventos')
+		->limit(5)
+		->get();
 
-     
-    $request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Seu comentário foi enviado para o nosso mediador.'));
-    return redirect(route('frontend-evento-selecionado', $id));
- }
+		$eventos = DB::table('eventos')
+		->where('dificuldade', '=', $data['dificuldade'])
+		->get();
+
+		if(!$eventos->count() > 0):
+			return view("frontend/eventos/vazio", array());
+		else:
+			$categorias = DB::table('eventoscategorias')
+			->where('eventoscategorias_id', '=', $eventos[0]->eventoscategorias_id)
+			->get();
+			return view("frontend/eventos/todos", array('eventos' => $eventos, 'categorias' => $categorias));
+		endif; 
+	}
+
+	public function comentarios(Request $request, $id)
+	{
+		$eventos = DB::table('eventos')
+		->where('slug', '=', $id)
+		->get();
+
+		$data = Input::all();   
+		$data['status'] = 0;
+		$data['evento_id'] = (int)$eventos[0] -> eventos_id;     
+		$cad_comentarios = Comentarios::create($data); 
+
+
+		$request->session()->flash('alert', array('code'=> 'success', 'text'  => 'Seu comentário foi enviado para o nosso mediador.'));
+		return redirect(route('frontend-evento-selecionado', $id));
+	}
 }

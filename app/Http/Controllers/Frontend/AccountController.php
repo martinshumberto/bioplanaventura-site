@@ -100,9 +100,9 @@ class AccountController extends FrontendController
         return view("frontend/my-account/account/index", array('dadosuser' => $dados));
     }
 
-    public function faturamento(Request $request)
+    public function cart(Request $request)
     {
-        return view("frontend/my-account/account/faturamento", array());
+        return view("frontend/my-account/account/cart", array());
     }
 
     public function checkin(Request $request)

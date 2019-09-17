@@ -35,7 +35,7 @@ Route::namespace('Frontend')->group(function(){
     Route::get('/sair', array('as' => 'frontend-areacliente-sair', 'uses' => 'AccountController@logout'));
     Route::get('/send/email', array('as' => 'frontend-email', 'uses' => 'HomeController@mail')); 
     Route::get('/perfil', array('as' => 'frontend-my-account', 'uses' => 'AccountController@perfil'));
-    Route::get('/faturamento', array('as' => 'frontend-faturamento', 'uses' => 'AccountController@faturamento'));
+    Route::get('/carrinho', array('as' => 'frontend-cart', 'uses' => 'AccountController@cart'));
     Route::post('/checkin', array('as' => 'frontend-checkin', 'uses' => 'AccountController@checkin'));
     Route::post('/edita-perfil', array('as' => 'frontend-perfil-editar', 'uses' => 'AccountController@editarperfil'));
     Route::get('/checkout', array('as' => 'frontend-checkout', 'uses' => 'AccountController@checkout'));
@@ -46,7 +46,7 @@ Route::namespace('Frontend')->group(function(){
     Route::post('/obrigado', array('as' => 'frontend-obrigado', 'uses' => 'AccountController@obrigado'));
 
     Route::post('/pesquisa-eventos', array('as' => 'backend-eventos-pesquisa', 'uses' => 'EventsController@pesquisa'));
-    Route::post('/promocoes', array('as' => 'frontend-events-promocoes', 'uses' => 'EventsController@promocoees')); 
+    Route::get('/promocoes', array('as' => 'frontend-promocoes', 'uses' => 'EventsController@promocoes')); 
 });
 
 

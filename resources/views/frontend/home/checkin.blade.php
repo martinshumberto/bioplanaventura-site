@@ -19,7 +19,7 @@
                             </div>
 
                             <div class="entry-content">
-                                <span><a href="#"><i class="fa fa-share fa-flip-horizontal fa-flip-vertical"></i></a> Voltar à página "Meus Dados".</span>
+                                <span><a href="#"><i class="fa fa-share fa-flip-horizontal fa-flip-vertical"></i></a> Voltar à "Home".</span>
 
                                 <table class="table-responsive">
                                     <thead>
