@@ -25,23 +25,23 @@
                                     <thead>
                                         <tr>
                                             <th>Evento</th>
-                                            <th>Inscrito</th>
-                                            <th>Valor Ingresso</th>
-                                            <th>Quantidade</th>
+                                            <th>Info</th>
+                                            <th>Valor</th>
+                                            <th width="10px">Qtd.</th>
                                             <th>Total</th>
-                                            <th>Data do pedido</th>
+                                            <th>Gerado em</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         <tr>
-                                            <td><a href="{!! url('/evento', $dados_evento->slug); !!}">{!! $dados_evento->title !!}</a></td>
+                                            <td><a href="{!! url('/evento', $dados_evento->slug); !!}">{!! str_limit($dados_evento->title, $limit = 45, $end = '...') !!}</a></td>
                                             <td>{!! $dados_evento->subtitle !!}</td>
-                                            <td>R$ {!! number_format(session('carrinho')['valor_inteira'], 2) !!}</td>
+                                            <td>R$ {!! number_format(session('carrinho')['valor_inteira'], 2, ",", ".") !!}</td>
                                             <td>{!! session('carrinho')['quantidade_inteira'] !!}</td>
-                                            <td>R$ {!! number_format(session('carrinho')['valor'], 2) !!}</td>
-                                            <td>{!! session('carrinho')['data'] !!}</td>
+                                            <td>R$ {!! number_format(session('carrinho')['valor_inteira'], 2, ",", ".") !!}</td>
+                                            <td>{!! date('d/m/Y H:i', strtotime(session('carrinho')['data'])) !!}</td>
 
                                         </tr>
 

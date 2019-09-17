@@ -117,7 +117,7 @@ $configuracoes = Configuracoes::all()
               </li>
               @if (session('usuario'))
               <li class="logged current-menu-ancestor">
-										<a href="#">
+										<a href="{!!route('frontend-my-account')!!}">
                       <img src="{!! img_src(session('usuario')->team, true) !!}" class="avatar img-circle">
 											<span class="header-username"><b>
                         @php 

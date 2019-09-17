@@ -122,10 +122,10 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
                 <div class="widget">
                     <div class="ci-quote-form-widget elevation-candidate">
                         {{ Form::open(array('route' => 'frontend-checkin', 'class'=>'form-boxed'))  }}
-                        <input type="hidden" name="eventos_id" value="{!! $evento[0] -> slug !!}">
+                        <input type="hidden" name="eventos_id" value="{!! $evento[0] -> eventos_id !!}">
                         <div class="row">
                             <div class="col-md-12 text-right">
-                                <i class="fas fa-shopping-cart"></i> R$ <span id="valor-inteira">0,00</span>
+                                <i class="fas fa-shopping-cart"></i> R$ <span id="valor-inteira">{!! number_format($evento[0] -> ingressointeiro, 2) !!}</span>
                             </div>
                         </div>
                         <ul class="rows-ticket">	
@@ -140,16 +140,19 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
                                 </div>
                                 <div class="col-md-8">                                            
                                     <span class="ticket-price">R$ {!! number_format($evento[0] -> ingressointeiro, 2) !!}</span>
-                                    <small class="ticket-period-sale"> Vendas até <b>{!! Carbon::parse($evento[0] -> datavendas)->format('d/m/Y') !!}</b> </small>
+                                    <small class="ticket-period-sale"> 
+                                        Vendas até <b>{!! Carbon::parse($evento[0] -> datavendas)->format('d/m/Y') !!}</b> 
+                                    </small>
                                 </div>
 
-                                <div class="col-md-4 no-padding text-center ticket-quantity">
-                                    <a class="ticket-decrement" onclick="inteira('menos');"><i class="fa fa-minus"></i></a>
-                                    <input type="text" id="quantidade-inteira" name="quantidade_inteira" value="0" maxlength="2" required>
-                                    <a class="ticket-increment" onclick="inteira('mais');"><i class="fa fa-plus"></i></a>
+                                <div class="col-md-4 no-padding text-center ticket-quantity" style="display: block !important;">
+                                    <!-- <a class="ticket-decrement" onclick="inteira('menos');"><i class="fa fa-minus"></i></a> -->
+                                    <input type="text" id="quantidade_inteira" name="quantidade_inteira" value="1" maxlength="2" required>
+                                    <!-- <a class="ticket-increment" onclick="inteira('mais');"><i class="fa fa-plus"></i></a> -->
                                 </div>
                             </li>
-
+                            
+                            <!--
                             <aside class="widget widget_search group discount-coupon" style="padding-top: 20px;">
                                 <div>
                                     <label for="coupondiscount" class="screen-reader-text">Cupom de desconto:</label>
@@ -159,6 +162,8 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
                                     </button>
                                 </div>
                             </aside>
+
+                            -->
 
                             @endif
 
@@ -243,6 +248,7 @@ $fotoDestaque = Fotos::where('chave',$evento[0]->chave)->pluck('file')->first();
 </main>
 
 <script type="text/javascript">
+/*
     function formataDinheiro(n) {
         return n.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
     }
@@ -287,6 +293,7 @@ function meia(operacao)
     $("#quantidade-meia").val(result);          
 }  
 }
+*/
 </script>
 
 @include('frontend/includes/footer')

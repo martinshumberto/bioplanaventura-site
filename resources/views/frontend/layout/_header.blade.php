@@ -97,7 +97,7 @@ use App\Model\States;
         
         <input type="text" name="email" placeholder="E-mail">
         
-        <input type="text" name="birthday" class="birthday" id="datanascimento" placeholder="Data de nascimento">
+        <input type="text" name="birthday" class="birth" placeholder="Data de nascimento">
         
         <div class="filter-form-group" style="margin-top: 7px;">
           <select name="sexes_id" id="filter-inline-sexo" class="chosen-select">

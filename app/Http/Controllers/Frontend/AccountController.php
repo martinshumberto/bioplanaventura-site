@@ -16,6 +16,9 @@ use App\Model\Carrinho;
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
+use App\Model\States;
+use App\Model\Cities;
+
 class AccountController extends FrontendController
 {
     public function login(Request $request)
@@ -113,7 +116,6 @@ class AccountController extends FrontendController
             ->get();
 
         $calculo_inteira    = $dados[0]->ingressointeiro * $request->quantidade_inteira;
-        $calculo_meia       = $dados[0]->ingressomeia * $request->quantidade_meia;
 
         $dadosCarrinho = array(
             'users_id'             => session('usuario')->users_id,
@@ -123,9 +125,9 @@ class AccountController extends FrontendController
             'valor_inteira'        => $dados[0]->ingressointeiro,
             'valor_meia'           => $dados[0]->ingressomeia,
             'status'               => 3,
-            'valor'                => $calculo_inteira + $calculo_meia,
+            'valor'                => $calculo_inteira,
             'token'                => session('usuario')->remember_token,
-            'data'                 => date('y-m-d H:m')
+            'data'                 => date('y-m-d H:i')
         );
         $request->session()->put('carrinho', $dadosCarrinho);
         return view("frontend/home/checkin", array('dados_carrinho' => $dadosCarrinho, 'dados_evento' => $dados[0]));
@@ -218,41 +220,16 @@ class AccountController extends FrontendController
             [
                 'name' => $dadosEvento[0]->title,
                 'amount' => (int)session('carrinho')['quantidade_inteira'],
-                'value' => (int)str_replace('.', '', session('carrinho')['valor'])
+                'value' => (int)str_replace(['.',','], "", number_format(session('carrinho')['valor_inteira'], 2))
             ]
         ];
-        /*
-        $customer = [
-            'name' => session('usuario') -> name,
-            'cpf' => session('usuario') -> cpf,
-            'phone_number' => session('usuario') -> cellphone
-        ];
-        */
+
         $body = [
             'items' => $items
         ];
 
         return view("frontend/my-account/account/checkout", array('dadosuser' => session('usuario'), 'dados_evento' => $dadosEvento[0]));
 
-        /*
-        try {
-            $api = new Gerencianet($options);
-            $charge = $api->createCharge([], $body);
-            //print_r($charge);echo '<br>';
-            
-            //return redirect(route('frontend-my-account-billing',$charge['data']['charge_id']));
-            
-       
-        } catch (GerencianetException $e) {
-            echo('<Br>ERROS ------------<Br><Br>');
-            print_r($e->code); echo '<br>';
-            print_r($e->error);echo '<br>';
-            print_r($e->errorDescription);echo '<br>';
-        } catch (Exception $e) {
-            echo('<Br>MENSAGEM ------------<Br><Br>');
-            print_r($e->getMessage());echo '<br>';
-        }
-        */
     }
 
     public function confirmapagamento(Request $request)
@@ -271,14 +248,11 @@ class AccountController extends FrontendController
             ->where('eventos_id', '=', session('carrinho')['eventos_id'])
             ->get();  
 
-        // CONVERSÕES PARA O GETWHAI
-        $valor_conversao_1 = str_replace('.', '', session('carrinho')['valor']);
-        $valor_conversao_2 = str_pad($valor_conversao_1, 6, '0');
         $itens = [
             [
                 'name' => $dadosEvento[0]->title,
                 'amount' => (int)session('carrinho')['quantidade_inteira'],
-                'value' => (int)$valor_conversao_2
+                'value' => (int)str_replace(['.',','], "", number_format(session('carrinho')['valor'], 2))
             ]
         ];
         $body = [
@@ -309,64 +283,63 @@ class AccountController extends FrontendController
             echo '<br>';
         }
 
-        if (!$data['card-name']):$params = ['id' => $charge['data']['charge_id']];
+        $method_payment = $data['method'];
+
+        if ($method_payment == "boleto"):
+
+        $params = ['id' => $charge['data']['charge_id']];
 
         $customer = [
-            'name' => session('usuario')->name,
-            'cpf' => session('usuario')->cpf,
-            'phone_number' => preg_replace('/[^0-9]/', '', session('usuario')->cellphone)
+            'name' => $data['name']." ".$data['last_name'],
+            'cpf' => preg_replace('/[^0-9]/', '', $data['cpf']),
+            'email' => $data['email'],
+            'phone_number' => preg_replace('/[^0-9]/', '', $data['cellphone']),
+            'birth' => date('Y-m-d', strtotime($data['birthday'])),
         ];
 
         $body = [
             'payment' => [
                 'banking_billet' => [
-                    'expire_at' => '2019-12-12',
-                    'customer' => $customer
+                    'expire_at' => date('Y-m-d', strtotime('+1 month')),
+                    'customer' => $customer,
                 ]
             ]
         ];
+        
         $data['token'] = $charge['data']['charge_id'];
         Carrinho::create($data);
         $request->session()->forget('carrinho');
 
         $semCartao = $api->payCharge($params, $body);
 
-        //return redirect(route('frontend-my-account-confirmado'));
-        print_r($semCartao);
-        //return view("frontend/my-account/orders/confirmado", array('dadospagamento'=>$semCartao));    
 
-        else :$paymentToken = $data['payment_token'];
+        return view("frontend/my-account/orders/confirmado", array('dados'=>$data, 'dadospagamento'=>$semCartao));    
+
+
+        else :
+
+        $paymentToken = $data['payment_token'];
 
         $params = ['id' => $charge['data']['charge_id']];
 
         $customer = [
-            'name' => session('usuario')->name,
-            'cpf' => session('usuario')->cpf,
-            'phone_number' => preg_replace('/[^0-9]/', '', session('usuario')->cellphone), 
-            'email' => session('usuario')->email,
-            'birth' => session('usuario')->birthday,
+            'name' => $data['name']." ".$data['last_name'],
+            'cpf' => preg_replace('/[^0-9]/', '', $data['cpf']),
+            'phone_number' => preg_replace('/[^0-9]/', '', $data['cellphone']), 
+            'email' => $data['email'],
+            'birth' => date('Y-m-d', strtotime($data['birthday'])),
         ];
 
-        //dd(session('usuario'));
-        
-        /*
-        $billingAddress = [
-            'street' => session('usuario')->address,
-            'number' => preg_replace('/[^0-9]/', '', session('usuario')->number),
-            'neighborhood' => session('usuario')->district,
-            'zipcode' => session('usuario')->zip_code,
-            'city' => session('usuario')->cities_id,
-            'state' => session('usuario')->states_id,
-        ];
-        */
+        $estado = States::find($data['estado_id']);
+        $cidade = Cities::find($data['cities_id']);
        
         $billingAddress = [
-            'street' => 'Street 3',
-            'number' => 10,
-            'neighborhood' => 'Bauxita',
-            'zipcode' => '35400000',
-            'city' => 'Ouro Preto',
-            'state' => 'MG',
+            'street' => $data['address'],
+            'number' => (int)$data['number'],
+            'neighborhood' => $data['district'],
+            'zipcode' => preg_replace('/[^0-9]/', '', $data['zip_code']),
+            'city' => $cidade->name,
+            'state' => $estado->initials,
         ];
 
         $body = [
@@ -382,8 +355,14 @@ class AccountController extends FrontendController
 
         $comCartao = $api->payCharge($params, $body);
 
-        print_r($comCartao);
+        return view("frontend/my-account/orders/confirmado", array('dados'=>$data, 'dadospagamento'=>$comCartao));    
+  
         endif;
+    }
+
+    public function obrigado(Request $request)
+    {
+        return view("frontend/my-account/orders/obrigado", array());
     }
 
     public function confirmado()
@@ -412,7 +391,7 @@ class AccountController extends FrontendController
         } catch (Exception $e) {
             print_r($e->getMessage());
         }
-        return view("frontend/my-account/orders/confirmado", array('dados' => $charge, 'carrinho' => $carrinho));
+            return view("frontend/my-account/orders/confirmado", array('dados' => $charge, 'carrinho' => $carrinho));
     }
 
     public function historico()

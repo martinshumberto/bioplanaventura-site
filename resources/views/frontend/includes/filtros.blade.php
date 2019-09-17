@@ -15,7 +15,7 @@ $configuracoes = Configuracoes::all()
           <i class="fas fa-globe-americas"></i>
           Selecione a dificuldade
         </label>
-        <select id="filter-inline-destination-1" name="dificuldade" class="chosen-select" data-enable-search="true">
+        <select name="dificuldade" class="chosen-select" data-enable-search="true">
           <option value="">&nbsp;</option>
          
           <option value="0">Muito Fácil</option>
@@ -32,7 +32,7 @@ $configuracoes = Configuracoes::all()
           <i class="fas fa-list-ul"></i>
           Selecione a categoria
         </label>
-        <select id="filter-inline-category-1" name="categoria" class="chosen-select" data-enable-search="true">
+        <select name="categoria" class="chosen-select" data-enable-search="true">
           <option value="">&nbsp;</option>
           @foreach( Eventoscategorias::get() as $eventocategoria )
           <option value="{!! $eventocategoria -> eventoscategorias_id !!}">{!! $eventocategoria -> title !!}</option>

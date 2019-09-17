@@ -67,11 +67,16 @@ elixir(mix => {
         "resources/assets/sass/frontend/pages/evento-selecionado.scss",
         "public/css/frontend/frontend-evento-selecionado.css"
     );
+    mix.sass(
+        "resources/assets/sass/frontend/pages/confirmacao-de-compra.scss",
+        "public/css/frontend/frontend-confirmacao-de-compra.css"
+    );
 
     /* JS Libs FRONTEND */
     mix.scripts(
         [
             "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/bootstrap.min.js",
             "resources/assets/js/libs/jquery.mmenu.min.all.js",
             "resources/assets/js/libs/jquery.fitvids.js",
             "resources/assets/js/libs/jquery.magnific-popup.js",
@@ -89,6 +94,7 @@ elixir(mix => {
     mix.scripts(
         [
             "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/bootstrap.min.js",
             "resources/assets/js/libs/jquery.mmenu.min.all.js",
             "resources/assets/js/libs/jquery.fitvids.js",
             "resources/assets/js/libs/jquery.magnific-popup.js",
@@ -105,6 +111,7 @@ elixir(mix => {
     mix.scripts(
         [
             "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/bootstrap.min.js",
             "resources/assets/js/libs/jquery.mmenu.min.all.js",
             "resources/assets/js/libs/jquery.fitvids.js",
             "resources/assets/js/libs/jquery.magnific-popup.js",
@@ -121,6 +128,7 @@ elixir(mix => {
     mix.scripts(
         [
             "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/bootstrap.min.js",
             "resources/assets/js/libs/jquery.mmenu.min.all.js",
             "resources/assets/js/libs/jquery.fitvids.js",
             "resources/assets/js/libs/jquery.magnific-popup.js",
@@ -137,6 +145,7 @@ elixir(mix => {
     mix.scripts(
         [
             "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/bootstrap.min.js",
             "resources/assets/js/libs/jquery.mmenu.min.all.js",
             "resources/assets/js/libs/jquery.fitvids.js",
             "resources/assets/js/libs/jquery.magnific-popup.js",
@@ -153,6 +162,7 @@ elixir(mix => {
     mix.scripts(
         [
             "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/bootstrap.min.js",
             "resources/assets/js/libs/jquery.mmenu.min.all.js",
             "resources/assets/js/libs/jquery.fitvids.js",
             "resources/assets/js/libs/jquery.magnific-popup.js",
@@ -169,6 +179,7 @@ elixir(mix => {
     mix.scripts(
         [
             "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/bootstrap.min.js",
             "resources/assets/js/libs/jquery.mmenu.min.all.js",
             "resources/assets/js/libs/jquery.fitvids.js",
             "resources/assets/js/libs/jquery.magnific-popup.js",
@@ -185,6 +196,7 @@ elixir(mix => {
     mix.scripts(
         [
             "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/bootstrap.min.js",
             "resources/assets/js/libs/jquery.mmenu.min.all.js",
             "resources/assets/js/libs/jquery.fitvids.js",
             "resources/assets/js/libs/jquery.magnific-popup.js",
@@ -201,6 +213,7 @@ elixir(mix => {
     mix.scripts(
         [
             "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/bootstrap.min.js",
             "resources/assets/js/libs/jquery.mmenu.min.all.js",
             "resources/assets/js/libs/jquery.fitvids.js",
             "resources/assets/js/libs/jquery.magnific-popup.js",
@@ -217,6 +230,7 @@ elixir(mix => {
     mix.scripts(
         [
             "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/bootstrap.min.js",
             "resources/assets/js/libs/jquery.mmenu.min.all.js",
             "resources/assets/js/libs/jquery.fitvids.js",
             "resources/assets/js/libs/jquery.magnific-popup.js",
@@ -233,6 +247,7 @@ elixir(mix => {
     mix.scripts(
         [
             "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/bootstrap.min.js",
             "resources/assets/js/libs/jquery.mmenu.min.all.js",
             "resources/assets/js/libs/jquery.fitvids.js",
             "resources/assets/js/libs/jquery.magnific-popup.js",
@@ -243,13 +258,17 @@ elixir(mix => {
             "resources/assets/js/libs/chosen.jquery.js",
             "resources/assets/js/libs/nouislider.js",
             "resources/assets/js/libs/jquery.mask.min.js",
-            "resources/assets/js/libs/jquery.blockUI.js"
+            "resources/assets/js/libs/jquery.blockUI.js",
+            "resources/assets/js/libs/jquery.validate.min.js",
+            "resources/assets/js/libs/additional-methods.min.js",
+            "resources/assets/js/libs/validate.messages_pt_BR.min.js"
         ],
         "public/js/frontend/frontend-checkout-libs.js"
     );
     mix.scripts(
         [
             "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/bootstrap.min.js",
             "resources/assets/js/libs/jquery.mmenu.min.all.js",
             "resources/assets/js/libs/jquery.fitvids.js",
             "resources/assets/js/libs/jquery.magnific-popup.js",
@@ -267,6 +286,7 @@ elixir(mix => {
     mix.scripts(
         [
             "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/bootstrap.min.js",
             "resources/assets/js/libs/jquery.mmenu.min.all.js",
             "resources/assets/js/libs/jquery.fitvids.js",
             "resources/assets/js/libs/jquery.magnific-popup.js",
@@ -279,6 +299,45 @@ elixir(mix => {
             "resources/assets/js/libs/jquery.mask.min.js"
         ],
         "public/js/frontend/frontend-evento-selecionado-libs.js"
+    );
+
+    mix.scripts(
+        [
+            "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/bootstrap.min.js",
+            "resources/assets/js/libs/jquery.mmenu.min.all.js",
+            "resources/assets/js/libs/jquery.fitvids.js",
+            "resources/assets/js/libs/jquery.magnific-popup.js",
+            "resources/assets/js/libs/slick.js",
+            "resources/assets/js/libs/jquery.sticky-kit.min.js",
+            "resources/assets/js/libs/imagesloaded.pkgd.min.js",
+            "resources/assets/js/libs/anim-on-scroll.js",
+            "resources/assets/js/libs/chosen.jquery.js",
+            "resources/assets/js/libs/nouislider.js",
+            "resources/assets/js/libs/moment.min.js",
+            "resources/assets/js/libs/fullcalendar.min.js",
+            "resources/assets/js/libs/locales-all.js",
+            "resources/assets/js/libs/jquery.mask.min.js"
+        ],
+        "public/js/frontend/frontend-calendario-libs.js"
+    );
+
+    mix.scripts(
+        [
+            "resources/assets/js/libs/jquery-1.12.3.min.js",
+            "resources/assets/js/libs/bootstrap.min.js",
+            "resources/assets/js/libs/jquery.mmenu.min.all.js",
+            "resources/assets/js/libs/jquery.fitvids.js",
+            "resources/assets/js/libs/jquery.magnific-popup.js",
+            "resources/assets/js/libs/slick.js",
+            "resources/assets/js/libs/jquery.sticky-kit.min.js",
+            "resources/assets/js/libs/imagesloaded.pkgd.min.js",
+            "resources/assets/js/libs/anim-on-scroll.js",
+            "resources/assets/js/libs/chosen.jquery.js",
+            "resources/assets/js/libs/nouislider.js",
+            "resources/assets/js/libs/jquery.mask.min.js"
+        ],
+        "public/js/frontend/frontend-confirmacao-de-compra-libs.js"
     );
 
     /* JS frontend */
@@ -334,6 +393,14 @@ elixir(mix => {
     mix.scripts(
         ["resources/assets/js/components/main.js"],
         "public/js/frontend/frontend-evento-selecionado.js"
+    );
+    mix.scripts(
+        ["resources/assets/js/components/main.js"],
+        "public/js/frontend/frontend-calendario.js"
+    );
+    mix.scripts(
+        ["resources/assets/js/components/main.js"],
+        "public/js/frontend/frontend-confirmacao-de-compra.js"
     );
 
     /*------------------------------------------------------------------------*/

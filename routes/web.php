@@ -11,6 +11,8 @@ URL::forceScheme('https');
 Route::get('get-city-list','DropdownController@getCityList');
 Route::get('confirma/{token}', array('as' => 'frontend-my-confirm', 'uses' => 'Frontend\AccountController@confirma'));
 
+Route::post('/installments', 'AjaxController@installments');
+
 Route::namespace('Frontend')->group(function(){
     Route::get('/evento/{title}', array('as' => 'frontend-evento-selecionado', 'uses' => 'EventsController@evento'));
     Route::get('/', array('as' => 'frontend-home', 'uses' => 'HomeController@index'));
@@ -39,12 +41,12 @@ Route::namespace('Frontend')->group(function(){
     Route::get('/checkout', array('as' => 'frontend-checkout', 'uses' => 'AccountController@checkout'));
     Route::get('/checkout/{id}', array('as' => 'frontend-my-account-billing', 'uses' => 'AccountController@impressao'));
     Route::get('/historico', array('as' => 'frontend-historico', 'uses' => 'AccountController@historico'));
-    Route::post('/confirmacao-de-compra', array('as' => 'frontend-confirma-compra', 'uses' => 'AccountController@confirmapagamento'));
+    Route::post('/confirmacao-de-compra', array('as' => 'frontend-confirmacao-de-compra', 'uses' => 'AccountController@confirmapagamento'));
+
+    Route::post('/obrigado', array('as' => 'frontend-obrigado', 'uses' => 'AccountController@obrigado'));
 
     Route::post('/pesquisa-eventos', array('as' => 'backend-eventos-pesquisa', 'uses' => 'EventsController@pesquisa'));
-    Route::post('/promocoes', array('as' => 'frontend-events-promocoes', 'uses' => 'EventsController@promocoees'));
-
-    
+    Route::post('/promocoes', array('as' => 'frontend-events-promocoes', 'uses' => 'EventsController@promocoees')); 
 });
 
 

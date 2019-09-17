@@ -14652,7 +14652,7 @@ table td:not(:last-child) {
   transition: background-color 0.18s ease, border-color 0.18s ease;
 }
 
-label[for=city]::before {
+label[for=filter-city]::before {
   display: inline-block;
   font-style: normal;
   font-variant: normal;
@@ -14670,6 +14670,11 @@ label[for=city]::before {
 
 *:focus {
   outline: none;
+}
+
+span.error {
+  color: red;
+  padding-left: 10px;
 }
 
 .card {
